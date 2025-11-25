@@ -4,3 +4,21 @@ DOMAIN-SUFFIX,mgstage.com
 DOMAIN-SUFFIX,dlsite.com
 DOMAIN-SUFFIX,toranoana.jp
 DOMAIN-SUFFIX,prestige-av.com
+
+# 内容：Dmm
+# https://github.com/ACL4SSR/ACL4SSR/blob/master/Clash/Ruleset/Dmm.list
+# 数量：14条
+DOMAIN-SUFFIX,akabeesoft2.com
+DOMAIN-SUFFIX,akabeesoft3.com
+DOMAIN-SUFFIX,akatsukiworks.com
+DOMAIN-SUFFIX,alicesoft.com
+DOMAIN-SUFFIX,cosmiccute.com
+DOMAIN-SUFFIX,ddo.jp
+DOMAIN-SUFFIX,dmm-extension.com
+DOMAIN-SUFFIX,dmm.co.jp
+DOMAIN-SUFFIX,dmm.com
+DOMAIN-SUFFIX,dmm.hk
+DOMAIN-SUFFIX,hibiki-site.com
+DOMAIN-SUFFIX,minori.ph
+DOMAIN-SUFFIX,tenco.cc
+DOMAIN-SUFFIX,wheel-soft.com
