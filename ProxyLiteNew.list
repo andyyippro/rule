@@ -67,3 +67,6 @@ DOMAIN-SUFFIX,aigirlfriendstudio.com
 
 ;DMM跳转
 DOMAIN-SUFFIX,min-link.com
+
+;JKF-CDN
+DOMAIN-SUFFIX,mymyatt.net
