@@ -66,9 +66,6 @@ DOMAIN-SUFFIX,3xplanet.com
 ;风月AI
 DOMAIN-SUFFIX,aigirlfriendstudio.com
 
-;DMM跳转
-DOMAIN-SUFFIX,min-link.com
-
 ;JKF-CDN
 DOMAIN-SUFFIX,mymyatt.net
 DOMAIN-SUFFIX,mymypic.net
