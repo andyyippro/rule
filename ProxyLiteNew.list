@@ -68,12 +68,11 @@ DOMAIN-SUFFIX,3xplanet.com
 ;风月AI
 DOMAIN-SUFFIX,aigirlfriendstudio.com
 
-;JKF-CDN
-DOMAIN-SUFFIX,mymyatt.net
-DOMAIN-SUFFIX,mymypic.net
-
 ;Telegram 指定IP 91.108.56.128
 IP-CIDR,91.108.56.128/32,no-resolve
 
 ;enagic
 DOMAIN-SUFFIX,enagic-asia.com
+
+;tg搜索
+DOMAIN-SUFFIX,tgstat.com
