@@ -4,6 +4,8 @@ DOMAIN-SUFFIX,mgstage.com
 DOMAIN-SUFFIX,dlsite.com
 DOMAIN-SUFFIX,toranoana.jp
 DOMAIN-SUFFIX,prestige-av.com
+DOMAIN-SUFFIX,seesaa.jp
+DOMAIN-SUFFIX,seesaawiki.jp
 
 # 内容：Dmm
 # https://github.com/ACL4SSR/ACL4SSR/blob/master/Clash/Ruleset/Dmm.list
