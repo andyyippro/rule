@@ -1,4 +1,8 @@
 ;Hong Kong
+;Python
+DOMAIN-SUFFIX,pythonhosted.org
+DOMAIN-SUFFIX,pypi.org
+DOMAIN-SUFFIX,python.org
 ;jav预览
 DOMAIN-SUFFIX,heyzo.com
 DOMAIN-SUFFIX,heydouga.com
