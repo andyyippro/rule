@@ -1,7 +1,7 @@
 # ========================
 # Clash-ALL 优化配置
 # ========================
-# 版本号：v1.0.1
+# 版本号：v1.0.2
 
 # 机场节点订阅
 
@@ -68,10 +68,8 @@ proxy-groups:
   - {name: Microsoft, <<: *default}
   - {name: Apple, <<: *default}
 #  - {name: Reddit, <<: *default}  
-  - {name: Nvidia, <<: *default}
   - {name: Adobe, <<: *default}  
   - {name: Games, <<: *default}
-  - {name: Crypto, <<: *default}
   - {name: Sex, <<: *default}
   - {name: Test, <<: *default}
   - {name: 国外, <<: *default}
@@ -215,10 +213,9 @@ rules:
   - RULE-SET,Sex / Domain,Sex
   - RULE-SET,Test / Domain,Test
 #  - RULE-SET,GitHub / Domain,国外 
-  - RULE-SET,Claude / Domain,AI
+  - GEOSITE,anthropic,AI
 #  - RULE-SET,Copilot / Domain,AI
 #  - RULE-SET,Gemini / Domain,AI
-  - RULE-SET,Groq / Domain,AI
   - RULE-SET,Grok / Domain,AI
   - RULE-SET,Meta AI / Domain,AI
   - RULE-SET,Perplexity / Domain,AI
@@ -230,9 +227,6 @@ rules:
   - RULE-SET,Apple / Domain,Apple
   - RULE-SET,Apple-CN / Domain,Apple  
   - RULE-SET,Apple-Custome / Domain,Apple  
-  - RULE-SET,OKX / Domain,Crypto
-  - RULE-SET,Bybit / Domain,Crypto
-  - RULE-SET,Binance / Domain,Crypto
   - RULE-SET,TikTok / Domain,Stream Media
   - RULE-SET,Netflix / Domain,Stream Media
   - RULE-SET,Netflix / IP,Stream Media,no-resolve
@@ -249,7 +243,6 @@ rules:
   - RULE-SET,UBI / Domain,Games
   - RULE-SET,PlayStation / Domain,Games
   - RULE-SET,Nintend / Domain,Games
-  - RULE-SET,Nvidia / Domain,Nvidia
 #  - RULE-SET,Reddit / Domain,Reddit 
   - RULE-SET,Adobe / Domain,Adobe 
   - RULE-SET,AdobeActivation / Domain,Adobe
@@ -271,7 +264,6 @@ rule-anchor:
 
 rule-providers:
   Test / Domain: {<<: *class, url: "https://cdn.jsdelivr.net/gh/liandu2024/clash@main/list/Check.list"}
-  Claude / Domain: {<<: *class, url: "https://gh-proxy.com/raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/Clash/Claude/Claude.list"}
   Meta AI / Domain: {<<: *class, url: "https://gh-proxy.com/raw.githubusercontent.com/liandu2024/clash/refs/heads/main/list/MetaAi.list"}
   Perplexity / Domain: {<<: *domain, url: "https://gh-proxy.com/github.com/metacubex/meta-rules-dat/raw/refs/heads/meta/geo/geosite/perplexity.mrs"}
   Copilot / Domain: {<<: *class, url: "https://gh-proxy.com/raw.githubusercontent.com/liandu2024/clash/refs/heads/main/list/Copilot.list"}
@@ -282,9 +274,6 @@ rule-providers:
   Apple / Domain: {<<: *domain, url: "https://gh-proxy.com/github.com/metacubex/meta-rules-dat/raw/refs/heads/meta/geo/geosite/apple.mrs"} 
   Apple-Custome / Domain: {<<: *class, url: "https://gh-proxy.com/raw.githubusercontent.com/liandu2024/clash/refs/heads/main/list/Apple.list"}
   Microsoft / Domain: {<<: *domain, url: "https://gh-proxy.com/github.com/metacubex/meta-rules-dat/raw/refs/heads/meta/geo/geosite/microsoft.mrs"}
-  OKX / Domain: {<<: *domain, url: "https://gh-proxy.com/github.com/metacubex/meta-rules-dat/raw/refs/heads/meta/geo/geosite/okx.mrs"}
-  Bybit / Domain: {<<: *domain, url: "https://gh-proxy.com/github.com/metacubex/meta-rules-dat/raw/refs/heads/meta/geo/geosite/bybit.mrs"}
-  Binance / Domain: {<<: *domain, url: "https://gh-proxy.com/github.com/metacubex/meta-rules-dat/raw/refs/heads/meta/geo/geosite/binance.mrs"}
   TikTok / Domain: {<<: *domain, url: "https://gh-proxy.com/github.com/metacubex/meta-rules-dat/raw/refs/heads/meta/geo/geosite/tiktok.mrs"}
   Netflix / Domain: {<<: *domain, url: "https://gh-proxy.com/github.com/metacubex/meta-rules-dat/raw/refs/heads/meta/geo/geosite/netflix.mrs"}
   Netflix / IP: {<<: *ip, url: "https://gh-proxy.com/github.com/metacubex/meta-rules-dat/raw/refs/heads/meta/geo/geoip/netflix.mrs"}
@@ -301,10 +290,8 @@ rule-providers:
   Proxy / Domain: {<<: *class, url: "https://gh-proxy.com/raw.githubusercontent.com/liandu2024/clash/refs/heads/main/list/Proxy.list"}
   Globe / Domain: {<<: *class, url: "https://gh-proxy.com/raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/Clash/Global/Global.list"} 
   Block / Domain: {<<: *class, url: "https://gh-proxy.com/raw.githubusercontent.com/liandu2024/clash/refs/heads/main/list/Block.list"}
-  Nvidia / Domain: {<<: *class, url: "https://gh-proxy.com/raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/Clash/Nvidia/Nvidia.list"}
   Crunchyroll / Domain: {<<: *class, url: "https://gh-proxy.com/raw.githubusercontent.com/liandu2024/clash/refs/heads/main/list/Crunchyroll.list"}
   Reddit / Domain: {<<: *domain, url: "https://gh-proxy.com/github.com/metacubex/meta-rules-dat/raw/refs/heads/meta/geo/geosite/reddit.mrs"}
-  Groq / Domain: {<<: *domain, url: "https://gh-proxy.com/github.com/metacubex/meta-rules-dat/raw/refs/heads/meta/geo/geosite/groq.mrs"}
   Grok / Domain: {<<: *class, url: "https://gh-proxy.com/raw.githubusercontent.com/liandu2024/clash/refs/heads/main/list/Grok.list"}
   Popcorn / Domain: {<<: *class, url: "https://gh-proxy.com/raw.githubusercontent.com/liandu2024/clash/refs/heads/main/list/Popcorn.list"}
 

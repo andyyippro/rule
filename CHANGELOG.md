@@ -1,6 +1,18 @@
 # 更新日志
 
-当前版本：`v1.0.1`
+当前版本：`v1.0.2`
+
+## v1.0.2 - 2026-04-01
+
+- 将 `Claude` 规则从远程 `RULE-SET` 改为 Mihomo 原生规则：
+  `GEOSITE,anthropic,AI`
+- 删除不再使用的 `Claude / Domain` 远程规则提供者配置。
+- 删除 `Groq` 相关规则及远程规则提供者配置。
+- 删除 `Crypto` 策略组。
+- 删除 `OKX`、`Bybit`、`Binance` 三条指向 `Crypto` 的规则及对应远程规则提供者配置。
+- 删除 `Nvidia` 策略组。
+- 删除 `RULE-SET,Nvidia / Domain,Nvidia` 规则。
+- 删除 `Nvidia / Domain` 远程规则提供者配置。
 
 ## v1.0.1 - 2026-04-01
 
