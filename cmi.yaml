@@ -1,6 +1,7 @@
 # ========================
 # Clash-ALL 优化配置
 # ========================
+# 版本号：v1.0.1
 
 # 机场节点订阅
 
@@ -210,7 +211,7 @@ proxy-groups:
 # 规则引擎（rules）
 # ========================
 rules:
-  - RULE-SET,ChatGPT / Domain,AI
+  - GEOSITE,openai,AI
   - RULE-SET,Sex / Domain,Sex
   - RULE-SET,Test / Domain,Test
 #  - RULE-SET,GitHub / Domain,国外 
@@ -269,8 +270,7 @@ rule-anchor:
   class: &class {type: http, interval: 86400, behavior: classical, format: text}
 
 rule-providers:
-  Test / Domain: {<<: *class, url: "https://gh-proxy.com/raw.githubusercontent.com/liandu2024/clash/refs/heads/main/list/Check.list"}
-  ChatGPT / Domain: {<<: *domain, url: "https://gh-proxy.com/github.com/metacubex/meta-rules-dat/raw/refs/heads/meta/geo/geosite/openai.mrs"}
+  Test / Domain: {<<: *class, url: "https://cdn.jsdelivr.net/gh/liandu2024/clash@main/list/Check.list"}
   Claude / Domain: {<<: *class, url: "https://gh-proxy.com/raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/Clash/Claude/Claude.list"}
   Meta AI / Domain: {<<: *class, url: "https://gh-proxy.com/raw.githubusercontent.com/liandu2024/clash/refs/heads/main/list/MetaAi.list"}
   Perplexity / Domain: {<<: *domain, url: "https://gh-proxy.com/github.com/metacubex/meta-rules-dat/raw/refs/heads/meta/geo/geosite/perplexity.mrs"}
