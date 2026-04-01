@@ -1,6 +1,13 @@
 # 更新日志
 
-当前版本：`v1.0.2`
+当前版本：`v1.0.3`
+
+## v1.0.3 - 2026-04-01
+
+- 新增 `更新专用` 策略组，放置在 `proxy-groups` 末尾。
+- 新增 `DOMAIN-SUFFIX,zodnext.com,更新专用` 规则。
+- 将 `更新专用` 规则放到国内规则之前，确保优先于 `Direct / Domain`、`China / Domain`、`China / IP` 等规则命中。
+- 保持 `proxy-providers` 区域不变，未添加远程 `Update / Domain` 规则提供者。
 
 ## v1.0.2 - 2026-04-01
 
