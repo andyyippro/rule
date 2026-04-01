@@ -1,8 +1,8 @@
 # ========================
 # Clash-ALL 优化配置
 # ========================
-# 版本号：v1.0.4
-# 更新时间：2026-04-01 18:32:23 +08:00
+# 版本号：v1.0.5
+# 更新时间：2026-04-01 18:38:24 +08:00
 
 # 机场节点订阅
 
@@ -71,7 +71,6 @@ proxy-groups:
 #  - {name: Reddit, <<: *default}  
   - {name: Adobe, <<: *default}  
   - {name: Games, <<: *default}
-  - {name: Sex, <<: *default}
   - {name: Test, <<: *default}
   - {name: 国外, <<: *default}
   - {name: 国内, <<: *default}
@@ -219,7 +218,6 @@ proxy-groups:
 # ========================
 rules:
   - GEOSITE,openai,AI
-  - RULE-SET,Sex / Domain,Sex
   - RULE-SET,Test / Domain,Test
 #  - RULE-SET,GitHub / Domain,国外 
   - GEOSITE,anthropic,AI
@@ -251,7 +249,6 @@ rules:
 #  - RULE-SET,Reddit / Domain,Reddit 
   - RULE-SET,Adobe / Domain,Adobe 
   - RULE-SET,AdobeActivation / Domain,Adobe
-  - RULE-SET,Proxy / Domain,国外
   - RULE-SET,Globe / Domain,国外  
   - DOMAIN-SUFFIX,zodnext.com,更新专用
   - RULE-SET,China / Domain,国内
@@ -289,7 +286,6 @@ rule-providers:
   EA / Domain: {<<: *class, url: "https://gh-proxy.com/raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/EA/EA.list"}
   Blizzard / Domain: {<<: *class, url: "https://gh-proxy.com/raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Blizzard/Blizzard.list"}
   PlayStation / Domain: {<<: *class, url: "https://gh-proxy.com/raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/Clash/PlayStation/PlayStation.list"}
-  Proxy / Domain: {<<: *class, url: "https://gh-proxy.com/raw.githubusercontent.com/liandu2024/clash/refs/heads/main/list/Proxy.list"}
   Globe / Domain: {<<: *class, url: "https://gh-proxy.com/raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/Clash/Global/Global.list"} 
   Reddit / Domain: {<<: *domain, url: "https://gh-proxy.com/github.com/metacubex/meta-rules-dat/raw/refs/heads/meta/geo/geosite/reddit.mrs"}
   Grok / Domain: {<<: *class, url: "https://gh-proxy.com/raw.githubusercontent.com/liandu2024/clash/refs/heads/main/list/Grok.list"}
@@ -300,7 +296,6 @@ rule-providers:
   Google / Domain: {<<: *domain, url: "https://gh-proxy.com/github.com/metacubex/meta-rules-dat/raw/refs/heads/meta/geo/geosite/google.mrs"}  
   Google / IP: {<<: *ip, url: "https://gh-proxy.com/github.com/metacubex/meta-rules-dat/raw/refs/heads/meta/geo/geoip/google.mrs"}
 
-  Sex / Domain: {<<: *class, url: "https://gh-proxy.com/raw.githubusercontent.com/liandu2024/clash/refs/heads/main/list/Sex.list"}
   China / Domain: {<<: *domain, url: "https://gh-proxy.com/github.com/metacubex/meta-rules-dat/raw/refs/heads/meta/geo/geosite/cn.mrs"}
   China / IP: {<<: *ip, url: "https://gh-proxy.com/github.com/metacubex/meta-rules-dat/raw/refs/heads/meta/geo/geoip/cn.mrs"}
 #  Twitter / Domain: {<<: *domain, url: "https://gh-proxy.com/github.com/metacubex/meta-rules-dat/raw/refs/heads/meta/geo/geosite/x.mrs"}
