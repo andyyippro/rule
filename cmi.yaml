@@ -1,7 +1,8 @@
 # ========================
 # Clash-ALL 优化配置
 # ========================
-# 版本号：v1.0.3
+# 版本号：v1.0.4
+# 更新时间：2026-04-01 18:32:23 +08:00
 
 # 机场节点订阅
 
@@ -241,26 +242,20 @@ rules:
   - RULE-SET,Disney / Domain,Stream Media
   - RULE-SET,Amazon / Domain,Stream Media
   - RULE-SET,HBO / Domain,Stream Media
-  - RULE-SET,Crunchyroll / Domain,Stream Media
-  - RULE-SET,Popcorn / Domain,Stream Media  
   - RULE-SET,Spotify / Domain,Stream Media
   - RULE-SET,Steam / Domain,Games
   - RULE-SET,Epic / Domain,Games
   - RULE-SET,EA / Domain,Games
   - RULE-SET,Blizzard / Domain,Games
-  - RULE-SET,UBI / Domain,Games
   - RULE-SET,PlayStation / Domain,Games
-  - RULE-SET,Nintend / Domain,Games
 #  - RULE-SET,Reddit / Domain,Reddit 
   - RULE-SET,Adobe / Domain,Adobe 
   - RULE-SET,AdobeActivation / Domain,Adobe
   - RULE-SET,Proxy / Domain,国外
   - RULE-SET,Globe / Domain,国外  
   - DOMAIN-SUFFIX,zodnext.com,更新专用
-  - RULE-SET,Direct / Domain,国内
   - RULE-SET,China / Domain,国内
   - RULE-SET,China / IP,国内,no-resolve
-  - RULE-SET,Private / Domain,国内
   - MATCH,其他
 
 # ========================
@@ -293,16 +288,11 @@ rule-providers:
   Epic / Domain: {<<: *class, url: "https://gh-proxy.com/raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Epic/Epic.list"}
   EA / Domain: {<<: *class, url: "https://gh-proxy.com/raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/EA/EA.list"}
   Blizzard / Domain: {<<: *class, url: "https://gh-proxy.com/raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Blizzard/Blizzard.list"}
-  UBI / Domain: {<<: *class, url: "https://gh-proxy.com/raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/UBI/UBI.list"}
   PlayStation / Domain: {<<: *class, url: "https://gh-proxy.com/raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/Clash/PlayStation/PlayStation.list"}
-  Nintend / Domain: {<<: *class, url: "https://gh-proxy.com/raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Nintendo/Nintendo.list"}
   Proxy / Domain: {<<: *class, url: "https://gh-proxy.com/raw.githubusercontent.com/liandu2024/clash/refs/heads/main/list/Proxy.list"}
   Globe / Domain: {<<: *class, url: "https://gh-proxy.com/raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/Clash/Global/Global.list"} 
-  Block / Domain: {<<: *class, url: "https://gh-proxy.com/raw.githubusercontent.com/liandu2024/clash/refs/heads/main/list/Block.list"}
-  Crunchyroll / Domain: {<<: *class, url: "https://gh-proxy.com/raw.githubusercontent.com/liandu2024/clash/refs/heads/main/list/Crunchyroll.list"}
   Reddit / Domain: {<<: *domain, url: "https://gh-proxy.com/github.com/metacubex/meta-rules-dat/raw/refs/heads/meta/geo/geosite/reddit.mrs"}
   Grok / Domain: {<<: *class, url: "https://gh-proxy.com/raw.githubusercontent.com/liandu2024/clash/refs/heads/main/list/Grok.list"}
-  Popcorn / Domain: {<<: *class, url: "https://gh-proxy.com/raw.githubusercontent.com/liandu2024/clash/refs/heads/main/list/Popcorn.list"}
 
   Adobe / Domain: {<<: *class, url: "https://gh-proxy.com/raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/Clash/Adobe/Adobe.list"}
   AdobeActivation / Domain: {<<: *class, url: "https://gh-proxy.com/raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/Clash/AdobeActivation/AdobeActivation.list"}
@@ -311,8 +301,6 @@ rule-providers:
   Google / IP: {<<: *ip, url: "https://gh-proxy.com/github.com/metacubex/meta-rules-dat/raw/refs/heads/meta/geo/geoip/google.mrs"}
 
   Sex / Domain: {<<: *class, url: "https://gh-proxy.com/raw.githubusercontent.com/liandu2024/clash/refs/heads/main/list/Sex.list"}
-  Direct / Domain: {<<: *class, url: "https://gh-proxy.com/raw.githubusercontent.com/liandu2024/clash/refs/heads/main/list/Direct.list"}
-  Private / Domain: {<<: *domain, url: "https://gh-proxy.com/github.com/metacubex/meta-rules-dat/raw/refs/heads/meta/geo/geosite/private.mrs"}
   China / Domain: {<<: *domain, url: "https://gh-proxy.com/github.com/metacubex/meta-rules-dat/raw/refs/heads/meta/geo/geosite/cn.mrs"}
   China / IP: {<<: *ip, url: "https://gh-proxy.com/github.com/metacubex/meta-rules-dat/raw/refs/heads/meta/geo/geoip/cn.mrs"}
 #  Twitter / Domain: {<<: *domain, url: "https://gh-proxy.com/github.com/metacubex/meta-rules-dat/raw/refs/heads/meta/geo/geosite/x.mrs"}

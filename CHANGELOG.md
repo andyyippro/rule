@@ -1,6 +1,13 @@
 # 更新日志
 
-当前版本：`v1.0.3`
+当前版本：`v1.0.4`
+
+## v1.0.4 - 2026-04-01
+
+- 删除 `UBI / Domain`、`Nintend / Domain` 游戏规则及对应远程规则提供者配置。
+- 删除 `Crunchyroll / Domain`、`Popcorn / Domain` 流媒体规则及对应远程规则提供者配置。
+- 删除 `Direct / Domain`、`Private / Domain` 国内规则及对应远程规则提供者配置。
+- 删除未再使用的 `Block / Domain` 远程规则提供者配置。
 
 ## v1.0.3 - 2026-04-01
 
