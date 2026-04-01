@@ -1,8 +1,8 @@
 # ========================
 # Clash-ALL 优化配置
 # ========================
-# 版本号：v1.0.5
-# 更新时间：2026-04-01 18:38:24 +08:00
+# 版本号：v1.0.6
+# 更新时间：2026-04-01 18:43:16 +08:00
 
 # 机场节点订阅
 
@@ -69,7 +69,6 @@ proxy-groups:
   - {name: Microsoft, <<: *default}
   - {name: Apple, <<: *default}
 #  - {name: Reddit, <<: *default}  
-  - {name: Adobe, <<: *default}  
   - {name: Games, <<: *default}
   - {name: Test, <<: *default}
   - {name: 国外, <<: *default}
@@ -244,11 +243,7 @@ rules:
   - RULE-SET,Steam / Domain,Games
   - RULE-SET,Epic / Domain,Games
   - RULE-SET,EA / Domain,Games
-  - RULE-SET,Blizzard / Domain,Games
-  - RULE-SET,PlayStation / Domain,Games
 #  - RULE-SET,Reddit / Domain,Reddit 
-  - RULE-SET,Adobe / Domain,Adobe 
-  - RULE-SET,AdobeActivation / Domain,Adobe
   - RULE-SET,Globe / Domain,国外  
   - DOMAIN-SUFFIX,zodnext.com,更新专用
   - RULE-SET,China / Domain,国内
@@ -284,14 +279,9 @@ rule-providers:
   Steam / Domain: {<<: *domain, url: "https://gh-proxy.com/github.com/metacubex/meta-rules-dat/raw/refs/heads/meta/geo/geosite/steam.mrs"}
   Epic / Domain: {<<: *class, url: "https://gh-proxy.com/raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Epic/Epic.list"}
   EA / Domain: {<<: *class, url: "https://gh-proxy.com/raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/EA/EA.list"}
-  Blizzard / Domain: {<<: *class, url: "https://gh-proxy.com/raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Blizzard/Blizzard.list"}
-  PlayStation / Domain: {<<: *class, url: "https://gh-proxy.com/raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/Clash/PlayStation/PlayStation.list"}
   Globe / Domain: {<<: *class, url: "https://gh-proxy.com/raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/Clash/Global/Global.list"} 
   Reddit / Domain: {<<: *domain, url: "https://gh-proxy.com/github.com/metacubex/meta-rules-dat/raw/refs/heads/meta/geo/geosite/reddit.mrs"}
   Grok / Domain: {<<: *class, url: "https://gh-proxy.com/raw.githubusercontent.com/liandu2024/clash/refs/heads/main/list/Grok.list"}
-
-  Adobe / Domain: {<<: *class, url: "https://gh-proxy.com/raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/Clash/Adobe/Adobe.list"}
-  AdobeActivation / Domain: {<<: *class, url: "https://gh-proxy.com/raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/Clash/AdobeActivation/AdobeActivation.list"}
 
   Google / Domain: {<<: *domain, url: "https://gh-proxy.com/github.com/metacubex/meta-rules-dat/raw/refs/heads/meta/geo/geosite/google.mrs"}  
   Google / IP: {<<: *ip, url: "https://gh-proxy.com/github.com/metacubex/meta-rules-dat/raw/refs/heads/meta/geo/geoip/google.mrs"}

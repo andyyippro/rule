@@ -1,6 +1,12 @@
 # 更新日志
 
-当前版本：`v1.0.5`
+当前版本：`v1.0.6`
+
+## v1.0.6 - 2026-04-01
+
+- 删除 `Blizzard / Domain`、`PlayStation / Domain` 游戏规则及对应远程规则提供者配置。
+- 删除 `Adobe / Domain`、`AdobeActivation / Domain` 规则及对应远程规则提供者配置。
+- 删除不再使用的 `Adobe` 策略组。
 
 ## v1.0.5 - 2026-04-01
 
