@@ -1,6 +1,16 @@
 # 更新日志
 
-当前版本：`v1.0.6`
+当前版本：`v1.0.7`
+
+## v1.0.7 - 2026-04-01
+
+- 新增自定义地区定向规则：
+  `RULE-SET,HongKong / Domain,香港-故转`
+  `RULE-SET,Japan / Domain,日本-故转`
+  `RULE-SET,Singapore / Domain,新加坡-故转`
+- 新增 `RULE-SET,ProxyLiteNew / Domain,香港-故转` 规则。
+- 新增 `HongKong / Domain`、`Japan / Domain`、`Singapore / Domain`、`ProxyLiteNew / Domain` 四个远程规则提供者配置。
+- 本次地区分流调整仅保留自定义 `RULE-SET` 规则，未加入 `GEOIP` 地区规则和 `grokipedia.com` 单域名规则。
 
 ## v1.0.6 - 2026-04-01
 

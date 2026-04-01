@@ -1,8 +1,8 @@
 # ========================
 # Clash-ALL 优化配置
 # ========================
-# 版本号：v1.0.6
-# 更新时间：2026-04-01 18:43:16 +08:00
+# 版本号：v1.0.7
+# 更新时间：2026-04-01 19:04:51 +08:00
 
 # 机场节点订阅
 
@@ -216,6 +216,12 @@ proxy-groups:
 # 规则引擎（rules）
 # ========================
 rules:
+  # 自定义地区定向规则
+  - RULE-SET,HongKong / Domain,香港-故转
+  - RULE-SET,ProxyLiteNew / Domain,香港-故转
+  - RULE-SET,Japan / Domain,日本-故转
+  - RULE-SET,Singapore / Domain,新加坡-故转
+
   - GEOSITE,openai,AI
   - RULE-SET,Test / Domain,Test
 #  - RULE-SET,GitHub / Domain,国外 
@@ -260,6 +266,10 @@ rule-anchor:
 
 rule-providers:
   Test / Domain: {<<: *class, url: "https://cdn.jsdelivr.net/gh/liandu2024/clash@main/list/Check.list"}
+  HongKong / Domain: {<<: *class, url: "https://cdn.jsdelivr.net/gh/andyyippro/rule@main/HongKongSites.list"}
+  ProxyLiteNew / Domain: {<<: *class, url: "https://cdn.jsdelivr.net/gh/andyyippro/rule@main/ProxyLiteNew.list"}
+  Japan / Domain: {<<: *class, url: "https://cdn.jsdelivr.net/gh/andyyippro/rule@main/JapanSites.list"}
+  Singapore / Domain: {<<: *class, url: "https://cdn.jsdelivr.net/gh/andyyippro/rule@main/SingaporeSites.list"}
   Meta AI / Domain: {<<: *class, url: "https://gh-proxy.com/raw.githubusercontent.com/liandu2024/clash/refs/heads/main/list/MetaAi.list"}
   Perplexity / Domain: {<<: *domain, url: "https://gh-proxy.com/github.com/metacubex/meta-rules-dat/raw/refs/heads/meta/geo/geosite/perplexity.mrs"}
   Copilot / Domain: {<<: *class, url: "https://gh-proxy.com/raw.githubusercontent.com/liandu2024/clash/refs/heads/main/list/Copilot.list"}
