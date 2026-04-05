@@ -1,9 +1,11 @@
-;Hong Kong
-;Python
+# 内容：Python
+# 数量：3条
 DOMAIN-SUFFIX,pythonhosted.org
 DOMAIN-SUFFIX,pypi.org
 DOMAIN-SUFFIX,python.org
-;jav预览
+
+# 内容：JAV 预览
+# 数量：4条
 DOMAIN-SUFFIX,heyzo.com
 DOMAIN-SUFFIX,heydouga.com
 DOMAIN-SUFFIX,supjav.com

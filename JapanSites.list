@@ -1,5 +1,5 @@
 # 内容：JapanSites
-# 数量：4条
+# 数量：6条
 DOMAIN-SUFFIX,mgstage.com
 DOMAIN-SUFFIX,dlsite.com
 DOMAIN-SUFFIX,toranoana.jp
@@ -7,9 +7,9 @@ DOMAIN-SUFFIX,prestige-av.com
 DOMAIN-SUFFIX,seesaa.jp
 DOMAIN-SUFFIX,seesaawiki.jp
 
-# 内容：Dmm
-# https://github.com/ACL4SSR/ACL4SSR/blob/master/Clash/Ruleset/Dmm.list
-# 数量：14条
+# 内容：DMM
+# 来源：https://github.com/ACL4SSR/ACL4SSR/blob/master/Clash/Ruleset/Dmm.list
+# 数量：15条
 DOMAIN-SUFFIX,akabeesoft2.com
 DOMAIN-SUFFIX,akabeesoft3.com
 DOMAIN-SUFFIX,akatsukiworks.com

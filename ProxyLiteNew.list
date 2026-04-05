@@ -1,27 +1,39 @@
-
-;98堂
+# 内容：98堂
+# 数量：4条
 DOMAIN-SUFFIX,8uly.net
 DOMAIN-SUFFIX,sehuatang.net
 DOMAIN-SUFFIX,sehuatang.org
 DOMAIN-SUFFIX,98tang.com
-;图床
+
+# 内容：图床
+# 数量：5条
 DOMAIN-SUFFIX,ymawv.la
 DOMAIN-SUFFIX,pixhost.to
 DOMAIN-SUFFIX,pics-view.com
 DOMAIN-SUFFIX,imgbox.com
 DOMAIN-SUFFIX,gofile.io
-;jable.tv及播放源
+
+# 内容：jable.tv 及播放源
+# 数量：2条
 DOMAIN-SUFFIX,mushroomtrack.com
 DOMAIN-SUFFIX,jable.tv
-;要福利
+
+# 内容：要福利
+# 数量：1条
 DOMAIN-SUFFIX,1fuli.xyz
 
+# 内容：JAV Cup / MemoJAV
+# 数量：2条
 DOMAIN-SUFFIX,javcup.com
 DOMAIN-SUFFIX,memojav.com
-;ai酒馆
+
+# 内容：AI 酒馆
+# 数量：2条
 DOMAIN-SUFFIX,sexyai.top
 DOMAIN-SUFFIX,dzmm.ai
-;禁漫天堂
+
+# 内容：禁漫天堂
+# 数量：7条
 DOMAIN-SUFFIX,18comic.vip
 DOMAIN-SUFFIX,jmcomic.me
 DOMAIN-SUFFIX,jmapiproxy1.cc
@@ -29,56 +41,73 @@ DOMAIN-SUFFIX,jmapiproxy2.cc
 DOMAIN-SUFFIX,jmapiproxy3.cc
 DOMAIN-SUFFIX,jmdanjonproxy.vip
 DOMAIN-SUFFIX,jmdanjonproxy.xyz
-;绅士动漫
+
+# 内容：绅士动漫
+# 数量：1条
 DOMAIN-SUFFIX,qy0.ru
-;飞雪论坛
+
+# 内容：飞雪论坛
+# 数量：2条
 DOMAIN-SUFFIX,fxacg.cc
 DOMAIN-SUFFIX,fxacg.me
 
+# 内容：ClubSIM
+# 数量：1条
 DOMAIN-SUFFIX,clubsim.com.hk
 
-;麻豆游戏
+# 内容：麻豆游戏
+# 数量：2条
 DOMAIN-SUFFIX,masobu.com
 DOMAIN-SUFFIX,msbbdy.com
-;ACGC
+
+# 内容：ACGC
+# 数量：1条
 DOMAIN-SUFFIX,51acg.buzz
 
-;javdb片花预览与图
+# 内容：JAVDB 片花预览与图
+# 数量：2条
 DOMAIN-SUFFIX,gzankun.com
 DOMAIN-SUFFIX,jdbstatic.com
 
-;airav.io视频
+# 内容：airav.io 视频
+# 数量：2条
 DOMAIN-SUFFIX,airavtvip2.work
 DOMAIN-SUFFIX,airav.io
 
-;搜索u9a9
+# 内容：搜索 u9a9
+# 数量：1条
 DOMAIN-SUFFIX,u9a9.com
 
-;搜索torrentkitty
+# 内容：搜索 torrentkitty
+# 数量：1条
 DOMAIN-SUFFIX,torrentkitty.cam
 
-;片情avmoo
+# 内容：片情 avmoo
+# 数量：1条
 DOMAIN-SUFFIX,avmoo.website
 
-;片情avsox
+# 内容：片情 avsox
+# 数量：1条
 DOMAIN-SUFFIX,avsox.click
 
-;缩图3xplanet
+# 内容：缩图 3xplanet
+# 数量：1条
 DOMAIN-SUFFIX,3xplanet.com
 
-;风月AI
+# 内容：风月 AI
+# 数量：1条
 DOMAIN-SUFFIX,aigirlfriendstudio.com
 
-;Telegram 指定IP 91.108.56.128
-IP-CIDR,91.108.56.128/32,no-resolve
-
-;enagic
+# 内容：enagic
+# 数量：1条
 DOMAIN-SUFFIX,enagic-asia.com
 
-;tg搜索
+# 内容：TG 搜索
+# 数量：1条
 DOMAIN-SUFFIX,tgstat.com
 
-;ai画图
+# 内容：AI 画图
+# 数量：8条
 DOMAIN-SUFFIX,pixai.art
 DOMAIN-SUFFIX,donmai.us
 DOMAIN-SUFFIX,tensor.art
@@ -88,11 +117,14 @@ DOMAIN-SUFFIX,aitag.win
 DOMAIN-SUFFIX,10118899.xyz
 DOMAIN-SUFFIX,aibooru.online
 
-;h游戏厂商
+# 内容：H 游戏厂商
+# 数量：1条
 DOMAIN-SUFFIX,boki2.fun
 
-;图库
+# 内容：图库
+# 数量：1条
 DOMAIN-SUFFIX,hotgirl.biz
 
-;AI去水印
+# 内容：AI 去水印
+# 数量：1条
 DOMAIN-SUFFIX,bylo.ai
