@@ -5,8 +5,10 @@ DOMAIN-SUFFIX,pypi.org
 DOMAIN-SUFFIX,python.org
 
 # 内容：JAV 预览
-# 数量：4条
+# 数量：6条
 DOMAIN-SUFFIX,heyzo.com
 DOMAIN-SUFFIX,heydouga.com
 DOMAIN-SUFFIX,supjav.com
 DOMAIN-SUFFIX,javmost.ws
+DOMAIN-SUFFIX,blogsys.jp
+DOMAIN-SUFFIX,blogimg.jp
