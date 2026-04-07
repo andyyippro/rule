@@ -1,0 +1,665 @@
+# 文件说明：
+# 本文件为 Clash / Mihomo 通用配置文件，主要用于以下 4 个使用场景：
+# 1. 采用 Mihomo 内核路由器的 OpenClash
+# 2. Windows 11 桌面端 Clash Mi 应用
+# 3. iOS Clash Mi App
+# 4. Android Clash Mi App
+# 维护要求：
+# 1. 只有在你明确要求“更新日志和版本号”时，才同步更新“更新时间”“版本号”和 nmi-CHANGELOG.md
+# 2. 版本号从 v1.0.0 开始递增
+# 当前版本：v1.0.0
+# 更新时间：2026-04-05 00:32:41
+
+
+
+proxy-groups:
+  - name: 🤖 ChatGPT
+    type: select
+    proxies:
+      - 🇺🇸 美国静态IP
+      - 🇭🇰 香港故转
+      - 直连
+    use:
+      - airport
+    exclude-filter: &common_node_exclude "(?i)^v0|^基础\\s*\\||^高级\\s*\\||^境外\\s*\\||^JP\\s*\\|\\s*DEV\\s*\\|\\s*NODE$|^PRO \\| 订阅专用节点\\d+ \\| 0倍$|^如发现大部分节点无法连接$|^则为订阅信息过期需要更新订阅$|^节点变动日期\\d+$|^如您只看到我和订阅专用节点和V0节点$|^请连接订阅专用节点并通过代理更新订阅$|^如通过代理更新没节点请尝试重启软件$"
+
+  - name: 🧠 Claude
+    type: select
+    proxies:
+      - 🇳🇬 尼日利亚静态IP
+      - 🇺🇸 美国静态IP
+      - 🇭🇰 香港故转
+      - 直连
+    use:
+      - airport
+    exclude-filter: *common_node_exclude
+
+  - name: 📹 YouTube
+    type: select
+    proxies:
+      - 🇸🇬 新加坡负载均衡
+      - 🇸🇬 新加坡手动
+      - 🇸🇬 新加坡自动
+      - 🇸🇬 新加坡故转
+      - 🇹🇼 台湾负载均衡
+      - 🇹🇼 台湾手动
+      - 🇹🇼 台湾自动
+      - 🇹🇼 台湾故转
+      - 所有自动
+      - 所有故转
+      - 所有手动
+      - 🇭🇰 香港故转
+      - 🇺🇸 美国故转
+      - 🇯🇵 日本故转
+      - 🌐 其他地区故转
+    use:
+      - airport
+    exclude-filter: *common_node_exclude
+
+  - name: 🇬 谷歌服务
+    type: select
+    proxies:
+      - 🇺🇸 美国静态IP
+      - 🇭🇰 香港故转
+      - 直连
+    use:
+      - airport
+    exclude-filter: *common_node_exclude
+
+  - name: 🤖 Copilot
+    type: select
+    proxies:
+      - 🇺🇸 美国静态IP
+      - 🇭🇰 香港故转
+      - 直连
+    use:
+      - airport
+    exclude-filter: *common_node_exclude
+
+  - name: ✨ AI服务
+    type: select
+    proxies:
+      - 🇺🇸 美国静态IP
+      - 🇭🇰 香港故转
+      - 直连
+    use:
+      - airport
+    exclude-filter: *common_node_exclude
+
+  - name: 🚀 GitHub
+    type: select
+    proxies:
+      - 🇭🇰 香港故转
+      - 所有自动
+      - 所有故转
+      - 所有手动
+      - 🇺🇸 美国故转
+      - 🇯🇵 日本故转
+      - 🇸🇬 新加坡故转
+      - 🇹🇼 台湾故转
+      - 🌐 其他地区故转
+      - 直连
+    use:
+      - airport
+    exclude-filter: *common_node_exclude
+
+  - name: 💬 即时通讯
+    type: select
+    proxies:
+      - 🇭🇰 香港故转
+      - 所有自动
+      - 所有故转
+      - 所有手动
+      - 🇺🇸 美国故转
+      - 🇯🇵 日本故转
+      - 🇸🇬 新加坡故转
+      - 🇹🇼 台湾故转
+      - 🌐 其他地区故转
+      - 直连
+    use:
+      - airport
+    exclude-filter: *common_node_exclude
+
+  - name: 🌐 社交媒体
+    type: select
+    proxies:
+      - 🇭🇰 香港故转
+      - 所有自动
+      - 所有故转
+      - 所有手动
+      - 🇺🇸 美国故转
+      - 🇯🇵 日本故转
+      - 🇸🇬 新加坡故转
+      - 🇹🇼 台湾故转
+      - 🌐 其他地区故转
+      - 直连
+    use:
+      - airport
+    exclude-filter: *common_node_exclude
+
+  - name: 🚀 测速工具
+    type: select
+    proxies:
+      - 直连
+      - 🇺🇸 美国静态IP
+      - 🇭🇰 香港故转
+    use:
+      - airport
+    exclude-filter: *common_node_exclude
+
+  - name: 🎮 Steam
+    type: select
+    proxies:
+      - 🇭🇰 香港故转
+      - 所有自动
+      - 所有故转
+      - 所有手动
+      - 🇺🇸 美国故转
+      - 🇯🇵 日本故转
+      - 🇸🇬 新加坡故转
+      - 🇹🇼 台湾故转
+      - 🌐 其他地区故转
+      - 直连
+    use:
+      - airport
+    exclude-filter: *common_node_exclude
+
+  - name: 🍎 苹果服务
+    type: select
+    proxies:
+      - 🇭🇰 香港故转
+      - 🇺🇸 美国静态IP
+      - 🇳🇬 尼日利亚静态IP
+      - 所有自动
+      - 所有故转
+      - 所有手动
+      - 🇺🇸 美国故转
+      - 🇯🇵 日本故转
+      - 🇸🇬 新加坡故转
+      - 🇹🇼 台湾故转
+      - 🌐 其他地区故转
+      - 直连
+    use:
+      - airport
+    exclude-filter: *common_node_exclude
+
+  - name: Ⓜ️ 微软服务
+    type: select
+    proxies:
+      - 直连
+      - 所有自动
+      - 所有故转
+      - 所有手动
+      - 🇭🇰 香港故转
+      - 🇺🇸 美国故转
+      - 🇯🇵 日本故转
+      - 🇸🇬 新加坡故转
+      - 🇹🇼 台湾故转
+      - 🌐 其他地区故转
+    use:
+      - airport
+    exclude-filter: *common_node_exclude
+
+  - name: 🎶 TikTok
+    type: select
+    proxies:
+      - 🇹🇼 台湾故转
+      - 所有自动
+      - 所有故转
+      - 所有手动
+      - 🇭🇰 香港故转
+      - 🇺🇸 美国故转
+      - 🇯🇵 日本故转
+      - 🇸🇬 新加坡故转
+      - 🌐 其他地区故转
+    use:
+      - airport
+    exclude-filter: *common_node_exclude
+
+  - name: 🎮 游戏平台
+    type: select
+    proxies:
+      - 直连
+      - 所有自动
+      - 所有故转
+      - 所有手动
+      - 🇭🇰 香港故转
+      - 🇺🇸 美国故转
+      - 🇯🇵 日本故转
+      - 🇸🇬 新加坡故转
+      - 🇹🇼 台湾故转
+      - 🌐 其他地区故转
+    use:
+      - airport
+    exclude-filter: *common_node_exclude
+
+  - name: 🌎 国外媒体
+    type: select
+    proxies:
+      - 🇭🇰 香港故转
+      - 所有自动
+      - 所有故转
+      - 所有手动
+      - 🇸🇬 新加坡故转
+      - 🇺🇸 美国故转
+      - 🇯🇵 日本故转
+      - 🇹🇼 台湾故转
+      - 🌐 其他地区故转
+      - 直连
+    use:
+      - airport
+    exclude-filter: *common_node_exclude
+
+  - name: 🛒 国外电商
+    type: select
+    proxies:
+      - 🇭🇰 香港故转
+      - 所有自动
+      - 所有故转
+      - 所有手动
+      - 🇺🇸 美国故转
+      - 🇯🇵 日本故转
+      - 🇸🇬 新加坡故转
+      - 🇹🇼 台湾故转
+      - 🌐 其他地区故转
+      - 直连
+    use:
+      - airport
+    exclude-filter: *common_node_exclude
+
+  - name: 🇺🇸 美国静态IP
+    type: fallback
+    url: https://www.gstatic.com/generate_204
+    interval: 180
+    lazy: false
+    proxies:
+      - 🇺🇸 美国静态IP-链式
+      - 拒绝
+
+  - name: 🇳🇬 尼日利亚静态IP
+    type: fallback
+    url: https://www.gstatic.com/generate_204
+    interval: 180
+    lazy: false
+    proxies:
+      - 🇳🇬 尼日利亚静态IP-链式
+      - 拒绝
+
+  - name: 🇺🇸 美国故转
+    type: fallback
+    url: https://www.gstatic.com/generate_204
+    interval: 180
+    lazy: false
+    proxies:
+      - 🇺🇸 美国手动
+      - 🇺🇸 美国自动
+
+  - name: 🇺🇸 美国手动
+    type: select
+    use:
+      - airport
+    filter: "(?=.*(广美|US|美国|纽约|波特兰|达拉斯|俄勒|凤凰城|费利蒙|洛杉|圣何塞|圣克拉|西雅|芝加|🇺🇸|United States)).*$"
+    exclude-filter: *common_node_exclude
+
+  - name: 🇺🇸 美国自动
+    type: url-test
+    use:
+      - airport
+    url: https://www.gstatic.com/generate_204
+    interval: 180
+    tolerance: 50
+    filter: "(?=.*(广美|US|美国|纽约|波特兰|达拉斯|俄勒|凤凰城|费利蒙|洛杉|圣何塞|圣克拉|西雅|芝加|🇺🇸|United States)).*$"
+    exclude-filter: *common_node_exclude
+
+  - name: 🇭🇰 香港故转
+    type: fallback
+    url: https://www.gstatic.com/generate_204
+    interval: 180
+    lazy: false
+    proxies:
+      - 🇭🇰 香港手动
+      - 🇭🇰 香港自动
+
+  - name: 🇭🇰 香港手动
+    type: select
+    use:
+      - airport
+    filter: "(?i)(广港|香港|hk|hong kong|hongkong|🇭🇰)"
+    exclude-filter: *common_node_exclude
+
+  - name: 🇭🇰 香港自动
+    type: url-test
+    use:
+      - airport
+    url: https://www.gstatic.com/generate_204
+    interval: 180
+    tolerance: 50
+    filter: "(?i)(广港|香港|hk|hong kong|hongkong|🇭🇰)"
+    exclude-filter: *common_node_exclude
+
+  - name: 🇯🇵 日本故转
+    type: fallback
+    url: https://www.gstatic.com/generate_204
+    interval: 180
+    lazy: false
+    proxies:
+      - 🇯🇵 日本手动
+      - 🇯🇵 日本自动
+
+  - name: 🇯🇵 日本手动
+    type: select
+    use:
+      - airport
+    filter: "(?=.*(广日|日本|JP|川日|东京|大阪|泉日|埼玉|沪日|深日|🇯🇵|Japan)).*$"
+    exclude-filter: *common_node_exclude
+
+  - name: 🇯🇵 日本自动
+    type: url-test
+    use:
+      - airport
+    url: https://www.gstatic.com/generate_204
+    interval: 180
+    tolerance: 50
+    filter: "(?=.*(广日|日本|JP|川日|东京|大阪|泉日|埼玉|沪日|深日|🇯🇵|Japan)).*$"
+    exclude-filter: *common_node_exclude
+
+
+  - name: 🇸🇬 新加坡故转
+    type: fallback
+    url: https://www.gstatic.com/generate_204
+    interval: 180
+    lazy: false
+    proxies:
+      - 🇸🇬 新加坡手动
+      - 🇸🇬 新加坡自动
+
+  - name: 🇸🇬 新加坡手动
+    type: select
+    use:
+      - airport
+    filter: "(?=.*(广新|新加坡|SG|坡|狮城|🇸🇬|Singapore)).*$"
+    exclude-filter: *common_node_exclude
+
+  - name: 🇸🇬 新加坡负载均衡
+    type: load-balance
+    strategy: consistent-hashing
+    use:
+      - airport
+    url: https://www.gstatic.com/generate_204
+    interval: 180
+    filter: "(?=.*(广新|新加坡|SG|坡|狮城|🇸🇬|Singapore)).*$"
+    exclude-filter: *common_node_exclude
+
+  - name: 🇸🇬 新加坡自动
+    type: url-test
+    use:
+      - airport
+    url: https://www.gstatic.com/generate_204
+    interval: 180
+    tolerance: 50
+    filter: "(?=.*(广新|新加坡|SG|坡|狮城|🇸🇬|Singapore)).*$"
+    exclude-filter: *common_node_exclude
+
+  - name: 🇹🇼 台湾故转
+    type: fallback
+    url: https://www.gstatic.com/generate_204
+    interval: 180
+    lazy: false
+    proxies:
+      - 🇹🇼 台湾手动
+      - 🇹🇼 台湾自动
+
+  - name: 🇹🇼 台湾手动
+    type: select
+    use:
+      - airport
+    filter: "(?=.*(广台|台湾|台灣|TW|Tai Wan|🇹🇼|🇨🇳|TaiWan|Taiwan)).*$"
+    exclude-filter: *common_node_exclude
+
+  - name: 🇹🇼 台湾自动
+    type: url-test
+    use:
+      - airport
+    url: https://www.gstatic.com/generate_204
+    interval: 180
+    tolerance: 50
+    filter: "(?=.*(广台|台湾|台灣|TW|Tai Wan|🇹🇼|🇨🇳|TaiWan|Taiwan)).*$"
+    exclude-filter: *common_node_exclude
+
+  - name: 🇹🇼 台湾负载均衡
+    type: load-balance
+    strategy: consistent-hashing
+    use:
+      - airport
+    url: https://www.gstatic.com/generate_204
+    interval: 180
+    filter: "(?=.*(广台|台湾|台灣|TW|Tai Wan|🇹🇼|🇨🇳|TaiWan|Taiwan)).*$"
+    exclude-filter: *common_node_exclude
+
+  - name: 所有故转
+    type: select
+    proxies:
+      - 🇺🇸 美国故转
+      - 🇭🇰 香港故转
+      - 🇯🇵 日本故转
+      - 🇸🇬 新加坡故转
+      - 🇹🇼 台湾故转
+      - 🌐 其他地区故转
+
+  - name: 所有手动
+    type: select
+    proxies:
+      - 🇺🇸 美国手动
+      - 🇭🇰 香港手动
+      - 🇯🇵 日本手动
+      - 🇸🇬 新加坡手动
+      - 🇹🇼 台湾手动
+      - 🌐 其他地区手动
+
+  - name: 所有自动
+    type: select
+    proxies:
+      - 🇺🇸 美国自动
+      - 🇭🇰 香港自动
+      - 🇯🇵 日本自动
+      - 🇸🇬 新加坡自动
+      - 🇹🇼 台湾自动
+      - 🌐 其他地区自动
+
+  - name: 🌐 其他地区故转
+    type: fallback
+    url: https://www.gstatic.com/generate_204
+    interval: 180
+    lazy: false
+    proxies:
+      - 🌐 其他地区手动
+      - 🌐 其他地区自动
+
+  - name: 🌐 其他地区手动
+    type: select
+    use:
+      - airport
+    filter: "^(基础\\s*\\|.*|高级\\s*\\|.*|PRO\\s*\\|(?:(?!(广港|香港|HK|Hong Kong|🇭🇰|HongKong|广台|台湾|台灣|TW|Tai Wan|🇹🇼|🇨🇳|TaiWan|Taiwan|广日|日本|JP|川日|东京|大阪|泉日|埼玉|沪日|深日|🇯🇵|Japan|广新|新加坡|SG|坡|狮城|🇸🇬|Singapore|广美|US|美国|纽约|波特兰|达拉斯|俄勒|凤凰城|费利蒙|洛杉|圣何塞|圣克拉|西雅|芝加|🇺🇸|United States)).)*|((?!(广港|香港|HK|Hong Kong|🇭🇰|HongKong|广台|台湾|台灣|TW|Tai Wan|🇹🇼|🇨🇳|TaiWan|Taiwan|广日|日本|JP|川日|东京|大阪|泉日|埼玉|沪日|深日|🇯🇵|Japan|广新|新加坡|SG|坡|狮城|🇸🇬|Singapore|广美|US|美国|纽约|波特兰|达拉斯|俄勒|凤凰城|费利蒙|洛杉|圣何塞|圣克拉|西雅|芝加|🇺🇸|United States)).)*)$"
+    exclude-filter: &loose_node_exclude "(?i)^v0|^境外\\s*\\||^JP\\s*\\|\\s*DEV\\s*\\|\\s*NODE$|^PRO \\| 订阅专用节点\\d+ \\| 0倍$|^如发现大部分节点无法连接$|^则为订阅信息过期需要更新订阅$|^节点变动日期\\d+$|^如您只看到我和订阅专用节点和V0节点$|^请连接订阅专用节点并通过代理更新订阅$|^如通过代理更新没节点请尝试重启软件$"
+
+  - name: 🌐 其他地区自动
+    type: url-test
+    use:
+      - airport
+    url: https://www.gstatic.com/generate_204
+    interval: 180
+    tolerance: 50
+    filter: "^(基础\\s*\\|.*|高级\\s*\\|.*|PRO\\s*\\|(?:(?!(广港|香港|HK|Hong Kong|🇭🇰|HongKong|广台|台湾|台灣|TW|Tai Wan|🇹🇼|🇨🇳|TaiWan|Taiwan|广日|日本|JP|川日|东京|大阪|泉日|埼玉|沪日|深日|🇯🇵|Japan|广新|新加坡|SG|坡|狮城|🇸🇬|Singapore|广美|US|美国|纽约|波特兰|达拉斯|俄勒|凤凰城|费利蒙|洛杉|圣何塞|圣克拉|西雅|芝加|🇺🇸|United States)).)*|((?!(广港|香港|HK|Hong Kong|🇭🇰|HongKong|广台|台湾|台灣|TW|Tai Wan|🇹🇼|🇨🇳|TaiWan|Taiwan|广日|日本|JP|川日|东京|大阪|泉日|埼玉|沪日|深日|🇯🇵|Japan|广新|新加坡|SG|坡|狮城|🇸🇬|Singapore|广美|US|美国|纽约|波特兰|达拉斯|俄勒|凤凰城|费利蒙|洛杉|圣何塞|圣克拉|西雅|芝加|🇺🇸|United States)).)*)$"
+    exclude-filter: *loose_node_exclude
+
+
+  - name: 🎮 DMM故转
+    type: fallback
+    url: https://www.gstatic.com/generate_204
+    interval: 180
+    lazy: false
+    proxies:
+      - 🎮 DMM手动
+      - 🎮 DMM自动
+
+  - name: 🎮 DMM手动
+    type: select
+    use:
+      - airport
+    # DMM 仅使用日本节点，并排除提示节点、订阅专用节点、V0 节点及指定的低优先级日本节点。
+    filter: "(?=.*(日本|东京|大阪|埼玉|🇯🇵|Japan)).*$"
+    exclude-filter: &dmm_node_exclude "(?i)^v0|^基础\\s*\\||^高级\\s*\\||^JP\\s*\\||^境外\\s*\\||^PRO \\| 订阅专用节点\\d+ \\| 0倍$|^PRO \\| 日本游戏线路1 \\| 2倍 游戏专用$|^PRO \\| 日本BGP02 \\| 1倍$|^如发现大部分节点无法连接$|^则为订阅信息过期需要更新订阅$|^节点变动日期\\d+$|^如您只看到我和订阅专用节点和V0节点$|^请连接订阅专用节点并通过代理更新订阅$|^如通过代理更新没节点请尝试重启软件$"
+
+  - name: 🎮 DMM自动
+    type: url-test
+    use:
+      - airport
+    url: https://www.gstatic.com/generate_204
+    interval: 180
+    tolerance: 50
+    filter: "(?=.*(日本|东京|大阪|埼玉|🇯🇵|Japan)).*$"
+    exclude-filter: *dmm_node_exclude
+
+  - name: 🎥 Emby-HKT
+    type: url-test
+    use:
+      - airport
+    url: https://www.gstatic.com/generate_204
+    interval: 300
+    tolerance: 50
+    filter: "(?=.*(香港电讯))^((?!(基础|高级|境外)).)*$"
+    exclude-filter: *common_node_exclude
+
+  - name: 🔄 订阅更新
+    type: url-test
+    use:
+      - airport
+    url: https://www.gstatic.com/generate_204
+    interval: 300
+    tolerance: 50
+    filter: "订阅专用节点0(1|2)"
+
+  - name: 🐟 漏网之鱼
+    type: select
+    proxies:
+      - 直连
+      - 所有自动
+      - 所有故转
+      - 所有手动
+      - 🇭🇰 香港故转
+      - 🇺🇸 美国故转
+      - 🇯🇵 日本故转
+      - 🇸🇬 新加坡故转
+      - 🇹🇼 台湾故转
+      - 🌐 其他地区故转
+    use:
+      - airport
+    exclude-filter: *loose_node_exclude
+
+  - name: GLOBAL
+    type: select
+    proxies:
+      - 🤖 ChatGPT
+      - 🧠 Claude
+      - 📹 YouTube
+      - 🇬 谷歌服务
+      - 🤖 Copilot
+      - ✨ AI服务
+      - 🚀 GitHub
+      - 💬 即时通讯
+      - 🌐 社交媒体
+      - 🚀 测速工具
+      - 🎮 Steam
+      - 🍎 苹果服务
+      - Ⓜ️ 微软服务
+      - 🎶 TikTok
+      - 🎮 游戏平台
+      - 🌎 国外媒体
+      - 🛒 国外电商
+      - 🇺🇸 美国静态IP
+      - 🇳🇬 尼日利亚静态IP
+      - 🇺🇸 美国故转
+      - 🇺🇸 美国手动
+      - 🇺🇸 美国自动
+      - 🇭🇰 香港故转
+      - 🇭🇰 香港手动
+      - 🇭🇰 香港自动
+      - 🇯🇵 日本故转
+      - 🇯🇵 日本手动
+      - 🇯🇵 日本自动
+      - 🇸🇬 新加坡故转
+      - 🇸🇬 新加坡手动
+      - 🇸🇬 新加坡负载均衡
+      - 🇸🇬 新加坡自动
+      - 🇹🇼 台湾故转
+      - 🇹🇼 台湾手动
+      - 🇹🇼 台湾自动
+      - 🇹🇼 台湾负载均衡
+      - 所有故转
+      - 所有手动
+      - 所有自动
+      - 🌐 其他地区故转
+      - 🌐 其他地区手动
+      - 🌐 其他地区自动
+      - 🎮 DMM故转
+      - 🎮 DMM手动
+      - 🎮 DMM自动
+      - 🎥 Emby-HKT
+      - 🐟 漏网之鱼
+      - 直连
+      - 🔄 订阅更新
+      - 🇺🇸 美国静态IP-链式
+    use:
+      - airport
+    exclude-filter: *loose_node_exclude
+
+rule-anchor:
+  class: &class {type: http, interval: 86400, behavior: classical, format: text}
+
+rule-providers:
+  HongKong / Domain: {<<: *class, url: "https://cdn.jsdelivr.net/gh/andyyippro/rule@main/HongKongSites.list"}
+  ProxyLiteNew / Domain: {<<: *class, url: "https://cdn.jsdelivr.net/gh/andyyippro/rule@main/ProxyLiteNew.list"}
+  Japan / Domain: {<<: *class, url: "https://cdn.jsdelivr.net/gh/andyyippro/rule@main/JapanSites.list"}
+  Singapore / Domain: {<<: *class, url: "https://cdn.jsdelivr.net/gh/andyyippro/rule@main/SingaporeSites.list"}
+  LocalDirect / Domain: {<<: *class, url: "https://cdn.jsdelivr.net/gh/andyyippro/rule@main/LocalDirect.list"}
+  Steam CDN / Classical: {type: http, interval: 28800, behavior: classical, format: yaml, url: "https://cdn.jsdelivr.net/gh/Aethersailor/Custom_OpenClash_Rules@main/rule/Steam_CDN_Classical.yaml"}
+
+rules:
+  - RULE-SET,Japan / Domain,🎮 DMM故转
+  - RULE-SET,HongKong / Domain,🇭🇰 香港故转
+  - RULE-SET,ProxyLiteNew / Domain,🇭🇰 香港故转
+  - RULE-SET,Singapore / Domain,🇸🇬 新加坡故转
+  - DOMAIN-SUFFIX,zodnext.com,🔄 订阅更新
+  - RULE-SET,LocalDirect / Domain,直连
+  - GEOSITE,private,直连
+  - DOMAIN-SUFFIX,cn2gias.uk,🎥 Emby-HKT
+  - DOMAIN-SUFFIX,okemby.org,🎥 Emby-HKT
+  - DOMAIN-SUFFIX,029xxj.com,🎥 Emby-HKT
+  - DOMAIN-SUFFIX,oceancloud.asia,🎥 Emby-HKT
+  - GEOSITE,openai,🤖 ChatGPT
+  - GEOSITE,anthropic,🧠 Claude
+  - GEOSITE,youtube,📹 YouTube
+  - GEOSITE,google,🇬 谷歌服务
+  - GEOIP,google,🇬 谷歌服务,no-resolve
+  - GEOSITE,bing,🤖 Copilot
+  - GEOSITE,category-ai-!cn,✨ AI服务
+  - GEOSITE,github,🚀 GitHub
+  - GEOSITE,category-communication,💬 即时通讯
+  - GEOIP,telegram,💬 即时通讯,no-resolve
+  - GEOSITE,category-social-media-!cn,🌐 社交媒体
+  - GEOIP,twitter,🌐 社交媒体,no-resolve
+  - GEOIP,facebook,🌐 社交媒体,no-resolve
+  - DOMAIN-SUFFIX,ping0.cc,🚀 测速工具
+  - GEOSITE,category-speedtest,🚀 测速工具
+  - RULE-SET,Steam CDN / Classical,直连
+  - GEOSITE,steam,🎮 Steam
+  - GEOSITE,apple,🍎 苹果服务
+  - GEOSITE,microsoft,Ⓜ️ 微软服务
+  - GEOSITE,tiktok,🎶 TikTok
+  - GEOSITE,category-games,🎮 游戏平台
+  - GEOSITE,category-entertainment,🌎 国外媒体
+  - GEOSITE,category-ecommerce,🛒 国外电商
+  - GEOSITE,gfw,🇭🇰 香港故转
+  - GEOSITE,cn,直连
+  - GEOIP,cn,直连,no-resolve
+  - MATCH,🐟 漏网之鱼
