@@ -285,6 +285,15 @@ proxy-groups:
       - 🇳🇬 尼日利亚静态IP-链式
       - 拒绝
 
+  - name: 🇳🇬 尼日利亚链式前置
+    type: fallback
+    url: https://www.gstatic.com/generate_204
+    interval: 180
+    lazy: false
+    proxies:
+      - 所有手动
+      - 🇸🇬 新加坡故转
+
   - name: 🇺🇸 美国故转
     type: fallback
     url: https://www.gstatic.com/generate_204
@@ -448,13 +457,9 @@ proxy-groups:
 
   - name: 所有手动
     type: select
-    proxies:
-      - 🇺🇸 美国手动
-      - 🇭🇰 香港手动
-      - 🇯🇵 日本手动
-      - 🇸🇬 新加坡手动
-      - 🇹🇼 台湾手动
-      - 🌐 其他地区手动
+    use:
+      - airport
+    exclude-filter: "(?i)^v0|^境外\\s*\\||^JP\\s*\\|\\s*DEV\\s*\\|\\s*NODE$|^PRO \\| 订阅专用节点\\d+ \\| 0倍$|^如发现大部分节点无法连接$|^则为订阅信息过期需要更新订阅$|^节点变动日期\\d+$|^如您只看到我和订阅专用节点和V0节点$|^请连接订阅专用节点并通过代理更新订阅$|^如通过代理更新没节点请尝试重启软件$"
 
   - name: 所有自动
     type: select
@@ -576,8 +581,6 @@ proxy-groups:
       - 🎮 游戏平台
       - 🌎 国外媒体
       - 🛒 国外电商
-      - 🇺🇸 美国静态IP
-      - 🇳🇬 尼日利亚静态IP
       - 🇺🇸 美国故转
       - 🇺🇸 美国手动
       - 🇺🇸 美国自动
@@ -609,6 +612,7 @@ proxy-groups:
       - 直连
       - 🔄 订阅更新
       - 🇺🇸 美国静态IP-链式
+      - 🇳🇬 尼日利亚静态IP-链式
     use:
       - airport
     exclude-filter: *loose_node_exclude
