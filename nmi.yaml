@@ -627,6 +627,7 @@ rule-providers:
   Singapore / Domain: {<<: *class, url: "https://cdn.jsdelivr.net/gh/andyyippro/rule@main/SingaporeSites.list"}
   LocalDirect / Domain: {<<: *class, url: "https://cdn.jsdelivr.net/gh/andyyippro/rule@main/LocalDirect.list"}
   Steam CDN / Classical: {type: http, interval: 28800, behavior: classical, format: yaml, url: "https://cdn.jsdelivr.net/gh/Aethersailor/Custom_OpenClash_Rules@main/rule/Steam_CDN_Classical.yaml"}
+  Telegram / CIDR: {type: http, interval: 86400, behavior: ipcidr, format: yaml, url: "https://cdn.jsdelivr.net/gh/fernvenue/telegram-cidr-list@master/CIDR.yaml"}
 
 rules:
   - RULE-SET,Japan / Domain,🎮 DMM故转
@@ -648,6 +649,14 @@ rules:
   - GEOSITE,bing,🤖 Copilot
   - GEOSITE,category-ai-!cn,✨ AI服务
   - GEOSITE,github,🚀 GitHub
+  # Telegram 域名与 CIDR 规则
+  # 官方源：https://core.telegram.org/resources/cidr.txt
+  - DOMAIN-SUFFIX,telegram.org,💬 即时通讯
+  - DOMAIN-SUFFIX,t.me,💬 即时通讯
+  - DOMAIN-SUFFIX,telegram.me,💬 即时通讯
+  - DOMAIN-SUFFIX,telegra.ph,💬 即时通讯
+  - DOMAIN-SUFFIX,tdesktop.com,💬 即时通讯
+  - RULE-SET,Telegram / CIDR,💬 即时通讯
   - GEOSITE,category-communication,💬 即时通讯
   - GEOIP,telegram,💬 即时通讯,no-resolve
   - GEOSITE,category-social-media-!cn,🌐 社交媒体
