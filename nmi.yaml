@@ -26,8 +26,8 @@ proxy-groups:
   - name: 🧠 Claude
     type: select
     proxies:
-      - 🇳🇬 尼日利亚静态IP
       - 🇺🇸 美国静态IP
+      - 🇳🇬 尼日利亚静态IP
       - 🇭🇰 香港故转
       - 直连
     use:
@@ -167,8 +167,8 @@ proxy-groups:
   - name: 🍎 苹果服务
     type: select
     proxies:
-      - 🇭🇰 香港故转
       - 🇺🇸 美国静态IP
+      - 🇭🇰 香港故转
       - 🇳🇬 尼日利亚静态IP
       - 所有自动
       - 所有故转

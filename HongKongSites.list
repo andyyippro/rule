@@ -14,3 +14,7 @@ DOMAIN-SUFFIX,blogsys.jp
 DOMAIN-SUFFIX,blogimg.jp
 DOMAIN-SUFFIX,faleno.jp
 DOMAIN-SUFFIX,sda1.dev
+
+# 内容：AI
+# 数量：1条
+DOMAIN-SUFFIX,youware.app
