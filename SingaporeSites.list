@@ -23,3 +23,10 @@ DOMAIN-SUFFIX,ldkms.la
 # 内容：cdngwc
 # 数量：1条
 DOMAIN-SUFFIX,cdngwc.club
+
+# 内容：JapanSites
+# 数量：4条
+DOMAIN-SUFFIX,dlsite.com
+DOMAIN-SUFFIX,toranoana.jp
+DOMAIN-SUFFIX,seesaa.jp
+DOMAIN-SUFFIX,seesaawiki.jp
