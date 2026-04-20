@@ -17,6 +17,8 @@ proxy-groups:
     type: select
     proxies:
       - 🇺🇸 美国静态IP
+      - 🇺🇸 美国DMIT
+      - 🔀 混合线路
       - 🇭🇰 香港故转
       - 直连
     use:
@@ -27,6 +29,8 @@ proxy-groups:
     type: select
     proxies:
       - 🇺🇸 美国静态IP
+      - 🇺🇸 美国DMIT
+      - 🔀 混合线路
       - 🇳🇬 尼日利亚静态IP
       - 🇭🇰 香港故转
       - 直连
@@ -37,6 +41,7 @@ proxy-groups:
   - name: 📹 YouTube
     type: select
     proxies:
+      - 🔀 混合线路
       - 🇸🇬 新加坡负载均衡
       - 🇸🇬 新加坡手动
       - 🇸🇬 新加坡自动
@@ -49,6 +54,7 @@ proxy-groups:
       - 所有故转
       - 所有手动
       - 🇭🇰 香港故转
+      - 🇺🇸 美国DMIT
       - 🇺🇸 美国故转
       - 🇯🇵 日本故转
       - 🌐 其他地区故转
@@ -60,6 +66,8 @@ proxy-groups:
     type: select
     proxies:
       - 🇺🇸 美国静态IP
+      - 🇺🇸 美国DMIT
+      - 🔀 混合线路
       - 🇭🇰 香港故转
       - 直连
     use:
@@ -70,6 +78,8 @@ proxy-groups:
     type: select
     proxies:
       - 🇺🇸 美国静态IP
+      - 🇺🇸 美国DMIT
+      - 🔀 混合线路
       - 🇭🇰 香港故转
       - 直连
     use:
@@ -80,6 +90,8 @@ proxy-groups:
     type: select
     proxies:
       - 🇺🇸 美国静态IP
+      - 🇺🇸 美国DMIT
+      - 🔀 混合线路
       - 🇭🇰 香港故转
       - 直连
     use:
@@ -89,7 +101,9 @@ proxy-groups:
   - name: 🚀 GitHub
     type: select
     proxies:
+      - 🔀 混合线路
       - 🇭🇰 香港故转
+      - 🇺🇸 美国DMIT
       - 所有自动
       - 所有故转
       - 所有手动
@@ -106,7 +120,9 @@ proxy-groups:
   - name: 💬 即时通讯
     type: select
     proxies:
+      - 🔀 混合线路
       - 🇭🇰 香港故转
+      - 🇺🇸 美国DMIT
       - 所有自动
       - 所有故转
       - 所有手动
@@ -123,7 +139,9 @@ proxy-groups:
   - name: 🌐 社交媒体
     type: select
     proxies:
+      - 🔀 混合线路
       - 🇭🇰 香港故转
+      - 🇺🇸 美国DMIT
       - 所有自动
       - 所有故转
       - 所有手动
@@ -142,6 +160,9 @@ proxy-groups:
     proxies:
       - 直连
       - 🇺🇸 美国静态IP
+      - 🇺🇸 美国DMIT
+      - 🇯🇵 日本静态IP
+      - 🔀 混合线路
       - 🇭🇰 香港故转
     use:
       - airport
@@ -150,7 +171,9 @@ proxy-groups:
   - name: 🎮 Steam
     type: select
     proxies:
+      - 🔀 混合线路
       - 🇭🇰 香港故转
+      - 🇺🇸 美国DMIT
       - 所有自动
       - 所有故转
       - 所有手动
@@ -168,6 +191,8 @@ proxy-groups:
     type: select
     proxies:
       - 🇺🇸 美国静态IP
+      - 🇺🇸 美国DMIT
+      - 🔀 混合线路
       - 🇭🇰 香港故转
       - 🇳🇬 尼日利亚静态IP
       - 所有自动
@@ -187,6 +212,7 @@ proxy-groups:
     type: select
     proxies:
       - 直连
+      - 🇺🇸 美国DMIT
       - 所有自动
       - 所有故转
       - 所有手动
@@ -196,6 +222,7 @@ proxy-groups:
       - 🇸🇬 新加坡故转
       - 🇹🇼 台湾故转
       - 🌐 其他地区故转
+      - 🔀 混合线路
     use:
       - airport
     exclude-filter: *common_node_exclude
@@ -203,7 +230,9 @@ proxy-groups:
   - name: 🎶 TikTok
     type: select
     proxies:
+      - 🔀 混合线路
       - 🇹🇼 台湾故转
+      - 🇺🇸 美国DMIT
       - 所有自动
       - 所有故转
       - 所有手动
@@ -220,6 +249,7 @@ proxy-groups:
     type: select
     proxies:
       - 直连
+      - 🇺🇸 美国DMIT
       - 所有自动
       - 所有故转
       - 所有手动
@@ -229,6 +259,7 @@ proxy-groups:
       - 🇸🇬 新加坡故转
       - 🇹🇼 台湾故转
       - 🌐 其他地区故转
+      - 🔀 混合线路
     use:
       - airport
     exclude-filter: *common_node_exclude
@@ -236,7 +267,9 @@ proxy-groups:
   - name: 🌎 国外媒体
     type: select
     proxies:
+      - 🔀 混合线路
       - 🇭🇰 香港故转
+      - 🇺🇸 美国DMIT
       - 所有自动
       - 所有故转
       - 所有手动
@@ -253,7 +286,9 @@ proxy-groups:
   - name: 🛒 国外电商
     type: select
     proxies:
+      - 🔀 混合线路
       - 🇭🇰 香港故转
+      - 🇺🇸 美国DMIT
       - 所有自动
       - 所有故转
       - 所有手动
@@ -276,6 +311,15 @@ proxy-groups:
       - 🇺🇸 美国静态IP-链式
       - 拒绝
 
+  - name: 🇯🇵 日本静态IP
+    type: fallback
+    url: https://www.gstatic.com/generate_204
+    interval: 180
+    lazy: false
+    proxies:
+      - 🇯🇵 日本静态IP-链式
+      - 拒绝
+
   - name: 🇳🇬 尼日利亚静态IP
     type: fallback
     url: https://www.gstatic.com/generate_204
@@ -294,6 +338,15 @@ proxy-groups:
       - 所有手动
       - 🇸🇬 新加坡故转
 
+  - name: 🇺🇸 美国链式前置
+    type: fallback
+    url: https://www.gstatic.com/generate_204
+    interval: 180
+    lazy: false
+    proxies:
+      - 🇺🇸 美国DMIT
+      - 🇭🇰 香港故转
+
   - name: 🇺🇸 美国故转
     type: fallback
     url: https://www.gstatic.com/generate_204
@@ -305,6 +358,9 @@ proxy-groups:
 
   - name: 🇺🇸 美国手动
     type: select
+    proxies:
+      - 🇺🇸 美国DMIT
+      - 🔀 混合线路
     use:
       - airport
     filter: "(?=.*(广美|US|美国|纽约|波特兰|达拉斯|俄勒|凤凰城|费利蒙|洛杉|圣何塞|圣克拉|西雅|芝加|🇺🇸|United States)).*$"
@@ -331,6 +387,8 @@ proxy-groups:
 
   - name: 🇭🇰 香港手动
     type: select
+    proxies:
+      - 🇺🇸 美国DMIT
     use:
       - airport
     filter: "(?i)(广港|香港|hk|hong kong|hongkong|🇭🇰)"
@@ -357,6 +415,8 @@ proxy-groups:
 
   - name: 🇯🇵 日本手动
     type: select
+    proxies:
+      - 🇺🇸 美国DMIT
     use:
       - airport
     filter: "(?=.*(广日|日本|JP|川日|东京|大阪|泉日|埼玉|沪日|深日|🇯🇵|Japan)).*$"
@@ -384,6 +444,8 @@ proxy-groups:
 
   - name: 🇸🇬 新加坡手动
     type: select
+    proxies:
+      - 🇺🇸 美国DMIT
     use:
       - airport
     filter: "(?=.*(广新|新加坡|SG|坡|狮城|🇸🇬|Singapore)).*$"
@@ -420,6 +482,8 @@ proxy-groups:
 
   - name: 🇹🇼 台湾手动
     type: select
+    proxies:
+      - 🇺🇸 美国DMIT
     use:
       - airport
     filter: "(?=.*(广台|台湾|台灣|TW|Tai Wan|🇹🇼|🇨🇳|TaiWan|Taiwan)).*$"
@@ -454,12 +518,24 @@ proxy-groups:
       - 🇸🇬 新加坡故转
       - 🇹🇼 台湾故转
       - 🌐 其他地区故转
+      - 🔀 混合线路
 
   - name: 所有手动
     type: select
+    proxies:
+      - 🇺🇸 美国DMIT
     use:
       - airport
     exclude-filter: "(?i)^v0|^境外\\s*\\||^JP\\s*\\|\\s*DEV\\s*\\|\\s*NODE$|^PRO \\| 订阅专用节点\\d+ \\| 0倍$|^如发现大部分节点无法连接$|^则为订阅信息过期需要更新订阅$|^节点变动日期\\d+$|^如您只看到我和订阅专用节点和V0节点$|^请连接订阅专用节点并通过代理更新订阅$|^如通过代理更新没节点请尝试重启软件$"
+
+  - name: 🔀 混合线路
+    type: fallback
+    url: https://www.gstatic.com/generate_204
+    interval: 180
+    lazy: false
+    proxies:
+      - 所有手动
+      - 🇸🇬 新加坡故转
 
   - name: 所有自动
     type: select
@@ -470,6 +546,7 @@ proxy-groups:
       - 🇸🇬 新加坡自动
       - 🇹🇼 台湾自动
       - 🌐 其他地区自动
+      - 🔀 混合线路
 
   - name: 🌐 其他地区故转
     type: fallback
@@ -509,6 +586,10 @@ proxy-groups:
 
   - name: 🎮 DMM手动
     type: select
+    proxies:
+      - 🇯🇵 日本静态IP
+      - 🇺🇸 美国DMIT
+      - 🔀 混合线路
     use:
       - airport
     # DMM 仅使用日本节点，并排除提示节点、订阅专用节点、V0 节点及指定的低优先级日本节点。
@@ -526,6 +607,12 @@ proxy-groups:
     exclude-filter: *dmm_node_exclude
 
   - name: 🎥 Emby-HKT
+    type: select
+    proxies:
+      - 🔀 混合线路
+      - 🎥 Emby-HKT专线
+
+  - name: 🎥 Emby-HKT专线
     type: url-test
     use:
       - airport
@@ -548,6 +635,7 @@ proxy-groups:
     type: select
     proxies:
       - 直连
+      - 🇺🇸 美国DMIT
       - 所有自动
       - 所有故转
       - 所有手动
@@ -557,6 +645,7 @@ proxy-groups:
       - 🇸🇬 新加坡故转
       - 🇹🇼 台湾故转
       - 🌐 其他地区故转
+      - 🔀 混合线路
     use:
       - airport
     exclude-filter: *loose_node_exclude
@@ -581,6 +670,8 @@ proxy-groups:
       - 🎮 游戏平台
       - 🌎 国外媒体
       - 🛒 国外电商
+      - 🇺🇸 美国DMIT
+      - 🔀 混合线路
       - 🇺🇸 美国故转
       - 🇺🇸 美国手动
       - 🇺🇸 美国自动
@@ -612,6 +703,7 @@ proxy-groups:
       - 直连
       - 🔄 订阅更新
       - 🇺🇸 美国静态IP-链式
+      - 🇺🇸 美国DMIT
       - 🇳🇬 尼日利亚静态IP-链式
     use:
       - airport
