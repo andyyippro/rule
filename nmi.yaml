@@ -162,6 +162,8 @@ proxy-groups:
       - 🇺🇸 美国静态IP
       - 🇺🇸 美国DMIT
       - 🇯🇵 日本静态IP
+      - 🇯🇵 日本vless
+      - 🇯🇵 日本hysteria2
       - 🔀 混合线路
       - 🇭🇰 香港故转
     use:
@@ -575,28 +577,37 @@ proxy-groups:
     exclude-filter: *loose_node_exclude
 
 
-  - name: 🎮 DMM故转
+  - name: 🎬 片商视频
+    type: select
+    proxies:
+      - 🎬 片商视频故转
+      - 🎬 片商视频手动
+      - 🎬 片商视频自动
+
+  - name: 🎬 片商视频故转
     type: fallback
     url: https://www.gstatic.com/generate_204
     interval: 180
     lazy: false
     proxies:
-      - 🎮 DMM手动
-      - 🎮 DMM自动
+      - 🎬 片商视频手动
+      - 🎬 片商视频自动
 
-  - name: 🎮 DMM手动
+  - name: 🎬 片商视频手动
     type: select
     proxies:
       - 🇯🇵 日本静态IP
+      - 🇯🇵 日本vless
+      - 🇯🇵 日本hysteria2
       - 🇺🇸 美国DMIT
       - 🔀 混合线路
     use:
       - airport
-    # DMM 仅使用日本节点，并排除提示节点、订阅专用节点、V0 节点及指定的低优先级日本节点。
+    # 片商视频仅使用日本节点，并排除提示节点、订阅专用节点、V0 节点及指定的低优先级日本节点。
     filter: "(?=.*(日本|东京|大阪|埼玉|🇯🇵|Japan)).*$"
-    exclude-filter: &dmm_node_exclude "(?i)^v0|^基础\\s*\\||^高级\\s*\\||^JP\\s*\\||^境外\\s*\\||^PRO \\| 订阅专用节点\\d+ \\| 0倍$|^PRO \\| 日本游戏线路1 \\| 2倍 游戏专用$|^PRO \\| 日本BGP02 \\| 1倍$|^如发现大部分节点无法连接$|^则为订阅信息过期需要更新订阅$|^节点变动日期\\d+$|^如您只看到我和订阅专用节点和V0节点$|^请连接订阅专用节点并通过代理更新订阅$|^如通过代理更新没节点请尝试重启软件$"
+    exclude-filter: &vendor_node_exclude "(?i)^v0|^基础\\s*\\||^高级\\s*\\||^JP\\s*\\||^境外\\s*\\||^PRO \\| 订阅专用节点\\d+ \\| 0倍$|^PRO \\| 日本游戏线路1 \\| 2倍 游戏专用$|^PRO \\| 日本BGP02 \\| 1倍$|^如发现大部分节点无法连接$|^则为订阅信息过期需要更新订阅$|^节点变动日期\\d+$|^如您只看到我和订阅专用节点和V0节点$|^请连接订阅专用节点并通过代理更新订阅$|^如通过代理更新没节点请尝试重启软件$"
 
-  - name: 🎮 DMM自动
+  - name: 🎬 片商视频自动
     type: url-test
     use:
       - airport
@@ -604,7 +615,40 @@ proxy-groups:
     interval: 180
     tolerance: 50
     filter: "(?=.*(日本|东京|大阪|埼玉|🇯🇵|Japan)).*$"
-    exclude-filter: *dmm_node_exclude
+    exclude-filter: *vendor_node_exclude
+
+  - name: 🎮 片商故转
+    type: fallback
+    url: https://www.gstatic.com/generate_204
+    interval: 180
+    lazy: false
+    proxies:
+      - 🎮 片商手动
+      - 🎮 片商自动
+
+  - name: 🎮 片商手动
+    type: select
+    proxies:
+      - 🇯🇵 日本hysteria2
+      - 🇯🇵 日本静态IP
+      - 🇯🇵 日本vless
+      - 🇺🇸 美国DMIT
+      - 🔀 混合线路
+    use:
+      - airport
+    # 片商仅使用日本节点，并排除提示节点、订阅专用节点、V0 节点及指定的低优先级日本节点。
+    filter: "(?=.*(日本|东京|大阪|埼玉|🇯🇵|Japan)).*$"
+    exclude-filter: *vendor_node_exclude
+
+  - name: 🎮 片商自动
+    type: url-test
+    use:
+      - airport
+    url: https://www.gstatic.com/generate_204
+    interval: 180
+    tolerance: 50
+    filter: "(?=.*(日本|东京|大阪|埼玉|🇯🇵|Japan)).*$"
+    exclude-filter: *vendor_node_exclude
 
   - name: 🎥 Emby-HKT
     type: select
@@ -695,9 +739,13 @@ proxy-groups:
       - 🌐 其他地区故转
       - 🌐 其他地区手动
       - 🌐 其他地区自动
-      - 🎮 DMM故转
-      - 🎮 DMM手动
-      - 🎮 DMM自动
+      - 🎬 片商视频
+      - 🎬 片商视频故转
+      - 🎬 片商视频手动
+      - 🎬 片商视频自动
+      - 🎮 片商故转
+      - 🎮 片商手动
+      - 🎮 片商自动
       - 🎥 Emby-HKT
       - 🐟 漏网之鱼
       - 直连
@@ -716,13 +764,15 @@ rule-providers:
   HongKong / Domain: {<<: *class, url: "https://cdn.jsdelivr.net/gh/andyyippro/rule@main/HongKongSites.list"}
   ProxyLiteNew / Domain: {<<: *class, url: "https://cdn.jsdelivr.net/gh/andyyippro/rule@main/ProxyLiteNew.list"}
   Japan / Domain: {<<: *class, url: "https://cdn.jsdelivr.net/gh/andyyippro/rule@main/JapanSites.list"}
+  VendorVideo / Domain: {<<: *class, url: "https://cdn.jsdelivr.net/gh/andyyippro/rule@main/VendorVideoSites.list"}
   Singapore / Domain: {<<: *class, url: "https://cdn.jsdelivr.net/gh/andyyippro/rule@main/SingaporeSites.list"}
   LocalDirect / Domain: {<<: *class, url: "https://cdn.jsdelivr.net/gh/andyyippro/rule@main/LocalDirect.list"}
   Steam CDN / Classical: {type: http, interval: 28800, behavior: classical, format: yaml, url: "https://cdn.jsdelivr.net/gh/Aethersailor/Custom_OpenClash_Rules@main/rule/Steam_CDN_Classical.yaml"}
   Telegram / CIDR: {type: http, interval: 86400, behavior: ipcidr, format: yaml, url: "https://cdn.jsdelivr.net/gh/fernvenue/telegram-cidr-list@master/CIDR.yaml"}
 
 rules:
-  - RULE-SET,Japan / Domain,🎮 DMM故转
+  - RULE-SET,VendorVideo / Domain,🎬 片商视频
+  - RULE-SET,Japan / Domain,🎮 片商故转
   - RULE-SET,HongKong / Domain,🇭🇰 香港故转
   - RULE-SET,ProxyLiteNew / Domain,🇭🇰 香港故转
   - RULE-SET,Singapore / Domain,🇸🇬 新加坡故转
