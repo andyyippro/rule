@@ -16,9 +16,8 @@ proxy-groups:
   - name: 🤖 ChatGPT
     type: select
     proxies:
-      - 🇺🇸 美国静态IP
-      - 🇺🇸 美国DMIT
       - 🔀 混合线路
+      - 🇺🇸 美国DMIT
       - 🇭🇰 香港故转
       - 直连
     use:
@@ -28,9 +27,8 @@ proxy-groups:
   - name: 🧠 Claude
     type: select
     proxies:
-      - 🇺🇸 美国静态IP
-      - 🇺🇸 美国DMIT
       - 🔀 混合线路
+      - 🇺🇸 美国DMIT
       - 🇳🇬 尼日利亚静态IP
       - 🇭🇰 香港故转
       - 直连
@@ -65,9 +63,8 @@ proxy-groups:
   - name: 🇬 谷歌服务
     type: select
     proxies:
-      - 🇺🇸 美国静态IP
-      - 🇺🇸 美国DMIT
       - 🔀 混合线路
+      - 🇺🇸 美国DMIT
       - 🇭🇰 香港故转
       - 直连
     use:
@@ -77,9 +74,8 @@ proxy-groups:
   - name: 🤖 Copilot
     type: select
     proxies:
-      - 🇺🇸 美国静态IP
-      - 🇺🇸 美国DMIT
       - 🔀 混合线路
+      - 🇺🇸 美国DMIT
       - 🇭🇰 香港故转
       - 直连
     use:
@@ -89,9 +85,8 @@ proxy-groups:
   - name: ✨ AI服务
     type: select
     proxies:
-      - 🇺🇸 美国静态IP
-      - 🇺🇸 美国DMIT
       - 🔀 混合线路
+      - 🇺🇸 美国DMIT
       - 🇭🇰 香港故转
       - 直连
     use:
@@ -159,7 +154,6 @@ proxy-groups:
     type: select
     proxies:
       - 直连
-      - 🇺🇸 美国静态IP
       - 🇺🇸 美国DMIT
       - 🇯🇵 日本静态IP
       - 🇯🇵 日本vless
@@ -192,9 +186,8 @@ proxy-groups:
   - name: 🍎 苹果服务
     type: select
     proxies:
-      - 🇺🇸 美国静态IP
-      - 🇺🇸 美国DMIT
       - 🔀 混合线路
+      - 🇺🇸 美国DMIT
       - 🇭🇰 香港故转
       - 🇳🇬 尼日利亚静态IP
       - 所有自动
@@ -304,15 +297,6 @@ proxy-groups:
       - airport
     exclude-filter: *common_node_exclude
 
-  - name: 🇺🇸 美国静态IP
-    type: fallback
-    url: https://www.gstatic.com/generate_204
-    interval: 180
-    lazy: false
-    proxies:
-      - 🇺🇸 美国静态IP-链式
-      - 拒绝
-
   - name: 🇯🇵 日本静态IP
     type: fallback
     url: https://www.gstatic.com/generate_204
@@ -339,15 +323,6 @@ proxy-groups:
     proxies:
       - 所有手动
       - 🇸🇬 新加坡故转
-
-  - name: 🇺🇸 美国链式前置
-    type: fallback
-    url: https://www.gstatic.com/generate_204
-    interval: 180
-    lazy: false
-    proxies:
-      - 🇺🇸 美国DMIT
-      - 🇭🇰 香港故转
 
   - name: 🇺🇸 美国故转
     type: fallback
@@ -389,8 +364,6 @@ proxy-groups:
 
   - name: 🇭🇰 香港手动
     type: select
-    proxies:
-      - 🇺🇸 美国DMIT
     use:
       - airport
     filter: "(?i)(广港|香港|hk|hong kong|hongkong|🇭🇰)"
@@ -671,7 +644,6 @@ proxy-groups:
     type: select
     proxies:
       - 直连
-      - 🇺🇸 美国静态IP
       - 🇯🇵 日本静态IP
       - 🇯🇵 日本vless
       - 🇯🇵 日本hysteria2
@@ -693,7 +665,6 @@ proxy-groups:
   - name: GLOBAL
     type: select
     proxies:
-      - 🇺🇸 美国静态IP
       - 🇯🇵 日本静态IP
       - 🤖 ChatGPT
       - 🧠 Claude
