@@ -741,7 +741,7 @@ rules:
   - RULE-SET,VendorVideo / Domain,🎬 片商视频故转
   - RULE-SET,Japan / Domain,🎮 片商故转
   - RULE-SET,HongKong / Domain,🇭🇰 香港故转
-  - RULE-SET,ProxyLiteNew / Domain,🇭🇰 香港故转
+  - RULE-SET,ProxyLiteNew / Domain,🇸🇬 新加坡故转
   - RULE-SET,Singapore / Domain,🇸🇬 新加坡故转
   - DOMAIN-SUFFIX,zodnext.com,🔄 订阅更新
   - RULE-SET,LocalDirect / Domain,直连
@@ -781,7 +781,7 @@ rules:
   - GEOSITE,category-games,🎮 游戏平台
   - GEOSITE,category-entertainment,🌎 国外媒体
   - GEOSITE,category-ecommerce,🛒 国外电商
-  - GEOSITE,gfw,🇭🇰 香港故转
+  - GEOSITE,gfw,🇸🇬 新加坡故转
   - GEOSITE,cn,直连
   - GEOIP,cn,直连,no-resolve
   - MATCH,🐟 漏网之鱼
