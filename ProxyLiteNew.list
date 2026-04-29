@@ -6,12 +6,13 @@ DOMAIN-SUFFIX,sehuatang.org
 DOMAIN-SUFFIX,98tang.com
 
 # 内容：图床
-# 数量：5条
+# 数量：6条
 DOMAIN-SUFFIX,ymawv.la
 DOMAIN-SUFFIX,pixhost.to
 DOMAIN-SUFFIX,pics-view.com
 DOMAIN-SUFFIX,imgbox.com
 DOMAIN-SUFFIX,gofile.io
+DOMAIN-SUFFIX,yichkp.com
 
 # 内容：jable.tv 及播放源
 # 数量：2条
