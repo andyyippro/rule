@@ -44,6 +44,15 @@ DOMAIN-SUFFIX,jmapiproxy3.cc
 DOMAIN-SUFFIX,jmdanjonproxy.vip
 DOMAIN-SUFFIX,jmdanjonproxy.xyz
 
+# 内容：E-Hentai
+# 数量：6条
+DOMAIN-SUFFIX,e-hentai.org
+DOMAIN-SUFFIX,exhentai.org
+DOMAIN-SUFFIX,ehgt.org
+DOMAIN-SUFFIX,hath.network
+DOMAIN-SUFFIX,ehwiki.org
+DOMAIN-SUFFIX,hentaiverse.org
+
 # 内容：绅士动漫
 # 数量：1条
 DOMAIN-SUFFIX,qy0.ru
