@@ -16,7 +16,6 @@ proxy-groups:
   - name: 🤖 ChatGPT
     type: select
     proxies:
-      - 🔀 混合线路
       - 🇺🇸 美国DMIT
       - 🇭🇰 香港故转
       - 直连
@@ -27,7 +26,6 @@ proxy-groups:
   - name: 🧠 Claude
     type: select
     proxies:
-      - 🔀 混合线路
       - 🇺🇸 美国DMIT
       - 🇳🇬 尼日利亚静态IP
       - 🇭🇰 香港故转
@@ -39,7 +37,7 @@ proxy-groups:
   - name: 📹 YouTube
     type: select
     proxies:
-      - 🔀 混合线路
+      - 🇺🇸 美国DMIT
       - 🇸🇬 新加坡负载均衡
       - 🇸🇬 新加坡手动
       - 🇸🇬 新加坡自动
@@ -52,7 +50,6 @@ proxy-groups:
       - 所有故转
       - 所有手动
       - 🇭🇰 香港故转
-      - 🇺🇸 美国DMIT
       - 🇺🇸 美国故转
       - 🇯🇵 日本故转
       - 🌐 其他地区故转
@@ -63,7 +60,6 @@ proxy-groups:
   - name: 🇬 谷歌服务
     type: select
     proxies:
-      - 🔀 混合线路
       - 🇺🇸 美国DMIT
       - 🇭🇰 香港故转
       - 直连
@@ -74,7 +70,6 @@ proxy-groups:
   - name: 🤖 Copilot
     type: select
     proxies:
-      - 🔀 混合线路
       - 🇺🇸 美国DMIT
       - 🇭🇰 香港故转
       - 直连
@@ -85,7 +80,6 @@ proxy-groups:
   - name: ✨ AI服务
     type: select
     proxies:
-      - 🔀 混合线路
       - 🇺🇸 美国DMIT
       - 🇭🇰 香港故转
       - 直连
@@ -96,9 +90,8 @@ proxy-groups:
   - name: 🚀 GitHub
     type: select
     proxies:
-      - 🔀 混合线路
-      - 🇭🇰 香港故转
       - 🇺🇸 美国DMIT
+      - 🇭🇰 香港故转
       - 所有自动
       - 所有故转
       - 所有手动
@@ -115,9 +108,8 @@ proxy-groups:
   - name: 💬 即时通讯
     type: select
     proxies:
-      - 🔀 混合线路
-      - 🇭🇰 香港故转
       - 🇺🇸 美国DMIT
+      - 🇭🇰 香港故转
       - 所有自动
       - 所有故转
       - 所有手动
@@ -134,9 +126,8 @@ proxy-groups:
   - name: 🌐 社交媒体
     type: select
     proxies:
-      - 🔀 混合线路
-      - 🇭🇰 香港故转
       - 🇺🇸 美国DMIT
+      - 🇭🇰 香港故转
       - 所有自动
       - 所有故转
       - 所有手动
@@ -158,7 +149,6 @@ proxy-groups:
       - 🇯🇵 日本静态IP
       - 🇯🇵 日本vless
       - 🇯🇵 日本hysteria2
-      - 🔀 混合线路
       - 🇭🇰 香港故转
     use:
       - airport
@@ -167,9 +157,8 @@ proxy-groups:
   - name: 🎮 Steam
     type: select
     proxies:
-      - 🔀 混合线路
-      - 🇭🇰 香港故转
       - 🇺🇸 美国DMIT
+      - 🇭🇰 香港故转
       - 所有自动
       - 所有故转
       - 所有手动
@@ -186,7 +175,6 @@ proxy-groups:
   - name: 🍎 苹果服务
     type: select
     proxies:
-      - 🔀 混合线路
       - 🇺🇸 美国DMIT
       - 🇭🇰 香港故转
       - 🇳🇬 尼日利亚静态IP
@@ -217,7 +205,6 @@ proxy-groups:
       - 🇸🇬 新加坡故转
       - 🇹🇼 台湾故转
       - 🌐 其他地区故转
-      - 🔀 混合线路
     use:
       - airport
     exclude-filter: *common_node_exclude
@@ -225,9 +212,8 @@ proxy-groups:
   - name: 🎶 TikTok
     type: select
     proxies:
-      - 🔀 混合线路
-      - 🇹🇼 台湾故转
       - 🇺🇸 美国DMIT
+      - 🇹🇼 台湾故转
       - 所有自动
       - 所有故转
       - 所有手动
@@ -254,7 +240,6 @@ proxy-groups:
       - 🇸🇬 新加坡故转
       - 🇹🇼 台湾故转
       - 🌐 其他地区故转
-      - 🔀 混合线路
     use:
       - airport
     exclude-filter: *common_node_exclude
@@ -262,9 +247,8 @@ proxy-groups:
   - name: 🌎 国外媒体
     type: select
     proxies:
-      - 🔀 混合线路
-      - 🇭🇰 香港故转
       - 🇺🇸 美国DMIT
+      - 🇭🇰 香港故转
       - 所有自动
       - 所有故转
       - 所有手动
@@ -281,9 +265,8 @@ proxy-groups:
   - name: 🛒 国外电商
     type: select
     proxies:
-      - 🔀 混合线路
-      - 🇭🇰 香港故转
       - 🇺🇸 美国DMIT
+      - 🇭🇰 香港故转
       - 所有自动
       - 所有故转
       - 所有手动
@@ -337,7 +320,6 @@ proxy-groups:
     type: select
     proxies:
       - 🇺🇸 美国DMIT
-      - 🔀 混合线路
     use:
       - airport
     filter: "(?=.*(广美|US|美国|纽约|波特兰|达拉斯|俄勒|凤凰城|费利蒙|洛杉|圣何塞|圣克拉|西雅|芝加|🇺🇸|United States)).*$"
@@ -364,6 +346,9 @@ proxy-groups:
 
   - name: 🇭🇰 香港手动
     type: select
+    proxies:
+      - 🇺🇸 美国DMIT
+      - 🇯🇵 日本静态IP
     use:
       - airport
     filter: "(?i)(广港|香港|hk|hong kong|hongkong|🇭🇰)"
@@ -493,7 +478,6 @@ proxy-groups:
       - 🇸🇬 新加坡故转
       - 🇹🇼 台湾故转
       - 🌐 其他地区故转
-      - 🔀 混合线路
 
   - name: 所有手动
     type: select
@@ -502,15 +486,6 @@ proxy-groups:
     use:
       - airport
     exclude-filter: "(?i)^v0|^境外\\s*\\||^JP\\s*\\|\\s*DEV\\s*\\|\\s*NODE$|^PRO \\| 订阅专用节点\\d+ \\| 0倍$|^如发现大部分节点无法连接$|^则为订阅信息过期需要更新订阅$|^节点变动日期\\d+$|^如您只看到我和订阅专用节点和V0节点$|^请连接订阅专用节点并通过代理更新订阅$|^如通过代理更新没节点请尝试重启软件$"
-
-  - name: 🔀 混合线路
-    type: fallback
-    url: https://www.gstatic.com/generate_204
-    interval: 180
-    lazy: false
-    proxies:
-      - 所有手动
-      - 🇸🇬 新加坡故转
 
   - name: 所有自动
     type: select
@@ -521,7 +496,6 @@ proxy-groups:
       - 🇸🇬 新加坡自动
       - 🇹🇼 台湾自动
       - 🌐 其他地区自动
-      - 🔀 混合线路
 
   - name: 🌐 其他地区故转
     type: fallback
@@ -565,7 +539,6 @@ proxy-groups:
       - 🇯🇵 日本vless
       - 🇯🇵 日本hysteria2
       - 🇺🇸 美国DMIT
-      - 🔀 混合线路
     use:
       - airport
     # 片商视频仅使用日本节点，并排除提示节点、订阅专用节点、V0 节点及指定的低优先级日本节点。
@@ -594,11 +567,10 @@ proxy-groups:
   - name: 🎮 片商手动
     type: select
     proxies:
+      - 🇯🇵 日本vless
       - 🇯🇵 日本hysteria2
       - 🇯🇵 日本静态IP
-      - 🇯🇵 日本vless
       - 🇺🇸 美国DMIT
-      - 🔀 混合线路
     use:
       - airport
     # 片商仅使用日本节点，并排除提示节点、订阅专用节点、V0 节点及指定的低优先级日本节点。
@@ -618,7 +590,7 @@ proxy-groups:
   - name: 🎥 Emby-HKT
     type: select
     proxies:
-      - 🔀 混合线路
+      - 🇺🇸 美国DMIT
       - 🎥 Emby-HKT专线
 
   - name: 🎥 Emby-HKT专线
@@ -638,7 +610,7 @@ proxy-groups:
     url: https://www.gstatic.com/generate_204
     interval: 300
     tolerance: 50
-    filter: "订阅专用节点0(1|2)"
+    filter: "^PRO \\| 订阅专用节点AN \\| 0倍$"
 
   - name: 🐟 漏网之鱼
     type: select
@@ -657,7 +629,6 @@ proxy-groups:
       - 🇸🇬 新加坡故转
       - 🇹🇼 台湾故转
       - 🌐 其他地区故转
-      - 🔀 混合线路
     use:
       - airport
     exclude-filter: *loose_node_exclude
@@ -684,7 +655,6 @@ proxy-groups:
       - 🌎 国外媒体
       - 🛒 国外电商
       - 🇺🇸 美国DMIT
-      - 🔀 混合线路
       - 🇺🇸 美国故转
       - 🇺🇸 美国手动
       - 🇺🇸 美国自动
@@ -741,8 +711,8 @@ rules:
   - RULE-SET,VendorVideo / Domain,🎬 片商视频故转
   - RULE-SET,Japan / Domain,🎮 片商故转
   - RULE-SET,HongKong / Domain,🇭🇰 香港故转
-  - RULE-SET,ProxyLiteNew / Domain,🇸🇬 新加坡故转
-  - RULE-SET,Singapore / Domain,🇸🇬 新加坡故转
+  - RULE-SET,ProxyLiteNew / Domain,所有手动
+  - RULE-SET,Singapore / Domain,所有手动
   - DOMAIN-SUFFIX,zodnext.com,🔄 订阅更新
   - RULE-SET,LocalDirect / Domain,直连
   - GEOSITE,private,直连
@@ -781,7 +751,7 @@ rules:
   - GEOSITE,category-games,🎮 游戏平台
   - GEOSITE,category-entertainment,🌎 国外媒体
   - GEOSITE,category-ecommerce,🛒 国外电商
-  - GEOSITE,gfw,🇸🇬 新加坡故转
+  - GEOSITE,gfw,所有手动
   - GEOSITE,cn,直连
   - GEOIP,cn,直连,no-resolve
   - MATCH,🐟 漏网之鱼
