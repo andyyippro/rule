@@ -193,9 +193,10 @@ DOMAIN-SUFFIX,faleno.jp
 DOMAIN-SUFFIX,sda1.dev
 
 # 内容：AI
-# 数量：2条
+# 数量：3条
 DOMAIN-SUFFIX,youware.app
 DOMAIN-SUFFIX,civitai.red
+DOMAIN-SUFFIX,promptsref.com
 
 # 内容：CDN
 # 数量：2条
