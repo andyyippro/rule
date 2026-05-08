@@ -3,6 +3,14 @@
 DOMAIN-SUFFIX,mgstage.com
 DOMAIN-SUFFIX,prestige-av.com
 
+# 内容：DLsite
+# 数量：5条
+DOMAIN-SUFFIX,dlsite.com
+DOMAIN-SUFFIX,dlsite.jp
+DOMAIN-SUFFIX,dlsite.com.tw
+DOMAIN-SUFFIX,dlsitenews.com
+DOMAIN-SUFFIX,dlsitestudio.com
+
 # 内容：DMM
 # 来源：https://github.com/ACL4SSR/ACL4SSR/blob/master/Clash/Ruleset/Dmm.list
 # 数量：15条
