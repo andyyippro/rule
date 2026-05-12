@@ -206,3 +206,7 @@ DOMAIN-SUFFIX,cloudflare.com
 # 内容：JKForum
 # 数量：1条
 DOMAIN-SUFFIX,jkforum.net
+
+# 内容：RSSJAV
+# 数量：1条
+DOMAIN-SUFFIX,rssjav.com
