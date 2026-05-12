@@ -211,3 +211,48 @@ DOMAIN-SUFFIX,jkforum.net
 # 内容：RSSJAV
 # 数量：1条
 DOMAIN-SUFFIX,rssjav.com
+
+# 内容：JAVDB
+# 数量：1条
+DOMAIN-SUFFIX,javdb.com
+
+# 内容：JKF CDN
+# 数量：2条
+DOMAIN-SUFFIX,mymyatt.net
+DOMAIN-SUFFIX,mymypic.net
+
+# 内容：Dreamina
+# 数量：1条
+DOMAIN-SUFFIX,capcut.com
+
+# 内容：AI
+# 数量：2条
+DOMAIN-SUFFIX,novelai.net
+DOMAIN-SUFFIX,hero-sms.com
+
+# 内容：MyFans
+# 数量：1条
+DOMAIN-SUFFIX,myfans.jp
+
+# 内容：ldkms
+# 数量：1条
+DOMAIN-SUFFIX,ldkms.la
+
+# 内容：cdngwc
+# 数量：1条
+DOMAIN-SUFFIX,cdngwc.club
+
+# 内容：JapanSites
+# 数量：4条
+DOMAIN-SUFFIX,dlsite.com
+DOMAIN-SUFFIX,toranoana.jp
+DOMAIN-SUFFIX,seesaa.jp
+DOMAIN-SUFFIX,seesaawiki.jp
+
+# 内容：meowfly
+# 数量：1条
+DOMAIN-SUFFIX,meowfly.de
+
+# 内容：Skilljar
+# 数量：1条
+DOMAIN-SUFFIX,skilljar.com
