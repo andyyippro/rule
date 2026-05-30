@@ -7,3 +7,6 @@ nmi.full.yaml
 # 云端拼装/本地临时产物
 nodes.yaml
 *.tmp
+
+# Claude Code 本地设置（含本机权限规则，不公开）
+.claude/settings.local.json
