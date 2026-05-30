@@ -49,7 +49,6 @@ proxy-groups:
       - 🇸🇬 新加坡手动
       - 🇸🇬 新加坡自动
       - 🇸🇬 新加坡故转
-      - 🇹🇼 台湾负载均衡
       - 🇹🇼 台湾手动
       - 🇹🇼 台湾自动
       - 🇹🇼 台湾故转
@@ -500,16 +499,6 @@ proxy-groups:
     filter: "(?=.*(广台|台湾|台灣|TW|Tai Wan|🇹🇼|🇨🇳|TaiWan|Taiwan)).*$"
     exclude-filter: *common_node_exclude
 
-  - name: 🇹🇼 台湾负载均衡
-    type: load-balance
-    strategy: consistent-hashing
-    use:
-      - airport
-    url: https://www.gstatic.com/generate_204
-    interval: 180
-    filter: "(?=.*(广台|台湾|台灣|TW|Tai Wan|🇹🇼|🇨🇳|TaiWan|Taiwan)).*$"
-    exclude-filter: *common_node_exclude
-
   - name: 所有故转
     type: select
     proxies:
@@ -720,7 +709,6 @@ proxy-groups:
       - 🇹🇼 台湾故转
       - 🇹🇼 台湾手动
       - 🇹🇼 台湾自动
-      - 🇹🇼 台湾负载均衡
       - 所有故转
       - 所有手动
       - 所有自动
