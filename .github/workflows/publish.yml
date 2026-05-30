@@ -1,0 +1,60 @@
+name: Publish to OSS
+
+# 仅 nmi.yaml 变化时发布到 OSS；.list 经 jsdelivr 分发，不在此触发。
+on:
+  push:
+    branches: [main]
+    paths: ['nmi.yaml']
+  workflow_dispatch:
+
+concurrency:
+  group: publish-oss
+  cancel-in-progress: false
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      # 用 Secret 里的 base64 密钥块，拼回含密钥真身（替换 #__NODES__ 行）
+      # 安全：绝不打印 nodes.yaml / nmi.full.yaml 内容，也不作为 artifact 上传
+      - name: Reassemble real config
+        env:
+          NODES_B64: ${{ secrets.NMI_SECRET_BLOCK }}
+        run: |
+          printf '%s' "$NODES_B64" | base64 -d > nodes.yaml
+          awk '/^#__NODES__$/{while((getline l<"nodes.yaml")>0)print l; next}{print}' nmi.yaml > nmi.full.yaml
+
+      # 上传前校验：拼出的 YAML 若损坏则失败，OSS 不会被更新（保连通性）
+      - name: Validate YAML
+        run: python3 -c "import yaml; yaml.safe_load(open('nmi.full.yaml', encoding='utf-8'))"
+
+      # 官方 ossutil 二进制（无第三方 action）。注意：如换 2.x，上传参数 -f 改为 --force。
+      - name: Install ossutil
+        run: |
+          curl -fsSL -o ossutil https://gosspublic.alicdn.com/ossutil/1.7.18/ossutil64
+          chmod +x ossutil
+
+      - name: Upload to OSS
+        env:
+          EP:     ${{ secrets.OSS_ENDPOINT }}
+          KID:    ${{ secrets.OSS_ACCESS_KEY_ID }}
+          KSEC:   ${{ secrets.OSS_ACCESS_KEY_SECRET }}
+          BUCKET: ${{ secrets.OSS_BUCKET }}
+          KEY:    ${{ secrets.OSS_OBJECT_KEY }}
+        run: |
+          # --acl public-read：保证每次覆盖后该对象仍可被 OpenClash 匿名下载
+          # （即使 bucket 设为私有也能工作；OpenClash 是匿名 GET，对象必须可公共读）
+          ./ossutil cp -f nmi.full.yaml "oss://$BUCKET/$KEY" --acl public-read -e "$EP" -i "$KID" -k "$KSEC"
+
+      # 如果 OpenClash 的下载地址走阿里云 CDN，取消下面注释，并加 OSS_OBJECT_KEY 的 CDN 域名 Secret
+      # - name: Refresh Aliyun CDN
+      #   env:
+      #     KID:  ${{ secrets.OSS_ACCESS_KEY_ID }}
+      #     KSEC: ${{ secrets.OSS_ACCESS_KEY_SECRET }}
+      #     CDN_URL: ${{ secrets.CDN_OBJECT_URL }}   # 例: https://cdn.example.com/clash/nmi.yaml
+      #   run: |
+      #     pip install aliyun-cli >/dev/null 2>&1 || true
+      #     aliyun configure set --access-key-id "$KID" --access-key-secret "$KSEC" --region cn-hangzhou
+      #     aliyun cdn RefreshObjectCaches --ObjectPath "$CDN_URL" --ObjectType File

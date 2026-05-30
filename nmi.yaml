@@ -10,7 +10,7 @@
 # 当前版本：v1.0.0
 # 更新时间：2026-04-05 00:32:41
 
-
+#__NODES__
 proxy-groups:
   - name: 🤖 ChatGPT
     type: select
