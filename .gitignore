@@ -10,3 +10,6 @@ nodes.yaml
 
 # Claude Code 本地设置（含本机权限规则，不公开）
 .claude/settings.local.json
+
+# 本机操作细节文档（含 OSS 下载地址，不公开）
+CLAUDE.local.md
