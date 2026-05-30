@@ -15,7 +15,7 @@ jobs:
   publish:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5   # Node 24 运行时
 
       # 用 Secret 里的 base64 密钥块，拼回含密钥真身（替换 #__NODES__ 行）
       # 安全：绝不打印 nodes.yaml / nmi.full.yaml 内容，也不作为 artifact 上传
