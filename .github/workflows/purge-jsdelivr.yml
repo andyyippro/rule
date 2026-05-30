@@ -1,0 +1,30 @@
+name: Purge jsDelivr (.list)
+
+# .list 经 jsDelivr 分发；本工作流在 .list 变化后刷新 jsDelivr 缓存。
+# 注意：这只刷新 jsDelivr；OpenClash 仍按 rule-provider interval（nmi.yaml 当前 86400s/24h）
+# 或手动刷新才会重新拉取。要更快需手动刷新订阅或调低 interval。
+on:
+  push:
+    branches: [main]
+    paths: ['*.list']
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: purge-jsdelivr
+  cancel-in-progress: true
+
+jobs:
+  purge:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+      - name: Purge all .list on jsDelivr
+        run: |
+          for f in *.list; do
+            echo "purging $f ..."
+            curl -fsS "https://purge.jsdelivr.net/gh/${{ github.repository }}@main/$f" -o /dev/null \
+              && echo "  ok" || echo "  failed: $f (rate-limited? retry or purge manually)"
+          done
