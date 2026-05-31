@@ -782,6 +782,7 @@ rules:
   - GEOSITE,category-games,🎮 游戏平台
   - GEOSITE,category-entertainment,🌎 国外媒体
   - GEOSITE,category-ecommerce,🛒 国外电商
+  - GEOSITE,category-dev,所有手动
   - GEOSITE,gfw,所有手动
   - GEOSITE,cn,直连
   - GEOIP,cn,直连,no-resolve
