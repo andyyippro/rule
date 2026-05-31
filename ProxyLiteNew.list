@@ -260,3 +260,8 @@ DOMAIN-SUFFIX,skilljar.com
 # 内容：SubtitleCat
 # 数量：1条
 DOMAIN-SUFFIX,subtitlecat.com
+
+# 内容：npm
+# 数量：2条
+DOMAIN-SUFFIX,npmjs.org
+DOMAIN-SUFFIX,npmjs.com
