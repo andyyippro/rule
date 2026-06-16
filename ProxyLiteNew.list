@@ -278,3 +278,7 @@ DOMAIN-SUFFIX,fondzjp.com
 # 内容：Debian CDN
 # 数量：1条
 DOMAIN,debian.map.fastlydns.net
+
+# 内容：Playwright
+# 数量：1条
+DOMAIN-SUFFIX,playwright.dev
