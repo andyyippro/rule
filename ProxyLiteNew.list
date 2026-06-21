@@ -283,3 +283,7 @@ DOMAIN,debian.map.fastlydns.net
 # 内容：Playwright
 # 数量：1条
 DOMAIN-SUFFIX,playwright.dev
+
+# 内容：Prisma
+# 数量：1条
+DOMAIN-SUFFIX,prisma.sh
