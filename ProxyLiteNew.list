@@ -287,3 +287,7 @@ DOMAIN-SUFFIX,playwright.dev
 # 内容：Prisma
 # 数量：1条
 DOMAIN-SUFFIX,prisma.sh
+
+# 内容：1Password
+# 数量：1条
+DOMAIN-SUFFIX,1password.com
