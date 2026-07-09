@@ -171,7 +171,7 @@ DOMAIN-SUFFIX,pypi.org
 DOMAIN-SUFFIX,python.org
 
 # 内容：JAV 预览
-# 数量：22条
+# 数量：23条
 DOMAIN-SUFFIX,heyzo.com
 DOMAIN-SUFFIX,heydouga.com
 DOMAIN-SUFFIX,supjav.com
@@ -194,6 +194,7 @@ DOMAIN-SUFFIX,blogsys.jp
 DOMAIN-SUFFIX,blogimg.jp
 DOMAIN-SUFFIX,faleno.jp
 DOMAIN-SUFFIX,sda1.dev
+DOMAIN-SUFFIX,javfilms.com
 
 # 内容：AI
 # 数量：3条
