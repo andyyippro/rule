@@ -294,3 +294,7 @@ DOMAIN-SUFFIX,prisma.sh
 # 内容：1Password
 # 数量：1条
 DOMAIN-SUFFIX,1password.com
+
+# 内容：ideapocket
+# 数量：1条
+DOMAIN-SUFFIX,ideapocket.com
