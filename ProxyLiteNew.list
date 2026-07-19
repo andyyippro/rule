@@ -298,3 +298,7 @@ DOMAIN-SUFFIX,1password.com
 # 内容：ideapocket
 # 数量：1条
 DOMAIN-SUFFIX,ideapocket.com
+
+# 内容：RedGIFs
+# 数量：1条
+DOMAIN-SUFFIX,redgifs.com
