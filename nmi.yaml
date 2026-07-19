@@ -743,8 +743,6 @@ rule-providers:
 rules:
   - RULE-SET,VendorVideo / Domain,🎬 片商视频故转
   - RULE-SET,Japan / Domain,🎮 片商故转
-  - DOMAIN,debian.map.fastlydns.net,所有手动
-  - DOMAIN-SUFFIX,playwright.dev,所有手动
   - RULE-SET,ProxyLiteNew / Domain,所有手动
   - DOMAIN-SUFFIX,zodnext.com,🔄 订阅更新
   - RULE-SET,LocalDirect / Domain,直连
