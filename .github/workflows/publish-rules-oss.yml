@@ -1,0 +1,165 @@
+name: Publish rule copies to OSS
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - '*.list'
+      - '.github/workflows/publish-rules-oss.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: publish-rules-oss
+  cancel-in-progress: false
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - name: Require main branch
+        shell: bash
+        run: |
+          set -euo pipefail
+          if [[ "$GITHUB_REF" != 'refs/heads/main' ]]; then
+            echo '拒绝从 main 以外的分支或标签发布 OSS 规则副本。' >&2
+            exit 1
+          fi
+
+      - uses: actions/checkout@v5
+
+      - name: Validate fixed rule set and contents
+        shell: bash
+        run: |
+          set -euo pipefail
+          expected=(
+            Direct.list
+            HongKongSites.list
+            JapanSites.list
+            LocalDirect.list
+            ProxyLiteNew.list
+            SingaporeSites.list
+            UpdateHosts.list
+            VendorVideoSites.list
+          )
+          mapfile -t tracked < <(git ls-files '*.list' | LC_ALL=C sort)
+          mapfile -t declared < <(printf '%s\n' "${expected[@]}" | LC_ALL=C sort)
+          if ! diff -u <(printf '%s\n' "${declared[@]}") <(printf '%s\n' "${tracked[@]}"); then
+            echo '固定发布清单与 Git 跟踪的根目录 .list 不一致。' >&2
+            exit 1
+          fi
+
+          python3 - <<'PY'
+          from pathlib import Path
+
+          files = (
+              "Direct.list",
+              "HongKongSites.list",
+              "JapanSites.list",
+              "LocalDirect.list",
+              "ProxyLiteNew.list",
+              "SingaporeSites.list",
+              "UpdateHosts.list",
+              "VendorVideoSites.list",
+          )
+          allowed = {"DOMAIN", "DOMAIN-SUFFIX", "DOMAIN-KEYWORD", "IP-CIDR"}
+          for name in files:
+              data = Path(name).read_bytes()
+              if not data:
+                  raise SystemExit(f"{name}: 文件为空")
+              if data.startswith(b"\xef\xbb\xbf"):
+                  raise SystemExit(f"{name}: 不允许 UTF-8 BOM")
+              try:
+                  text = data.decode("utf-8")
+              except UnicodeDecodeError as exc:
+                  raise SystemExit(f"{name}: 不是有效 UTF-8: {exc}") from exc
+              for line_number, raw in enumerate(text.splitlines(), 1):
+                  line = raw.strip()
+                  if not line or line.startswith("#"):
+                      continue
+                  prefix = line.split(",", 1)[0]
+                  if prefix not in allowed:
+                      raise SystemExit(
+                          f"{name}:{line_number}: 不支持的规则类型 {prefix!r}"
+                      )
+          PY
+
+      - name: Install ossutil 1.7.18
+        shell: bash
+        run: |
+          set -euo pipefail
+          curl --fail --silent --show-error \
+            --retry 3 --retry-all-errors --connect-timeout 10 --max-time 60 \
+            -o ossutil64 \
+            https://gosspublic.alicdn.com/ossutil/1.7.18/ossutil64
+          chmod +x ossutil64
+
+      - name: Upload and verify eight public objects
+        shell: bash
+        env:
+          OSS_ACCESS_KEY_ID: ${{ secrets.OSS_ACCESS_KEY_ID }}
+          OSS_ACCESS_KEY_SECRET: ${{ secrets.OSS_ACCESS_KEY_SECRET }}
+          OSS_ENDPOINT: ${{ secrets.OSS_ENDPOINT }}
+          OSS_BUCKET: ${{ secrets.OSS_BUCKET }}
+        run: |
+          set -euo pipefail
+          : "${OSS_ACCESS_KEY_ID:?missing OSS_ACCESS_KEY_ID}"
+          : "${OSS_ACCESS_KEY_SECRET:?missing OSS_ACCESS_KEY_SECRET}"
+          : "${OSS_ENDPOINT:?missing OSS_ENDPOINT}"
+          : "${OSS_BUCKET:?missing OSS_BUCKET}"
+          endpoint_host="${OSS_ENDPOINT#https://}"
+          endpoint_host="${endpoint_host#http://}"
+          endpoint_host="${endpoint_host%/}"
+          if [[ "$OSS_BUCKET" != 'cclsst' || "$endpoint_host" != 'oss-cn-shenzhen.aliyuncs.com' ]]; then
+            echo 'OSS Bucket 或 Endpoint 与公开规则地址不一致。' >&2
+            exit 1
+          fi
+
+          files=(
+            Direct.list
+            HongKongSites.list
+            JapanSites.list
+            LocalDirect.list
+            ProxyLiteNew.list
+            SingaporeSites.list
+            UpdateHosts.list
+            VendorVideoSites.list
+          )
+          work_dir="$(mktemp -d)"
+          trap 'rm -rf -- "$work_dir"' EXIT
+          public_base="https://${OSS_BUCKET}.${endpoint_host}/rules"
+
+          for file in "${files[@]}"; do
+            if ! ./ossutil64 cp -f "$file" "oss://${OSS_BUCKET}/rules/${file}" \
+              --endpoint "$OSS_ENDPOINT" \
+              --access-key-id "$OSS_ACCESS_KEY_ID" \
+              --access-key-secret "$OSS_ACCESS_KEY_SECRET" \
+              --acl public-read \
+              --meta 'Cache-Control:no-cache#Content-Type:text/plain; charset=utf-8' \
+              --connect-timeout 30 --read-timeout 60 --retry-times 3 >/dev/null 2>&1; then
+              echo "规则对象上传失败：${file}" >&2
+              exit 1
+            fi
+
+            headers="${work_dir}/${file}.headers"
+            remote="${work_dir}/${file}.remote"
+            curl --fail --silent --show-error \
+              --retry 3 --retry-all-errors --connect-timeout 10 --max-time 60 \
+              -D "$headers" -o "$remote" "${public_base}/${file}"
+            if ! cmp -s -- "$file" "$remote"; then
+              echo "规则对象内容校验失败：${file}" >&2
+              exit 1
+            fi
+            if ! grep -Eiq '^cache-control:[[:space:]]*no-cache([[:space:]]|$)' "$headers"; then
+              echo "规则对象 Cache-Control 校验失败：${file}" >&2
+              exit 1
+            fi
+            if ! grep -Eiq '^content-type:[[:space:]]*text/plain([;[:space:]]|$)' "$headers"; then
+              echo "规则对象 Content-Type 校验失败：${file}" >&2
+              exit 1
+            fi
+          done
+          echo '8 个规则 OSS 副本均已通过匿名逐字节校验。'

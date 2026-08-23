@@ -1,5 +1,6 @@
 # 含密钥的真实配置 —— 仅本地使用，绝不提交到公开仓库
 nmi.full.yaml
+nmi-oss.full.yaml
 
 # publish.ps1 的节点哈希缓存（判断节点是否变化）
 .nodes.hash
@@ -8,9 +9,14 @@ nmi.full.yaml
 nodes.yaml
 *.tmp
 
-# Claude Code 本地设置（含本机权限规则，不公开）
+# OSS 副本发布失败后，仅允许按该提交 SHA 精确补推送
+.nmi-oss.pending-push
+
+# Claude / Codex 本地设置（含本机权限规则，不公开）
 .claude/settings.local.json
+.Codex/settings.local.json
 
 # 本机文档（操作细节 / 经验库，不公开）
 CLAUDE.local.md
+Codex.local.md
 MEMORY.md

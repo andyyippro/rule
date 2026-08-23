@@ -1,7 +1,7 @@
 # CLAUDE.md — andyyippro/rule
 
 公开的 Clash/Mihomo 代理分流规则 + 配置仓库。
-**30 秒速答**：①**是什么**——给 Clash/Mihomo 用的代理分流规则与主配置；②**技术栈**——YAML 配置 + GitHub Actions + 阿里云 OSS 自动发布；③**改哪里**——改 `nmi.full.yaml`（节点/策略组/规则）或对应 `*.list`（站点规则），**绝不手改 `nmi.yaml`**。
+**30 秒速答**：①**是什么**——给 Clash/Mihomo 用的代理分流规则与主配置；②**技术栈**——YAML 配置 + GitHub Actions + 阿里云 OSS 自动发布；③**改哪里**——原版改 `nmi.full.yaml`，OSS 独立副本改 `nmi-oss.full.yaml`，站点规则仍共用根目录 `*.list`；**绝不手改两份公开 nmi 产物**。
 
 ## 我的协作风格（务必遵守）
 - 🚫 **未经我明确指令，绝不 `git commit` / `git push` / 上传 GitHub 或 OSS**（含会触发 push 的 `publish.ps1`）。改动先只在本地，等我说「提交 / 推送 / 发布」。
@@ -11,17 +11,17 @@
 - **每次回复都称呼我为【大神】。**
 
 ## 安全红线（硬规则）
-- 密钥只在 `nmi.full.yaml`（gitignored）和 GitHub Secrets——**绝不进这个公开仓库**。
-- 改配置只改 `nmi.full.yaml`；`nmi.yaml` 是它脱敏后的自动产物，**不可手改**。
-- 不删/移 `nmi.full.yaml` 里的 `#__SECRET_START__` / `#__SECRET_END__` 标记。
+- 密钥只在 `nmi.full.yaml`、`nmi-oss.full.yaml`（均 gitignored）和 GitHub Secrets——**绝不进这个公开仓库**。
+- 原版只改 `nmi.full.yaml`，OSS 副本只改 `nmi-oss.full.yaml`；`nmi.yaml` / `nmi-oss.yaml` 都是脱敏产物，**不可手改**。
+- 不删/移两份真身里的 `#__SECRET_START__` / `#__SECRET_END__` 标记；公开 OSS 副本必须保留唯一 `#__NODES_OSS__` 与节点 SHA-256 注释。
 - 仓库**必须保持公开**（jsdelivr 拉 `.list`）。
-- 永不提交：`nmi.full.yaml`、`.nodes.hash`、`.claude/settings.local.json`、`CLAUDE.local.md`、`MEMORY.md`。
+- 永不提交：`nmi.full.yaml`、`nmi-oss.full.yaml`、`.nodes.hash`、`.claude/settings.local.json`、`CLAUDE.local.md`、`MEMORY.md`。
 
 ## Do NOT（除非我明确要求）
 - 不动 `nmi.yaml` 头部的「版本号 / 更新时间」（见文件头维护要求）。
 - **只改必需处**：不碰无关策略组 / 规则，不做无关重构。
 - 不把 `HongKongSites.list` / `SingaporeSites.list` / `Direct.list` / `UpdateHosts.list` 当作 nmi 的规则源——**nmi 不引用它们**，改了不生效。
-- 不另造发布机制 / 依赖，沿用 `publish.ps1` + `.github/workflows/publish.yml`。
+- 原版沿用 `publish.ps1` + `.github/workflows/publish.yml`，不得让 OSS 副本改动或替代它们。
 
 ## 发布闭环（改配置 → 上线）
 > 全程只在本地，**我说「发布」才 push**。
@@ -34,11 +34,25 @@
 7. OpenClash 刷新订阅生效。
 - 一键替代：`.\publish.ps1 "说明"`（自动做 2–4，但它会 push——**需我指令**）。
 
-## 两条传播路径
+## OSS 独立副本闭环
+- `nmi-oss.full.yaml` → `publish-oss-copy.ps1` → `nmi-oss.yaml` → `publish-nmi-oss.yml` → 独立 OSS 对象；脚本会提交并 push，仍须明确授权。
+- `publish-oss-copy.ps1 -ValidateOnly` 只在临时目录派生并全量校验，不改工作树、不设置 Secret、不暂存、不提交、不推送；首次对象键用 `-InitializeObjectKey`，正常发布前必须已有唯一当前键。轮换失败时本机同时保留当前 URL 与待同步 URL，必须先用 `-SyncRecordedObjectKey` 收敛，之后才允许发布；push 失败后仅允许按 gitignored 的 `.nmi-oss.pending-push` 所登记 SHA 精确补推送，其他 ahead 提交一律阻断。
+- OSS 副本普通发布及对象键操作只允许 `main` 跟踪 `origin/main`，并要求 `origin` 唯一指向 GitHub `andyyippro/rule`；push 固定为 `origin HEAD:refs/heads/main`。`scripts/validate-oss-public-copies.py` 由发布脚本、pre-commit 与 CI 共用，对全部 6 个公开副本统一检查严格 YAML、注释/正文敏感值、URL 映射、3600 秒间隔、自链接和 `ipxie` 例外；提交说明也在任何 Secret/commit 动作前通过标准输入检查，错误不回显原文。
+- 发布脚本、pre-commit 与 CI 都先用固定安全/恶意 canary 确认共用校验器有效；校验器自身被暂存时，pre-commit 还要求暂存 blob 与工作树一致。固定副本集合同时要求 changelog 使用 `.md`，标题结构只接受唯一固定 ATX H1 和精确 ATX H2 发布章节，拒绝 Setext/HTML 标题及会制造解析差异的控制/行分隔符；所有发布日期逐项校验，`vX.Y.Z` 各段禁止前导零且版本号全局唯一。版本元数据分别按块级和完整行内代码上下文锁定，版本、日期和节点哈希还必须在 `nmi-oss.yaml` 的纯注释头部连续出现且彼此一致。
+- 节点块固定为 LF / UTF-8 无 BOM 且末尾不带换行，公开副本和真身各保留唯一 `NMI_OSS_NODES_SHA256`；CI 校验 `NMI_OSS_SECRET_BLOCK` 后才允许覆盖。
+- `cmi-oss.yaml` 和 3 份 `-oss.ini` 是独立公开副本；第一方 `.list` 指向 OSS，INI 自身指向对应 GitHub Raw，`ipxie.yaml` 继续使用 jsDelivr。
+- `cmi-oss.yaml` 初建时仅额外清理原版已有行尾空格，以通过提交检查；这是无语义的已记录差异，不得借机改动原版或其他配置。
+- rule-provider 名称保持不变且不新增 `path`；[Mihomo rule-provider 文档](https://wiki.metacubex.one/config/rule-providers/)说明未配置 `path` 时会按新 URL 的 MD5 使用独立缓存文件。
+- 8 个 `.list` 不复制 Git 源文件；`publish-rules-oss.yml` 只创建 OSS 对象副本，旧 `purge-jsdelivr.yml` 继续维护原版 jsDelivr 链路。
+- 副本对象键只允许 `subscriptions/<64位小写十六进制>/nmi-oss.yaml`；完整 URL 只记录在 `CLAUDE.local.md`。新 Secret 为 `NMI_OSS_SECRET_BLOCK`、`OSS_NMI_COPY_OBJECT_KEY`。
+- 已知边界：8 个规则对象无法原子切换，公开读会产生 GET/流量费用，INI 副本依赖 GitHub Raw 可达性；失败只停用副本，未经授权不删副本文件、OSS 对象或 Secrets。
+
+## 三条传播路径
 | 改了什么 | 走哪条 | 生效 |
 |---|---|---|
 | 节点 / `nmi.yaml` 规则 | push → CI → **OSS** | ~1 分钟 + OpenClash 刷新 |
-| `.list` 加/删站点 | push → **jsDelivr**（CI 自动 purge） | 客户端按 rule-provider interval（当前 24h）或手动刷新才拉到 |
+| `nmi-oss.yaml` 副本 | push → 独立 CI → **独立 OSS 对象** | ~1 分钟 + 独立订阅刷新 |
+| `.list` 加/删站点 | push → **jsDelivr purge + OSS 规则副本**（两个独立工作流） | 原版按 24h；OSS 副本按 3600s，或手动刷新 |
 
 > 加新站点先进 `ProxyLiteNew.list`（集散中心），按需再分流到地区列表。
 
@@ -52,9 +66,13 @@
 | `nmi.full.yaml` | 生产真身（密钥 + 标记）；**编辑入口**；gitignored |
 | `nmi.yaml` | 脱敏产物（committed）；勿手改 |
 | `publish.ps1` / `.github/workflows/publish.yml` | 本地发布 / 云端拼回 + 传 OSS |
+| `nmi-oss.full.yaml` / `nmi-oss.yaml` | OSS 独立副本真身 / 脱敏产物；真身 gitignored，公开产物勿手改 |
+| `publish-oss-copy.ps1` / `.github/workflows/publish-nmi-oss.yml` | OSS 副本本地派生 / 云端校验、拼回与发布 |
+| `scripts/validate-oss-public-copies.py` | 供发布脚本、pre-commit、CI 共用的全部公开 OSS 副本安全校验器 |
+| `.github/workflows/publish-rules-oss.yml` | 固定上传并逐字节验证 8 个共享 `.list` 的 OSS 对象副本 |
 | `.git/hooks/pre-commit` | 防误提交密钥（**本地、未版本管理，重新 clone 需重建**） |
-| `*.list` | 规则列表（经 jsdelivr）；nmi 只用 ProxyLiteNew/Japan/VendorVideo/LocalDirect |
-| `cmi.yaml` | 另一套简化模板，无密钥、不走 OSS，直接改 + 提交 |
+| `*.list` | 共享规则源（jsDelivr 原链路 + OSS 对象副本）；nmi 只用 ProxyLiteNew/Japan/VendorVideo/LocalDirect |
+| `cmi.yaml` / `cmi-oss.yaml` | 原版简化模板 / OSS 独立副本 |
 | `MEMORY.md` | **踩坑与经验库**（本地、gitignored） |
 | `CLAUDE.local.md` | 本机敏感细节（OSS 地址等），gitignored |
 

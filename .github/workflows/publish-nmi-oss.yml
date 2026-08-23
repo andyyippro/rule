@@ -1,0 +1,272 @@
+name: Publish nmi OSS copy
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'nmi-oss.yaml'
+      - 'cmi-oss.yaml'
+      - 'qichiyu-oss.ini'
+      - 'qichiyubeifen-oss.ini'
+      - 'bei260317-oss.ini'
+      - 'nmi-oss-CHANGELOG.md'
+      - 'scripts/validate-oss-public-copies.py'
+      - '.github/workflows/publish-nmi-oss.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: publish-nmi-oss
+  cancel-in-progress: false
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - name: Require main branch
+        shell: bash
+        run: |
+          set -euo pipefail
+          if [[ "$GITHUB_REF" != 'refs/heads/main' ]]; then
+            echo '拒绝从 main 以外的分支或标签发布 OSS nmi 副本。' >&2
+            exit 1
+          fi
+
+      - uses: actions/checkout@v5
+        with:
+          fetch-depth: 0
+
+      - name: Validate every public OSS copy
+        shell: bash
+        run: |
+          set -euo pipefail
+          if ! printf '%s' 'validator canary public text' | \
+            python3 scripts/validate-oss-public-copies.py \
+              --stdin-public-text >/dev/null 2>&1; then
+            echo 'OSS 公开副本安全校验器未通过安全样例。' >&2
+            exit 1
+          fi
+          validator_status=0
+          if printf '%s' 'pass''word: VALIDATOR_CANARY' | \
+            python3 scripts/validate-oss-public-copies.py \
+              --stdin-public-text >/dev/null 2>&1; then
+            validator_status=0
+          else
+            validator_status=$?
+          fi
+          if [[ "$validator_status" -ne 1 ]]; then
+            echo 'OSS 公开副本安全校验器未按预期拒绝敏感样例。' >&2
+            exit 1
+          fi
+          validator_status=0
+          if printf '%s\n%s' 'pass''word&#58;' '&#45; VALIDATOR_CANARY' | \
+            python3 scripts/validate-oss-public-copies.py \
+              --stdin-public-text >/dev/null 2>&1; then
+            validator_status=0
+          else
+            validator_status=$?
+          fi
+          if [[ "$validator_status" -ne 1 ]]; then
+            echo 'OSS 公开副本安全校验器未按预期拒绝 Markdown 语义样例。' >&2
+            exit 1
+          fi
+          if ! python3 scripts/validate-oss-public-copies.py --copy-set \
+            nmi-oss.yaml \
+            cmi-oss.yaml \
+            qichiyu-oss.ini \
+            qichiyubeifen-oss.ini \
+            bei260317-oss.ini \
+            nmi-oss-CHANGELOG.md >/dev/null 2>&1; then
+            echo 'OSS 公开副本统一安全校验失败。' >&2
+            exit 1
+          fi
+
+      - name: Decide whether the OSS nmi object needs publication
+        id: publish_gate
+        shell: bash
+        env:
+          BEFORE_SHA: ${{ github.event.before }}
+        run: |
+          set -euo pipefail
+          publish=false
+          if [[ "$GITHUB_EVENT_NAME" == 'workflow_dispatch' ]]; then
+            publish=true
+          elif [[ -z "${BEFORE_SHA:-}" || "$BEFORE_SHA" =~ ^0+$ ]]; then
+            publish=true
+          elif ! git cat-file -e "${BEFORE_SHA}^{commit}" 2>/dev/null; then
+            echo '无法核对 push 前的提交，拒绝静默跳过 OSS 发布。' >&2
+            exit 1
+          elif ! git diff --quiet "$BEFORE_SHA" "$GITHUB_SHA" -- \
+            nmi-oss.yaml \
+            scripts/validate-oss-public-copies.py \
+            .github/workflows/publish-nmi-oss.yml; then
+            publish=true
+          fi
+          printf 'publish=%s\n' "$publish" >>"$GITHUB_OUTPUT"
+
+      - name: Install ossutil 1.7.18
+        if: steps.publish_gate.outputs.publish == 'true'
+        shell: bash
+        run: |
+          set -euo pipefail
+          curl --fail --silent --show-error \
+            --retry 3 --retry-all-errors --connect-timeout 10 --max-time 60 \
+            -o ossutil64 \
+            https://gosspublic.alicdn.com/ossutil/1.7.18/ossutil64
+          chmod +x ossutil64
+
+      - name: Reassemble, upload, and verify private-node copy
+        if: steps.publish_gate.outputs.publish == 'true'
+        shell: bash
+        env:
+          NMI_OSS_SECRET_BLOCK: ${{ secrets.NMI_OSS_SECRET_BLOCK }}
+          OSS_NMI_COPY_OBJECT_KEY: ${{ secrets.OSS_NMI_COPY_OBJECT_KEY }}
+          OSS_OBJECT_KEY: ${{ secrets.OSS_OBJECT_KEY }}
+          OSS_ACCESS_KEY_ID: ${{ secrets.OSS_ACCESS_KEY_ID }}
+          OSS_ACCESS_KEY_SECRET: ${{ secrets.OSS_ACCESS_KEY_SECRET }}
+          OSS_ENDPOINT: ${{ secrets.OSS_ENDPOINT }}
+          OSS_BUCKET: ${{ secrets.OSS_BUCKET }}
+        run: |
+          set -euo pipefail
+          : "${NMI_OSS_SECRET_BLOCK:?missing NMI_OSS_SECRET_BLOCK}"
+          : "${OSS_NMI_COPY_OBJECT_KEY:?missing OSS_NMI_COPY_OBJECT_KEY}"
+          : "${OSS_OBJECT_KEY:?missing OSS_OBJECT_KEY}"
+          : "${OSS_ACCESS_KEY_ID:?missing OSS_ACCESS_KEY_ID}"
+          : "${OSS_ACCESS_KEY_SECRET:?missing OSS_ACCESS_KEY_SECRET}"
+          : "${OSS_ENDPOINT:?missing OSS_ENDPOINT}"
+          : "${OSS_BUCKET:?missing OSS_BUCKET}"
+
+          copy_key="$OSS_NMI_COPY_OBJECT_KEY"
+          original_key="$OSS_OBJECT_KEY"
+          while [[ "$copy_key" == /* ]]; do copy_key="${copy_key#/}"; done
+          while [[ "$original_key" == /* ]]; do original_key="${original_key#/}"; done
+          printf '::add-mask::%s\n' "$copy_key"
+          if [[ ! "$copy_key" =~ ^subscriptions/[0-9a-f]{64}/nmi-oss\.yaml$ ]]; then
+            echo 'OSS 副本对象键格式无效。' >&2
+            exit 1
+          fi
+          if [[ "$copy_key" == "$original_key" ]]; then
+            echo 'OSS 副本对象键不得与原版对象键相同。' >&2
+            exit 1
+          fi
+
+          endpoint_host="${OSS_ENDPOINT#https://}"
+          endpoint_host="${endpoint_host#http://}"
+          endpoint_host="${endpoint_host%/}"
+          if [[ "$OSS_BUCKET" != 'cclsst' || "$endpoint_host" != 'oss-cn-shenzhen.aliyuncs.com' ]]; then
+            echo 'OSS Bucket 或 Endpoint 与副本订阅地址不一致。' >&2
+            exit 1
+          fi
+          public_url="https://${OSS_BUCKET}.${endpoint_host}/${copy_key}"
+          printf '::add-mask::%s\n' "$public_url"
+
+          work_dir="$(mktemp -d)"
+          nodes_file="${work_dir}/nodes.yaml"
+          full_file="${work_dir}/nmi-oss.full.yaml"
+          headers_file="${work_dir}/response.headers"
+          remote_file="${work_dir}/remote.yaml"
+          trap 'rm -rf -- "$work_dir"' EXIT
+
+          hash_label_count="$(grep -Ec '^# NMI_OSS_NODES_SHA256:' nmi-oss.yaml || true)"
+          hash_count="$(grep -Ec '^# NMI_OSS_NODES_SHA256: [0-9a-f]{64}$' nmi-oss.yaml || true)"
+          placeholder_token_count="$(grep -Foc '#__NODES_OSS__' nmi-oss.yaml || true)"
+          placeholder_count="$(grep -Fxc '#__NODES_OSS__' nmi-oss.yaml || true)"
+          if [[ "$hash_label_count" -ne 1 || "$hash_count" -ne 1 || "$placeholder_token_count" -ne 1 || "$placeholder_count" -ne 1 ]]; then
+            echo '公开副本的哈希注释或节点占位符不唯一。' >&2
+            exit 1
+          fi
+          if grep -Eq '^#__SECRET_(START|END)__$' nmi-oss.yaml; then
+            echo '公开副本包含秘密区边界标记。' >&2
+            exit 1
+          fi
+          expected_hash="$(sed -nE 's/^# NMI_OSS_NODES_SHA256: ([0-9a-f]{64})$/\1/p' nmi-oss.yaml)"
+
+          python3 - <<'PY'
+          from pathlib import Path
+
+          data = Path("nmi-oss.yaml").read_bytes()
+          if data.startswith(b"\xef\xbb\xbf"):
+              raise SystemExit("公开副本不允许 UTF-8 BOM")
+          try:
+              text = data.decode("utf-8")
+          except UnicodeDecodeError as exc:
+              raise SystemExit("公开副本不是有效 UTF-8") from exc
+          canonical = text.replace("\r\n", "\n").replace("\r", "\n").encode("utf-8")
+          if canonical != data:
+              raise SystemExit("公开副本不是 LF / UTF-8 无 BOM 的规范字节")
+          PY
+
+          if ! printf '%s' "$NMI_OSS_SECRET_BLOCK" | base64 --decode >"$nodes_file"; then
+            echo '节点 Secret 解码失败。' >&2
+            exit 1
+          fi
+          python3 - "$nodes_file" <<'PY'
+          import sys
+          from pathlib import Path
+
+          path = Path(sys.argv[1])
+          data = path.read_bytes()
+          if data.startswith(b"\xef\xbb\xbf"):
+              raise SystemExit("节点 Secret 不允许 UTF-8 BOM")
+          try:
+              text = data.decode("utf-8")
+          except UnicodeDecodeError as exc:
+              raise SystemExit("节点 Secret 不是有效 UTF-8") from exc
+          canonical = text.replace("\r\n", "\n").replace("\r", "\n").encode("utf-8")
+          if canonical != data:
+              raise SystemExit("节点 Secret 不是 LF / UTF-8 无 BOM 的规范字节")
+          if data.endswith(b"\n"):
+              raise SystemExit("节点 Secret 末尾不得包含换行")
+          PY
+          actual_hash="$(sha256sum "$nodes_file" | awk '{print $1}')"
+          if [[ "$actual_hash" != "$expected_hash" ]]; then
+            echo '节点 Secret 与公开副本哈希不匹配。' >&2
+            exit 1
+          fi
+
+          awk -v nodes="$nodes_file" '
+            $0 == "#__NODES_OSS__" {
+              while ((getline line < nodes) > 0) print line
+              close(nodes)
+              next
+            }
+            { print }
+          ' nmi-oss.yaml >"$full_file"
+
+          if ! python3 scripts/validate-oss-public-copies.py \
+            --yaml-only "$full_file" >/dev/null 2>&1; then
+            echo 'OSS nmi 副本 YAML 校验失败。' >&2
+            exit 1
+          fi
+
+          if ! ./ossutil64 cp -f "$full_file" "oss://${OSS_BUCKET}/${copy_key}" \
+            --endpoint "$OSS_ENDPOINT" \
+            --access-key-id "$OSS_ACCESS_KEY_ID" \
+            --access-key-secret "$OSS_ACCESS_KEY_SECRET" \
+            --acl public-read \
+            --connect-timeout 30 --read-timeout 60 --retry-times 3 >/dev/null 2>&1; then
+            echo 'OSS nmi 副本上传失败。' >&2
+            exit 1
+          fi
+
+          if ! curl --fail --silent --show-error \
+            --retry 3 --retry-all-errors --connect-timeout 10 --max-time 60 \
+            -D "$headers_file" -o "$remote_file" "$public_url"; then
+            echo 'OSS nmi 副本匿名下载失败。' >&2
+            exit 1
+          fi
+          if ! cmp -s -- "$full_file" "$remote_file"; then
+            echo 'OSS nmi 副本内容校验失败。' >&2
+            exit 1
+          fi
+          echo 'OSS nmi 独立副本已通过匿名逐字节校验。'
+
+      - name: Report validation-only completion
+        if: steps.publish_gate.outputs.publish != 'true'
+        shell: bash
+        run: |
+          set -euo pipefail
+          echo '全部公开 OSS 副本已通过校验；nmi 对象内容未变化，本次不重复上传。'
