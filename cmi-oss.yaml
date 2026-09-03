@@ -232,6 +232,7 @@ proxy-groups:
 # 规则引擎（rules）
 # ========================
 rules:
+  - RULE-SET,OpenAI / Domain,AI
   # 自定义地区定向规则
   - RULE-SET,HongKong / Domain,香港-故转
   - RULE-SET,ProxyLiteNew / Domain,香港-故转
@@ -282,6 +283,7 @@ rule-anchor:
 
 rule-providers:
   Test / Domain: {<<: *class, url: "https://cdn.jsdelivr.net/gh/liandu2024/clash@main/list/Check.list"}
+  OpenAI / Domain: {<<: *class, interval: 3600, url: "https://cclsst.oss-cn-shenzhen.aliyuncs.com/rules/OpenAI.list"}
   HongKong / Domain: {<<: *class, interval: 3600, url: "https://cclsst.oss-cn-shenzhen.aliyuncs.com/rules/HongKongSites.list"}
   ProxyLiteNew / Domain: {<<: *class, interval: 3600, url: "https://cclsst.oss-cn-shenzhen.aliyuncs.com/rules/ProxyLiteNew.list"}
   Japan / Domain: {<<: *class, interval: 3600, url: "https://cclsst.oss-cn-shenzhen.aliyuncs.com/rules/JapanSites.list"}

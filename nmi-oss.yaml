@@ -8,8 +8,8 @@
 # 维护要求：
 # 1. 只有在你明确要求“更新日志和版本号”时，才同步更新“更新时间”“版本号”和 nmi-oss-CHANGELOG.md
 # 2. 版本号从 v1.0.0 开始递增
-# 当前版本：v1.0.0
-# 更新时间：2026-04-05 00:32:41
+# 当前版本：v1.0.1
+# 更新时间：2026-09-03 21:07:02
 # NMI_OSS_NODES_SHA256: 8813ee3d7245d06a3ae6a387db1c83516e83b6e7a8107e3361ce2ad2f8bd14da
 
 #__NODES_OSS__
@@ -735,6 +735,7 @@ rule-anchor:
   class: &class {type: http, interval: 3600, behavior: classical, format: text}
 
 rule-providers:
+  OpenAI / Domain: {<<: *class, url: "https://cclsst.oss-cn-shenzhen.aliyuncs.com/rules/OpenAI.list"}
   ProxyLiteNew / Domain: {<<: *class, url: "https://cclsst.oss-cn-shenzhen.aliyuncs.com/rules/ProxyLiteNew.list"}
   Japan / Domain: {<<: *class, url: "https://cclsst.oss-cn-shenzhen.aliyuncs.com/rules/JapanSites.list"}
   VendorVideo / Domain: {<<: *class, url: "https://cclsst.oss-cn-shenzhen.aliyuncs.com/rules/VendorVideoSites.list"}
@@ -743,6 +744,7 @@ rule-providers:
   Telegram / CIDR: {type: http, interval: 86400, behavior: ipcidr, format: yaml, url: "https://cdn.jsdelivr.net/gh/fernvenue/telegram-cidr-list@master/CIDR.yaml"}
 
 rules:
+  - RULE-SET,OpenAI / Domain,🤖 ChatGPT
   - RULE-SET,VendorVideo / Domain,🎬 片商视频故转
   - RULE-SET,Japan / Domain,🎮 片商故转
   - RULE-SET,ProxyLiteNew / Domain,所有手动
