@@ -10,6 +10,8 @@ on:
       - 'qichiyubeifen-oss.ini'
       - 'bei260317-oss.ini'
       - 'nmi-oss-CHANGELOG.md'
+      - 'OpenAI.list'
+      - 'OPENAI-RULES.md'
       - 'scripts/validate-oss-public-copies.py'
       - '.github/workflows/publish-nmi-oss.yml'
   workflow_dispatch:
@@ -73,7 +75,9 @@ jobs:
             echo 'OSS 公开副本安全校验器未按预期拒绝 Markdown 语义样例。' >&2
             exit 1
           fi
-          if ! python3 scripts/validate-oss-public-copies.py --copy-set \
+          # 上线过渡期允许“全旧”或“全新”，但拒绝五份配置部分采用；
+          # OpenAI 对象和新配置均验证成功后，第三阶段改回 --copy-set。
+          if ! python3 scripts/validate-oss-public-copies.py --transition-copy-set \
             nmi-oss.yaml \
             cmi-oss.yaml \
             qichiyu-oss.ini \
@@ -81,6 +85,13 @@ jobs:
             bei260317-oss.ini \
             nmi-oss-CHANGELOG.md >/dev/null 2>&1; then
             echo 'OSS 公开副本统一安全校验失败。' >&2
+            exit 1
+          fi
+          if ! python3 scripts/validate-oss-public-copies.py --openai-set \
+            OpenAI.list \
+            OPENAI-RULES.md \
+            ProxyLiteNew.list >/dev/null 2>&1; then
+            echo 'OpenAI 专用规则、来源说明或去重约束校验失败。' >&2
             exit 1
           fi
 
@@ -242,6 +253,7 @@ jobs:
             exit 1
           fi
 
+          # ossutil 1.7.18 不支持 --no-progress；使用重定向和固定错误文案屏蔽输出。
           if ! ./ossutil64 cp -f "$full_file" "oss://${OSS_BUCKET}/${copy_key}" \
             --endpoint "$OSS_ENDPOINT" \
             --access-key-id "$OSS_ACCESS_KEY_ID" \

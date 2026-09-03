@@ -37,15 +37,17 @@
 ## OSS 独立副本闭环
 - `nmi-oss.full.yaml` → `publish-oss-copy.ps1` → `nmi-oss.yaml` → `publish-nmi-oss.yml` → 独立 OSS 对象；脚本会提交并 push，仍须明确授权。
 - `publish-oss-copy.ps1 -ValidateOnly` 只在临时目录派生并全量校验，不改工作树、不设置 Secret、不暂存、不提交、不推送；首次对象键用 `-InitializeObjectKey`，正常发布前必须已有唯一当前键。轮换失败时本机同时保留当前 URL 与待同步 URL，必须先用 `-SyncRecordedObjectKey` 收敛，之后才允许发布；push 失败后仅允许按 gitignored 的 `.nmi-oss.pending-push` 所登记 SHA 精确补推送，其他 ahead 提交一律阻断。
-- OSS 副本普通发布及对象键操作只允许 `main` 跟踪 `origin/main`，并要求 `origin` 唯一指向 GitHub `andyyippro/rule`；push 固定为 `origin HEAD:refs/heads/main`。`scripts/validate-oss-public-copies.py` 由发布脚本、pre-commit 与 CI 共用，对全部 6 个公开副本统一检查严格 YAML、注释/正文敏感值、URL 映射、3600 秒间隔、自链接和 `ipxie` 例外；提交说明也在任何 Secret/commit 动作前通过标准输入检查，错误不回显原文。
+- OSS 副本普通发布及对象键操作只允许 `main` 跟踪 `origin/main`，并要求 `origin` 唯一指向 GitHub `andyyippro/rule`；push 固定为 `origin HEAD:refs/heads/main`。`scripts/validate-oss-public-copies.py` 由发布脚本、pre-commit 与 CI 共用，对全部 6 个公开副本统一检查严格 YAML、注释/正文敏感值、URL 映射、OpenAI 专用规则、3600 秒间隔、自链接和 `ipxie` 例外；提交说明也在任何 Secret/commit 动作前通过标准输入检查，错误不回显原文。
 - 发布脚本、pre-commit 与 CI 都先用固定安全/恶意 canary 确认共用校验器有效；校验器自身被暂存时，pre-commit 还要求暂存 blob 与工作树一致。固定副本集合同时要求 changelog 使用 `.md`，标题结构只接受唯一固定 ATX H1 和精确 ATX H2 发布章节，拒绝 Setext/HTML 标题及会制造解析差异的控制/行分隔符；所有发布日期逐项校验，`vX.Y.Z` 各段禁止前导零且版本号全局唯一。版本元数据分别按块级和完整行内代码上下文锁定，版本、日期和节点哈希还必须在 `nmi-oss.yaml` 的纯注释头部连续出现且彼此一致。
+- OpenAI 专用规则首次上线时，nmi CI 临时调用 `--transition-copy-set`，只接受五份配置“全旧”或“全新”并拒绝部分采用；规则对象和新配置均验证成功后，把 CI 切回严格的 `--copy-set`。过渡参数保留用于可审计回滚，但最终 CI 不得继续使用。
+- 普通 `publish-oss-copy.ps1` 始终使用严格校验；只有明确回滚 OpenAI 专用规则时才使用 `-AllowLegacyOpenAIRollback`，该开关仍拒绝部分采用，并可与 `-ValidateOnly` 组合预检，但不得与对象键操作组合。
 - 节点块固定为 LF / UTF-8 无 BOM 且末尾不带换行，公开副本和真身各保留唯一 `NMI_OSS_NODES_SHA256`；CI 校验 `NMI_OSS_SECRET_BLOCK` 后才允许覆盖。
 - `cmi-oss.yaml` 和 3 份 `-oss.ini` 是独立公开副本；第一方 `.list` 指向 OSS，INI 自身指向对应 GitHub Raw，`ipxie.yaml` 继续使用 jsDelivr。
 - `cmi-oss.yaml` 初建时仅额外清理原版已有行尾空格，以通过提交检查；这是无语义的已记录差异，不得借机改动原版或其他配置。
 - rule-provider 名称保持不变且不新增 `path`；[Mihomo rule-provider 文档](https://wiki.metacubex.one/config/rule-providers/)说明未配置 `path` 时会按新 URL 的 MD5 使用独立缓存文件。
-- 8 个 `.list` 不复制 Git 源文件；`publish-rules-oss.yml` 只创建 OSS 对象副本，旧 `purge-jsdelivr.yml` 继续维护原版 jsDelivr 链路。
+- 9 个 `.list` 不复制 Git 源文件；`publish-rules-oss.yml` 只创建 OSS 对象副本，旧 `purge-jsdelivr.yml` 继续维护原版 jsDelivr 链路。`OpenAI.list` 只由 OSS 配置副本引用，虽然旧 purge 工作流也会清理其 jsDelivr 缓存，但原版配置行为不变。
 - 副本对象键只允许 `subscriptions/<64位小写十六进制>/nmi-oss.yaml`；完整 URL 只记录在 `CLAUDE.local.md`。新 Secret 为 `NMI_OSS_SECRET_BLOCK`、`OSS_NMI_COPY_OBJECT_KEY`。
-- 已知边界：8 个规则对象无法原子切换，公开读会产生 GET/流量费用，INI 副本依赖 GitHub Raw 可达性；失败只停用副本，未经授权不删副本文件、OSS 对象或 Secrets。
+- 已知边界：9 个规则对象无法原子切换，公开读会产生 GET/流量费用，INI 副本依赖 GitHub Raw 可达性；失败只停用副本，未经授权不删副本文件、OSS 对象或 Secrets。
 
 ## 三条传播路径
 | 改了什么 | 走哪条 | 生效 |
@@ -54,10 +56,11 @@
 | `nmi-oss.yaml` 副本 | push → 独立 CI → **独立 OSS 对象** | ~1 分钟 + 独立订阅刷新 |
 | `.list` 加/删站点 | push → **jsDelivr purge + OSS 规则副本**（两个独立工作流） | 原版按 24h；OSS 副本按 3600s，或手动刷新 |
 
-> 加新站点先进 `ProxyLiteNew.list`（集散中心），按需再分流到地区列表。
+> 加新站点通常先进 `ProxyLiteNew.list`（集散中心），按需再分流到地区列表；OpenAI 官方网络清单是专用例外，维护在 `OpenAI.list`，来源与 29→20 去重映射见 `OPENAI-RULES.md`。
 
 ## 路由（nmi.yaml）
 - 本仓库 4 个 list 经 jsdelivr 进 nmi：`ProxyLiteNew`→所有手动、`Japan`→🎮片商故转、`VendorVideo`→🎬片商视频故转、`LocalDirect`→直连；其余靠 `GEOSITE`/`GEOIP`，`gfw→所有手动`、`cn→直连`、`MATCH→🐟漏网之鱼`。
+- OSS nmi 副本额外使用 `OpenAI.list`→🤖 ChatGPT，并必须放在其他业务规则之前；原版 nmi 不引用它。
 - 地区策略组用 `filter:` 按**节点名**过滤机场节点（与同名 `.list` 文件无关）。
 
 ## 文件地图（指针）
@@ -69,9 +72,10 @@
 | `nmi-oss.full.yaml` / `nmi-oss.yaml` | OSS 独立副本真身 / 脱敏产物；真身 gitignored，公开产物勿手改 |
 | `publish-oss-copy.ps1` / `.github/workflows/publish-nmi-oss.yml` | OSS 副本本地派生 / 云端校验、拼回与发布 |
 | `scripts/validate-oss-public-copies.py` | 供发布脚本、pre-commit、CI 共用的全部公开 OSS 副本安全校验器 |
-| `.github/workflows/publish-rules-oss.yml` | 固定上传并逐字节验证 8 个共享 `.list` 的 OSS 对象副本 |
+| `.github/workflows/publish-rules-oss.yml` | 固定上传并逐字节验证 9 个共享 `.list` 的 OSS 对象副本 |
 | `.git/hooks/pre-commit` | 防误提交密钥（**本地、未版本管理，重新 clone 需重建**） |
-| `*.list` | 共享规则源（jsDelivr 原链路 + OSS 对象副本）；nmi 只用 ProxyLiteNew/Japan/VendorVideo/LocalDirect |
+| `*.list` | 共享规则源（jsDelivr 原链路 + OSS 对象副本）；原版 nmi 用 4 个，OSS nmi 另用 OpenAI |
+| `OPENAI-RULES.md` | OpenAI 官方清单、29→20 去重映射、GEOSITE 对比和后续更新步骤 |
 | `cmi.yaml` / `cmi-oss.yaml` | 原版简化模板 / OSS 独立副本 |
 | `MEMORY.md` | **踩坑与经验库**（本地、gitignored） |
 | `CLAUDE.local.md` | 本机敏感细节（OSS 地址等），gitignored |

@@ -139,12 +139,14 @@ EXPECTED_RULE_FILES = {
     "nmi": [
         "JapanSites.list",
         "LocalDirect.list",
+        "OpenAI.list",
         "ProxyLiteNew.list",
         "VendorVideoSites.list",
     ],
     "cmi": [
         "HongKongSites.list",
         "JapanSites.list",
+        "OpenAI.list",
         "ProxyLiteNew.list",
         "SingaporeSites.list",
     ],
@@ -152,6 +154,7 @@ EXPECTED_RULE_FILES = {
         "HongKongSites.list",
         "JapanSites.list",
         "LocalDirect.list",
+        "OpenAI.list",
         "ProxyLiteNew.list",
         "SingaporeSites.list",
         "UpdateHosts.list",
@@ -159,12 +162,14 @@ EXPECTED_RULE_FILES = {
     "qichiyubeifen": [
         "JapanSites.list",
         "LocalDirect.list",
+        "OpenAI.list",
         "ProxyLiteNew.list",
         "UpdateHosts.list",
     ],
     "bei260317": [
         "JapanSites.list",
         "LocalDirect.list",
+        "OpenAI.list",
         "ProxyLiteNew.list",
         "SingaporeSites.list",
         "UpdateHosts.list",
@@ -174,18 +179,23 @@ EXPECTED_RULE_FILES = {
 
 EXPECTED_RULE_LINES = {
     "nmi": [
+        '  OpenAI / Domain: {<<: *class, url: "' + OSS_RULE_ROOT + 'OpenAI.list"}',
+        '  - RULE-SET,OpenAI / Domain,🤖 ChatGPT',
         '  ProxyLiteNew / Domain: {<<: *class, url: "' + OSS_RULE_ROOT + 'ProxyLiteNew.list"}',
         '  Japan / Domain: {<<: *class, url: "' + OSS_RULE_ROOT + 'JapanSites.list"}',
         '  VendorVideo / Domain: {<<: *class, url: "' + OSS_RULE_ROOT + 'VendorVideoSites.list"}',
         '  LocalDirect / Domain: {<<: *class, url: "' + OSS_RULE_ROOT + 'LocalDirect.list"}',
     ],
     "cmi": [
+        '  OpenAI / Domain: {<<: *class, interval: 3600, url: "' + OSS_RULE_ROOT + 'OpenAI.list"}',
+        '  - RULE-SET,OpenAI / Domain,AI',
         '  HongKong / Domain: {<<: *class, interval: 3600, url: "' + OSS_RULE_ROOT + 'HongKongSites.list"}',
         '  ProxyLiteNew / Domain: {<<: *class, interval: 3600, url: "' + OSS_RULE_ROOT + 'ProxyLiteNew.list"}',
         '  Japan / Domain: {<<: *class, interval: 3600, url: "' + OSS_RULE_ROOT + 'JapanSites.list"}',
         '  Singapore / Domain: {<<: *class, interval: 3600, url: "' + OSS_RULE_ROOT + 'SingaporeSites.list"}',
     ],
     "qichiyu": [
+        "ruleset=🤖 ChatGPT,clash-classic:" + OSS_RULE_ROOT + "OpenAI.list,3600",
         "ruleset=🆙 更新专用," + OSS_RULE_ROOT + "UpdateHosts.list",
         "ruleset=🇯🇵 日本节点," + OSS_RULE_ROOT + "JapanSites.list",
         "ruleset=🇭🇰 香港节点,clash-classic:" + OSS_RULE_ROOT + "HongKongSites.list",
@@ -194,12 +204,14 @@ EXPECTED_RULE_LINES = {
         "ruleset=🎯 全球直连," + OSS_RULE_ROOT + "LocalDirect.list",
     ],
     "qichiyubeifen": [
+        "ruleset=🤖 ChatGPT,clash-classic:" + OSS_RULE_ROOT + "OpenAI.list,3600",
         "ruleset=🆙 更新专用," + OSS_RULE_ROOT + "UpdateHosts.list",
         "ruleset=🇯🇵 日本节点," + OSS_RULE_ROOT + "JapanSites.list",
         "ruleset=🇸🇬 新加坡节点," + OSS_RULE_ROOT + "ProxyLiteNew.list",
         "ruleset=🎯 全球直连," + OSS_RULE_ROOT + "LocalDirect.list",
     ],
     "bei260317": [
+        "ruleset=🤖 ChatGPT,clash-classic:" + OSS_RULE_ROOT + "OpenAI.list,3600",
         "ruleset=🆙 更新专用," + OSS_RULE_ROOT + "UpdateHosts.list",
         "ruleset=🇯🇵 日本节点," + OSS_RULE_ROOT + "JapanSites.list",
         "ruleset=🇭🇰🇸🇬 港新节点,clash-classic:" + OSS_RULE_ROOT + "ProxyLiteNew.list",
@@ -215,6 +227,102 @@ INI_SELF_LINKS = {
 }
 
 IPXIE_URL = "https://cdn.jsdelivr.net/gh/andyyippro/rule@main/ipxie.yaml"
+OPENAI_RULE_FILE = "OpenAI.list"
+OPENAI_RULE_URL = OSS_RULE_ROOT + OPENAI_RULE_FILE
+OPENAI_RULE_DOC = "OPENAI-RULES.md"
+OPENAI_DOC_TITLE = "# OpenAI / ChatGPT 专用规则来源与维护说明"
+OPENAI_CHECKED_DATE = "2026-09-03"
+OPENAI_OFFICIAL_SOURCE = (
+    "https://help.openai.com/zh-hans-cn/articles/"
+    "9247338-network-recommendations-for-chatgpt-errors-on-web-and-apps"
+)
+OPENAI_OFFICIAL_DOMAINS = (
+    "*.auth.openai.com",
+    "*.chatgpt.com",
+    "*.ct.sendgrid.net",
+    "*.intercom.io",
+    "*.intercomcdn.com",
+    "*.oaistatic.com",
+    "*.oaiusercontent.com",
+    "*.openai.com",
+    "*.oaistatsig.com",
+    "android.chat.openai.com",
+    "auth0.openai.com",
+    "cdn.openaimerge.com",
+    "cdn.workos.com",
+    "challenges.cloudflare.com",
+    "chat.openai.com",
+    "desktop.chat.openai.com",
+    "forwarder.workos.com",
+    "humb.apple.com",
+    "images.workoscdn.com",
+    "ios.chat.openai.com",
+    "js.intercomcdn.com",
+    "js.stripe.com",
+    "o207216.ingest.sentry.io",
+    "o33249.ingest.sentry.io",
+    "rum.browser-intake-datadoghq.com",
+    "setup.auth.openai.com",
+    "setup.workos.com",
+    "tcr9i.chat.openai.com",
+    "workos.imgix.net",
+)
+OPENAI_RULES = (
+    "DOMAIN-SUFFIX,chatgpt.com",
+    "DOMAIN-SUFFIX,openai.com",
+    "DOMAIN-SUFFIX,ct.sendgrid.net",
+    "DOMAIN-SUFFIX,intercom.io",
+    "DOMAIN-SUFFIX,intercomcdn.com",
+    "DOMAIN-SUFFIX,oaistatic.com",
+    "DOMAIN-SUFFIX,oaiusercontent.com",
+    "DOMAIN-SUFFIX,oaistatsig.com",
+    "DOMAIN,cdn.openaimerge.com",
+    "DOMAIN,cdn.workos.com",
+    "DOMAIN,challenges.cloudflare.com",
+    "DOMAIN,forwarder.workos.com",
+    "DOMAIN,humb.apple.com",
+    "DOMAIN,images.workoscdn.com",
+    "DOMAIN,js.stripe.com",
+    "DOMAIN,o207216.ingest.sentry.io",
+    "DOMAIN,o33249.ingest.sentry.io",
+    "DOMAIN,rum.browser-intake-datadoghq.com",
+    "DOMAIN,setup.workos.com",
+    "DOMAIN,workos.imgix.net",
+)
+OPENAI_OFFICIAL_RULE_MAPPING = (
+    ("*.auth.openai.com", "DOMAIN-SUFFIX,openai.com"),
+    ("*.chatgpt.com", "DOMAIN-SUFFIX,chatgpt.com"),
+    ("*.ct.sendgrid.net", "DOMAIN-SUFFIX,ct.sendgrid.net"),
+    ("*.intercom.io", "DOMAIN-SUFFIX,intercom.io"),
+    ("*.intercomcdn.com", "DOMAIN-SUFFIX,intercomcdn.com"),
+    ("*.oaistatic.com", "DOMAIN-SUFFIX,oaistatic.com"),
+    ("*.oaiusercontent.com", "DOMAIN-SUFFIX,oaiusercontent.com"),
+    ("*.openai.com", "DOMAIN-SUFFIX,openai.com"),
+    ("*.oaistatsig.com", "DOMAIN-SUFFIX,oaistatsig.com"),
+    ("android.chat.openai.com", "DOMAIN-SUFFIX,openai.com"),
+    ("auth0.openai.com", "DOMAIN-SUFFIX,openai.com"),
+    ("cdn.openaimerge.com", "DOMAIN,cdn.openaimerge.com"),
+    ("cdn.workos.com", "DOMAIN,cdn.workos.com"),
+    ("challenges.cloudflare.com", "DOMAIN,challenges.cloudflare.com"),
+    ("chat.openai.com", "DOMAIN-SUFFIX,openai.com"),
+    ("desktop.chat.openai.com", "DOMAIN-SUFFIX,openai.com"),
+    ("forwarder.workos.com", "DOMAIN,forwarder.workos.com"),
+    ("humb.apple.com", "DOMAIN,humb.apple.com"),
+    ("images.workoscdn.com", "DOMAIN,images.workoscdn.com"),
+    ("ios.chat.openai.com", "DOMAIN-SUFFIX,openai.com"),
+    ("js.intercomcdn.com", "DOMAIN-SUFFIX,intercomcdn.com"),
+    ("js.stripe.com", "DOMAIN,js.stripe.com"),
+    ("o207216.ingest.sentry.io", "DOMAIN,o207216.ingest.sentry.io"),
+    ("o33249.ingest.sentry.io", "DOMAIN,o33249.ingest.sentry.io"),
+    (
+        "rum.browser-intake-datadoghq.com",
+        "DOMAIN,rum.browser-intake-datadoghq.com",
+    ),
+    ("setup.auth.openai.com", "DOMAIN-SUFFIX,openai.com"),
+    ("setup.workos.com", "DOMAIN,setup.workos.com"),
+    ("tcr9i.chat.openai.com", "DOMAIN-SUFFIX,openai.com"),
+    ("workos.imgix.net", "DOMAIN,workos.imgix.net"),
+)
 CHANGELOG_TITLE = "# nmi-oss 独立副本更新日志"
 VERSION_NUMBER_PATTERN = r"(?:0|[1-9][0-9]*)"
 VERSION_CORE_PATTERN = (
@@ -1564,7 +1672,203 @@ def require_top_level_markdown_line(
         raise PublicCopyValidationError("required Markdown title is not the first line")
 
 
-def validate_copy_set(paths: list[str], from_index: bool) -> None:
+def markdown_section_lines(text: str, heading: str) -> list[str]:
+    lines = text.splitlines()
+    indices = [index for index, line in enumerate(lines) if line == heading]
+    if len(indices) != 1:
+        raise PublicCopyValidationError("OpenAI documentation heading mismatch")
+    start = indices[0] + 1
+    end = len(lines)
+    for index in range(start, len(lines)):
+        if lines[index].startswith("## "):
+            end = index
+            break
+    return lines[start:end]
+
+
+def fenced_text_payload(section: list[str]) -> list[str]:
+    openings = [index for index, line in enumerate(section) if line == "```text"]
+    if len(openings) != 1:
+        raise PublicCopyValidationError("OpenAI documentation text fence mismatch")
+    start = openings[0]
+    closings = [
+        index
+        for index in range(start + 1, len(section))
+        if section[index] == "```"
+    ]
+    if len(closings) != 1:
+        raise PublicCopyValidationError("OpenAI documentation text fence mismatch")
+    return section[start + 1 : closings[0]]
+
+
+def openai_rule_covers_official_domain(rule: str, official_domain: str) -> bool:
+    rule_type, rule_domain = rule.split(",", 1)
+    wildcard = official_domain.startswith("*.")
+    domain = official_domain[2:] if wildcard else official_domain
+    if rule_type == "DOMAIN":
+        return not wildcard and domain == rule_domain
+    if rule_type == "DOMAIN-SUFFIX":
+        return domain == rule_domain or domain.endswith("." + rule_domain)
+    return False
+
+
+def validate_openai_set(paths: list[str], from_index: bool) -> None:
+    if len(paths) != 3:
+        raise PublicCopyValidationError("incomplete OpenAI rule set")
+    rule_path, documentation_path, proxy_lite_path = paths
+    if (
+        Path(rule_path).name != OPENAI_RULE_FILE
+        or Path(documentation_path).name != OPENAI_RULE_DOC
+        or Path(proxy_lite_path).name != "ProxyLiteNew.list"
+    ):
+        raise PublicCopyValidationError("OpenAI rule set path mismatch")
+
+    rule_text, _ = validate_public(rule_path, from_index)
+    documentation_text, _ = validate_public(documentation_path, from_index)
+    proxy_lite_text, _ = validate_public(proxy_lite_path, from_index)
+
+    rule_bytes = read_bytes(rule_path, from_index)
+    if b"\r" in rule_bytes or not rule_bytes.endswith(b"\n"):
+        raise PublicCopyValidationError("OpenAI rules must use LF and end with newline")
+    actual_rules = tuple(
+        line.strip()
+        for line in rule_text.splitlines()
+        if line.strip() and not line.lstrip().startswith("#")
+    )
+    if actual_rules != OPENAI_RULES:
+        raise PublicCopyValidationError("OpenAI rule order or content mismatch")
+    folded_rules = [line.casefold() for line in actual_rules]
+    if len(folded_rules) != len(set(folded_rules)):
+        raise PublicCopyValidationError("OpenAI rules contain duplicates")
+
+    openai_rule_signatures = {
+        tuple(part.strip().casefold() for part in line.split(","))
+        for line in actual_rules
+    }
+    proxy_rule_signatures = {
+        tuple(part.strip().casefold() for part in line.split(","))
+        for line in proxy_lite_text.splitlines()
+        if line.strip() and not line.lstrip().startswith("#")
+    }
+    if proxy_rule_signatures.intersection(openai_rule_signatures):
+        raise PublicCopyValidationError("ProxyLiteNew contains an exact OpenAI rule")
+
+    require_exact_line(documentation_text, f"核对日期：{OPENAI_CHECKED_DATE}")
+    require_exact_line(documentation_text, f"官方来源：<{OPENAI_OFFICIAL_SOURCE}>")
+    require_exact_line(documentation_text, "运行规则：`OpenAI.list`")
+    require_exact_line(documentation_text, f"公开 OSS：<{OPENAI_RULE_URL}>")
+    require_exact_line(documentation_text, OPENAI_DOC_TITLE)
+    require_top_level_markdown_line(
+        documentation_text,
+        OPENAI_DOC_TITLE,
+        atx_heading=True,
+        first_line=True,
+    )
+    for required_line in (
+        f"核对日期：{OPENAI_CHECKED_DATE}",
+        f"官方来源：<{OPENAI_OFFICIAL_SOURCE}>",
+        f"公开 OSS：<{OPENAI_RULE_URL}>",
+    ):
+        require_top_level_markdown_line(documentation_text, required_line)
+    for required_heading in (
+        "## 官方原始 29 项",
+        "## 29 项到 20 条规则的映射",
+        "## 最终 20 条规则",
+    ):
+        require_top_level_markdown_line(
+            documentation_text,
+            required_heading,
+            atx_heading=True,
+        )
+    official_section = markdown_section_lines(
+        documentation_text,
+        "## 官方原始 29 项",
+    )
+    if tuple(fenced_text_payload(official_section)) != OPENAI_OFFICIAL_DOMAINS:
+        raise PublicCopyValidationError("OpenAI official snapshot mismatch")
+    final_section = markdown_section_lines(
+        documentation_text,
+        "## 最终 20 条规则",
+    )
+    if tuple(fenced_text_payload(final_section)) != OPENAI_RULES:
+        raise PublicCopyValidationError("OpenAI documented rule set mismatch")
+
+    mapping_section = markdown_section_lines(
+        documentation_text,
+        "## 29 项到 20 条规则的映射",
+    )
+    mapping_text = "\n".join(mapping_section) + "\n"
+    mapping_top_level_lines = [
+        line for _, line, _ in top_level_markdown_block_lines(mapping_text)
+    ]
+    mapping_table_lines = [
+        line for line in mapping_top_level_lines if line.startswith("|")
+    ]
+    top_level_lines = [
+        line for _, line, _ in top_level_markdown_block_lines(documentation_text)
+    ]
+    actual_table_lines = [line for line in top_level_lines if line.startswith("|")]
+    expected_table_lines = ["| 官方项目 | 最终规则 |", "|---|---|"]
+    expected_table_lines.extend(
+        f"| `{domain}` | `{rule}` |"
+        for domain, rule in OPENAI_OFFICIAL_RULE_MAPPING
+    )
+    if (
+        mapping_table_lines != expected_table_lines
+        or actual_table_lines != expected_table_lines
+    ):
+        raise PublicCopyValidationError("OpenAI documentation mapping mismatch")
+    if (
+        tuple(domain for domain, _ in OPENAI_OFFICIAL_RULE_MAPPING)
+        != OPENAI_OFFICIAL_DOMAINS
+        or set(rule for _, rule in OPENAI_OFFICIAL_RULE_MAPPING)
+        != set(OPENAI_RULES)
+    ):
+        raise PublicCopyValidationError("OpenAI validator snapshot is inconsistent")
+    if any(
+        not openai_rule_covers_official_domain(rule, domain)
+        for domain, rule in OPENAI_OFFICIAL_RULE_MAPPING
+    ):
+        raise PublicCopyValidationError("OpenAI rule mapping does not provide coverage")
+
+
+def require_first_rule(text: str, expected: str) -> None:
+    lines = text.splitlines()
+    rules_indices = [index for index, line in enumerate(lines) if line == "rules:"]
+    if len(rules_indices) != 1:
+        raise PublicCopyValidationError("rules section mismatch")
+    for line in lines[rules_indices[0] + 1 :]:
+        stripped = line.strip()
+        if not stripped or stripped.startswith("#"):
+            continue
+        if line != expected:
+            raise PublicCopyValidationError("OpenAI rule is not first")
+        return
+    raise PublicCopyValidationError("rules section is empty")
+
+
+def detect_openai_adoption(texts: dict[str, str]) -> bool:
+    states: list[bool] = []
+    for name in ("nmi", "cmi", "qichiyu", "qichiyubeifen", "bei260317"):
+        markers = [line for line in EXPECTED_RULE_LINES[name] if "OpenAI" in line]
+        found = [sum(line == marker for line in texts[name].splitlines()) for marker in markers]
+        if all(count == 0 for count in found):
+            states.append(False)
+        elif all(count == 1 for count in found):
+            states.append(True)
+        else:
+            raise PublicCopyValidationError("partial OpenAI adoption within a copy")
+    if len(set(states)) != 1:
+        raise PublicCopyValidationError("partial OpenAI adoption across copies")
+    return states[0]
+
+
+def validate_copy_set(
+    paths: list[str],
+    from_index: bool,
+    *,
+    allow_legacy_openai: bool = False,
+) -> None:
     names = ("nmi", "cmi", "qichiyu", "qichiyubeifen", "bei260317", "changelog")
     if len(paths) != len(names):
         raise PublicCopyValidationError("incomplete public-copy set")
@@ -1577,6 +1881,9 @@ def validate_copy_set(paths: list[str], from_index: bool) -> None:
         semantic_url_texts[name] = [
             normalize_url_scan_text(view) for view in semantic_views
         ]
+    openai_adopted = detect_openai_adoption(texts)
+    if not openai_adopted and not allow_legacy_openai:
+        raise PublicCopyValidationError("OpenAI rule adoption is required")
     if Path(paths[5]).suffix.lower() != ".md":
         raise PublicCopyValidationError("copy changelog must use .md suffix")
     require_exact_line(texts["changelog"], CHANGELOG_TITLE)
@@ -1647,6 +1954,12 @@ def validate_copy_set(paths: list[str], from_index: bool) -> None:
         raise PublicCopyValidationError("public nmi metadata is outside the header")
     nmi_versions = [version_match.group(1)]
     nmi_timestamps = [timestamp_match.group(1)]
+    version_numbers = tuple(int(part) for part in nmi_versions[0][1:].split("."))
+    if openai_adopted:
+        if version_numbers < (1, 0, 1):
+            raise PublicCopyValidationError("OpenAI adoption version is too old")
+    elif nmi_versions[0] != "v1.0.0":
+        raise PublicCopyValidationError("legacy OpenAI rollout version drift")
 
     current_versions = []
     changelog_version_labels = []
@@ -1713,7 +2026,10 @@ def validate_copy_set(paths: list[str], from_index: bool) -> None:
     if b"\r" in nmi_bytes:
         raise PublicCopyValidationError("public nmi must use LF line endings")
 
-    for name, expected_files in EXPECTED_RULE_FILES.items():
+    for name, configured_files in EXPECTED_RULE_FILES.items():
+        expected_files = configured_files
+        if not openai_adopted:
+            expected_files = [item for item in configured_files if item != OPENAI_RULE_FILE]
         expected_urls = sorted(OSS_RULE_ROOT + rule_file for rule_file in expected_files)
         scan_views = [url_texts[name]]
         scan_views.extend(semantic_url_texts[name])
@@ -1726,12 +2042,44 @@ def validate_copy_set(paths: list[str], from_index: bool) -> None:
 
     for name, expected_lines in EXPECTED_RULE_LINES.items():
         for expected_line in expected_lines:
+            if not openai_adopted and "OpenAI" in expected_line:
+                continue
             require_exact_line(texts[name], expected_line)
+
+    if openai_adopted:
+        require_first_rule(texts["nmi"], "  - RULE-SET,OpenAI / Domain,🤖 ChatGPT")
+        require_first_rule(texts["cmi"], "  - RULE-SET,OpenAI / Domain,AI")
+        inline_update_line = "ruleset=🆙 更新专用,[]DOMAIN-SUFFIX,zodnext.com"
+        remote_update_line = (
+            "ruleset=🆙 更新专用," + OSS_RULE_ROOT + "UpdateHosts.list"
+        )
+        openai_ini_line = (
+            "ruleset=🤖 ChatGPT,clash-classic:" + OPENAI_RULE_URL + ",3600"
+        )
+        expected_ini_prefix = [
+            inline_update_line,
+            remote_update_line,
+            openai_ini_line,
+        ]
+        for name in ("qichiyu", "qichiyubeifen", "bei260317"):
+            ini_lines = texts[name].splitlines()
+            ruleset_lines = [line for line in ini_lines if line.startswith("ruleset=")]
+            if (
+                ruleset_lines[:3] != expected_ini_prefix
+                or any(
+                    ruleset_lines.count(line) != 1
+                    for line in expected_ini_prefix
+                )
+            ):
+                raise PublicCopyValidationError("OpenAI INI rule priority mismatch")
 
     nmi_interval = "  class: &class {type: http, interval: 3600, behavior: classical, format: text}"
     require_exact_line(texts["nmi"], nmi_interval)
 
-    for rule_file in EXPECTED_RULE_FILES["cmi"]:
+    cmi_rule_files = EXPECTED_RULE_FILES["cmi"]
+    if not openai_adopted:
+        cmi_rule_files = [item for item in cmi_rule_files if item != OPENAI_RULE_FILE]
+    for rule_file in cmi_rule_files:
         fragment = f'interval: 3600, url: "{OSS_RULE_ROOT}{rule_file}"'
         if texts["cmi"].count(fragment) != 1:
             raise PublicCopyValidationError("cmi provider interval mismatch")
@@ -1774,6 +2122,22 @@ def parse_args() -> argparse.Namespace:
         help="validate nmi, cmi, three INIs, and changelog as one fixed copy set",
     )
     parser.add_argument(
+        "--transition-copy-set",
+        action="append",
+        default=[],
+        nargs=6,
+        metavar="PATH",
+        help="rollout-only copy validation accepting either complete legacy or adopted state",
+    )
+    parser.add_argument(
+        "--openai-set",
+        action="append",
+        default=[],
+        nargs=3,
+        metavar="PATH",
+        help="validate OpenAI rules, documentation, and ProxyLiteNew as one fixed set",
+    )
+    parser.add_argument(
         "--stdin-public-text",
         action="store_true",
         help="validate public text read from standard input without echoing it",
@@ -1788,6 +2152,8 @@ def parse_args() -> argparse.Namespace:
         not args.yaml_only
         and not args.public
         and not args.copy_set
+        and not args.transition_copy_set
+        and not args.openai_set
         and not args.stdin_public_text
         and not args.index_public_changes
     ):
@@ -1804,6 +2170,10 @@ def main() -> int:
             validate_public(path, args.index)
         for paths in args.copy_set:
             validate_copy_set(paths, args.index)
+        for paths in args.transition_copy_set:
+            validate_copy_set(paths, args.index, allow_legacy_openai=True)
+        for paths in args.openai_set:
+            validate_openai_set(paths, args.index)
         if args.index_public_changes:
             validate_index_public_changes()
         if args.stdin_public_text:

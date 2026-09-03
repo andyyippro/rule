@@ -6,6 +6,7 @@
          .\publish-oss-copy.ps1 -InitializeObjectKey
          .\publish-oss-copy.ps1 -RotateObjectKey
          .\publish-oss-copy.ps1 -SyncRecordedObjectKey
+         .\publish-oss-copy.ps1 "回滚说明" -AllowLegacyOpenAIRollback
 
   只处理 nmi-oss.full.yaml，并精确提交 5 个公开配置副本和
   nmi-oss-CHANGELOG.md。-ValidateOnly 不改工作树；普通模式和对象键操作只允许
@@ -16,7 +17,8 @@ param(
     [switch]$ValidateOnly,
     [switch]$InitializeObjectKey,
     [switch]$RotateObjectKey,
-    [switch]$SyncRecordedObjectKey
+    [switch]$SyncRecordedObjectKey,
+    [switch]$AllowLegacyOpenAIRollback
 )
 
 $ErrorActionPreference = 'Stop'
@@ -460,6 +462,9 @@ if ($objectKeyOperationCount -gt 1) {
 if ($ValidateOnly -and $objectKeyOperationCount -gt 0) {
     throw "-ValidateOnly 不能与对象键初始化、轮换或重同步参数同时使用。"
 }
+if ($AllowLegacyOpenAIRollback -and $objectKeyOperationCount -gt 0) {
+    throw "-AllowLegacyOpenAIRollback 不能与对象键操作参数同时使用。"
+}
 Assert-PublicValidatorOperational
 if (-not $ValidateOnly -and $objectKeyOperationCount -eq 0) {
     Assert-CommitMessageSafe -Message $Msg
@@ -608,17 +613,27 @@ function Assert-PublicCopies {
     if (-not (Test-Path -LiteralPath $PublicValidator -PathType Leaf)) {
         throw "缺少 OSS 公开副本共用安全校验器；未设置 Secret、未提交、未推送。"
     }
+    $copySetOption = if ($AllowLegacyOpenAIRollback) {
+        '--transition-copy-set'
+    }
+    else {
+        '--copy-set'
+    }
     $validatorArguments = @(
         $PublicValidator
         '--yaml-only'
         $CandidateFullPath
-        '--copy-set'
+        $copySetOption
         $CandidatePublicPath
         (Join-Path $PSScriptRoot 'cmi-oss.yaml')
         (Join-Path $PSScriptRoot 'qichiyu-oss.ini')
         (Join-Path $PSScriptRoot 'qichiyubeifen-oss.ini')
         (Join-Path $PSScriptRoot 'bei260317-oss.ini')
         (Join-Path $PSScriptRoot 'nmi-oss-CHANGELOG.md')
+        '--openai-set'
+        (Join-Path $PSScriptRoot 'OpenAI.list')
+        (Join-Path $PSScriptRoot 'OPENAI-RULES.md')
+        (Join-Path $PSScriptRoot 'ProxyLiteNew.list')
     )
     Invoke-QuietCheckedProcess `
         -FilePath $python.Source `
