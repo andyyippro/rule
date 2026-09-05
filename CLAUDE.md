@@ -56,7 +56,7 @@
 | `nmi-oss.yaml` 副本 | push → 独立 CI → **独立 OSS 对象** | ~1 分钟 + 独立订阅刷新 |
 | `.list` 加/删站点 | push → **jsDelivr purge + OSS 规则副本**（两个独立工作流） | 原版按 24h；OSS 副本按 3600s，或手动刷新 |
 
-> 加新站点通常先进 `ProxyLiteNew.list`（集散中心），按需再分流到地区列表；OpenAI 官方网络清单是专用例外，维护在 `OpenAI.list`，来源与 29→20 去重映射见 `OPENAI-RULES.md`。
+> 加新站点通常先进 `ProxyLiteNew.list`（集散中心），按需再分流到地区列表；OpenAI 官方网络清单是专用例外，维护在 `OpenAI.list`，来源与 29 项逐项转换见 `OPENAI-RULES.md`。
 
 ## 路由（nmi.yaml）
 - 本仓库 4 个 list 经 jsdelivr 进 nmi：`ProxyLiteNew`→所有手动、`Japan`→🎮片商故转、`VendorVideo`→🎬片商视频故转、`LocalDirect`→直连；其余靠 `GEOSITE`/`GEOIP`，`gfw→所有手动`、`cn→直连`、`MATCH→🐟漏网之鱼`。
@@ -75,7 +75,7 @@
 | `.github/workflows/publish-rules-oss.yml` | 固定上传并逐字节验证 9 个共享 `.list` 的 OSS 对象副本 |
 | `.git/hooks/pre-commit` | 防误提交密钥（**本地、未版本管理，重新 clone 需重建**） |
 | `*.list` | 共享规则源（jsDelivr 原链路 + OSS 对象副本）；原版 nmi 用 4 个，OSS nmi 另用 OpenAI |
-| `OPENAI-RULES.md` | OpenAI 官方清单、29→20 去重映射、GEOSITE 对比和后续更新步骤 |
+| `OPENAI-RULES.md` | OpenAI 官方清单、29 项逐项转换、GEOSITE 对比和后续更新步骤 |
 | `cmi.yaml` / `cmi-oss.yaml` | 原版简化模板 / OSS 独立副本 |
 | `MEMORY.md` | **踩坑与经验库**（本地、gitignored） |
 | `CLAUDE.local.md` | 本机敏感细节（OSS 地址等），gitignored |

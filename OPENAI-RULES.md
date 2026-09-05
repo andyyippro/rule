@@ -48,11 +48,11 @@ tcr9i.chat.openai.com
 workos.imgix.net
 ```
 
-## 29 项到 20 条规则的映射
+## 官方 29 项到规则的逐项转换
 
 | 官方项目 | 最终规则 |
 |---|---|
-| `*.auth.openai.com` | `DOMAIN-SUFFIX,openai.com` |
+| `*.auth.openai.com` | `DOMAIN-SUFFIX,auth.openai.com` |
 | `*.chatgpt.com` | `DOMAIN-SUFFIX,chatgpt.com` |
 | `*.ct.sendgrid.net` | `DOMAIN-SUFFIX,ct.sendgrid.net` |
 | `*.intercom.io` | `DOMAIN-SUFFIX,intercom.io` |
@@ -61,51 +61,60 @@ workos.imgix.net
 | `*.oaiusercontent.com` | `DOMAIN-SUFFIX,oaiusercontent.com` |
 | `*.openai.com` | `DOMAIN-SUFFIX,openai.com` |
 | `*.oaistatsig.com` | `DOMAIN-SUFFIX,oaistatsig.com` |
-| `android.chat.openai.com` | `DOMAIN-SUFFIX,openai.com` |
-| `auth0.openai.com` | `DOMAIN-SUFFIX,openai.com` |
+| `android.chat.openai.com` | `DOMAIN,android.chat.openai.com` |
+| `auth0.openai.com` | `DOMAIN,auth0.openai.com` |
 | `cdn.openaimerge.com` | `DOMAIN,cdn.openaimerge.com` |
 | `cdn.workos.com` | `DOMAIN,cdn.workos.com` |
 | `challenges.cloudflare.com` | `DOMAIN,challenges.cloudflare.com` |
-| `chat.openai.com` | `DOMAIN-SUFFIX,openai.com` |
-| `desktop.chat.openai.com` | `DOMAIN-SUFFIX,openai.com` |
+| `chat.openai.com` | `DOMAIN,chat.openai.com` |
+| `desktop.chat.openai.com` | `DOMAIN,desktop.chat.openai.com` |
 | `forwarder.workos.com` | `DOMAIN,forwarder.workos.com` |
 | `humb.apple.com` | `DOMAIN,humb.apple.com` |
 | `images.workoscdn.com` | `DOMAIN,images.workoscdn.com` |
-| `ios.chat.openai.com` | `DOMAIN-SUFFIX,openai.com` |
-| `js.intercomcdn.com` | `DOMAIN-SUFFIX,intercomcdn.com` |
+| `ios.chat.openai.com` | `DOMAIN,ios.chat.openai.com` |
+| `js.intercomcdn.com` | `DOMAIN,js.intercomcdn.com` |
 | `js.stripe.com` | `DOMAIN,js.stripe.com` |
 | `o207216.ingest.sentry.io` | `DOMAIN,o207216.ingest.sentry.io` |
 | `o33249.ingest.sentry.io` | `DOMAIN,o33249.ingest.sentry.io` |
 | `rum.browser-intake-datadoghq.com` | `DOMAIN,rum.browser-intake-datadoghq.com` |
-| `setup.auth.openai.com` | `DOMAIN-SUFFIX,openai.com` |
+| `setup.auth.openai.com` | `DOMAIN,setup.auth.openai.com` |
 | `setup.workos.com` | `DOMAIN,setup.workos.com` |
-| `tcr9i.chat.openai.com` | `DOMAIN-SUFFIX,openai.com` |
+| `tcr9i.chat.openai.com` | `DOMAIN,tcr9i.chat.openai.com` |
 | `workos.imgix.net` | `DOMAIN,workos.imgix.net` |
 
-`DOMAIN-SUFFIX` 也会匹配根域，因此覆盖范围比官方的 `*.` 写法略大；这是有意选择，用于避免根域请求漏出专用策略。
+官方通配项逐项转换为 `DOMAIN-SUFFIX`，精确主机逐项转换为 `DOMAIN`。即使后面的精确主机已被较宽的后缀规则覆盖，也仍按官方清单保留，不做去重。`DOMAIN-SUFFIX` 也会匹配根域，因此通配项的覆盖范围比官方的 `*.` 写法略大。
 
-## 最终 20 条规则
+## 最终 29 条规则
 
 ```text
+DOMAIN-SUFFIX,auth.openai.com
 DOMAIN-SUFFIX,chatgpt.com
-DOMAIN-SUFFIX,openai.com
 DOMAIN-SUFFIX,ct.sendgrid.net
 DOMAIN-SUFFIX,intercom.io
 DOMAIN-SUFFIX,intercomcdn.com
 DOMAIN-SUFFIX,oaistatic.com
 DOMAIN-SUFFIX,oaiusercontent.com
+DOMAIN-SUFFIX,openai.com
 DOMAIN-SUFFIX,oaistatsig.com
+DOMAIN,android.chat.openai.com
+DOMAIN,auth0.openai.com
 DOMAIN,cdn.openaimerge.com
 DOMAIN,cdn.workos.com
 DOMAIN,challenges.cloudflare.com
+DOMAIN,chat.openai.com
+DOMAIN,desktop.chat.openai.com
 DOMAIN,forwarder.workos.com
 DOMAIN,humb.apple.com
 DOMAIN,images.workoscdn.com
+DOMAIN,ios.chat.openai.com
+DOMAIN,js.intercomcdn.com
 DOMAIN,js.stripe.com
 DOMAIN,o207216.ingest.sentry.io
 DOMAIN,o33249.ingest.sentry.io
 DOMAIN,rum.browser-intake-datadoghq.com
+DOMAIN,setup.auth.openai.com
 DOMAIN,setup.workos.com
+DOMAIN,tcr9i.chat.openai.com
 DOMAIN,workos.imgix.net
 ```
 
@@ -125,8 +134,8 @@ DOMAIN,workos.imgix.net
 ## 更新步骤
 
 1. 重新读取官方帮助页，保存核对日期和完整原始清单。
-2. 只对明确的父域后缀做合并；第三方精确主机继续使用 `DOMAIN`。
-3. 同一提交更新 `OpenAI.list`、本文档和校验器中的官方快照、映射及数量。
+2. 官方通配项逐项转为 `DOMAIN-SUFFIX`，精确主机逐项转为 `DOMAIN`，不因父域覆盖而删减条目。
+3. 同一提交更新 `OpenAI.list`、本文档和校验器中的官方快照、逐项转换及数量。
 4. 运行共用校验器、YAML/INI 校验、敏感信息扫描和 `git diff --check`。
 5. 先发布并逐字节验证 OSS 规则对象，再让配置副本引用它。
 6. 重新生成或导入客户端配置，固定同一节点进行 iOS、Android 实际测试。

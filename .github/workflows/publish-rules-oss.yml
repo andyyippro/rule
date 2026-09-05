@@ -95,7 +95,7 @@ jobs:
             OpenAI.list \
             OPENAI-RULES.md \
             ProxyLiteNew.list >/dev/null 2>&1; then
-            echo 'OpenAI 专用规则、来源说明或去重约束校验失败。' >&2
+            echo 'OpenAI 专用规则、来源说明或固定清单约束校验失败。' >&2
             exit 1
           fi
 

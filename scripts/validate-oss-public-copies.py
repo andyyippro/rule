@@ -268,29 +268,38 @@ OPENAI_OFFICIAL_DOMAINS = (
     "workos.imgix.net",
 )
 OPENAI_RULES = (
+    "DOMAIN-SUFFIX,auth.openai.com",
     "DOMAIN-SUFFIX,chatgpt.com",
-    "DOMAIN-SUFFIX,openai.com",
     "DOMAIN-SUFFIX,ct.sendgrid.net",
     "DOMAIN-SUFFIX,intercom.io",
     "DOMAIN-SUFFIX,intercomcdn.com",
     "DOMAIN-SUFFIX,oaistatic.com",
     "DOMAIN-SUFFIX,oaiusercontent.com",
+    "DOMAIN-SUFFIX,openai.com",
     "DOMAIN-SUFFIX,oaistatsig.com",
+    "DOMAIN,android.chat.openai.com",
+    "DOMAIN,auth0.openai.com",
     "DOMAIN,cdn.openaimerge.com",
     "DOMAIN,cdn.workos.com",
     "DOMAIN,challenges.cloudflare.com",
+    "DOMAIN,chat.openai.com",
+    "DOMAIN,desktop.chat.openai.com",
     "DOMAIN,forwarder.workos.com",
     "DOMAIN,humb.apple.com",
     "DOMAIN,images.workoscdn.com",
+    "DOMAIN,ios.chat.openai.com",
+    "DOMAIN,js.intercomcdn.com",
     "DOMAIN,js.stripe.com",
     "DOMAIN,o207216.ingest.sentry.io",
     "DOMAIN,o33249.ingest.sentry.io",
     "DOMAIN,rum.browser-intake-datadoghq.com",
+    "DOMAIN,setup.auth.openai.com",
     "DOMAIN,setup.workos.com",
+    "DOMAIN,tcr9i.chat.openai.com",
     "DOMAIN,workos.imgix.net",
 )
 OPENAI_OFFICIAL_RULE_MAPPING = (
-    ("*.auth.openai.com", "DOMAIN-SUFFIX,openai.com"),
+    ("*.auth.openai.com", "DOMAIN-SUFFIX,auth.openai.com"),
     ("*.chatgpt.com", "DOMAIN-SUFFIX,chatgpt.com"),
     ("*.ct.sendgrid.net", "DOMAIN-SUFFIX,ct.sendgrid.net"),
     ("*.intercom.io", "DOMAIN-SUFFIX,intercom.io"),
@@ -299,18 +308,18 @@ OPENAI_OFFICIAL_RULE_MAPPING = (
     ("*.oaiusercontent.com", "DOMAIN-SUFFIX,oaiusercontent.com"),
     ("*.openai.com", "DOMAIN-SUFFIX,openai.com"),
     ("*.oaistatsig.com", "DOMAIN-SUFFIX,oaistatsig.com"),
-    ("android.chat.openai.com", "DOMAIN-SUFFIX,openai.com"),
-    ("auth0.openai.com", "DOMAIN-SUFFIX,openai.com"),
+    ("android.chat.openai.com", "DOMAIN,android.chat.openai.com"),
+    ("auth0.openai.com", "DOMAIN,auth0.openai.com"),
     ("cdn.openaimerge.com", "DOMAIN,cdn.openaimerge.com"),
     ("cdn.workos.com", "DOMAIN,cdn.workos.com"),
     ("challenges.cloudflare.com", "DOMAIN,challenges.cloudflare.com"),
-    ("chat.openai.com", "DOMAIN-SUFFIX,openai.com"),
-    ("desktop.chat.openai.com", "DOMAIN-SUFFIX,openai.com"),
+    ("chat.openai.com", "DOMAIN,chat.openai.com"),
+    ("desktop.chat.openai.com", "DOMAIN,desktop.chat.openai.com"),
     ("forwarder.workos.com", "DOMAIN,forwarder.workos.com"),
     ("humb.apple.com", "DOMAIN,humb.apple.com"),
     ("images.workoscdn.com", "DOMAIN,images.workoscdn.com"),
-    ("ios.chat.openai.com", "DOMAIN-SUFFIX,openai.com"),
-    ("js.intercomcdn.com", "DOMAIN-SUFFIX,intercomcdn.com"),
+    ("ios.chat.openai.com", "DOMAIN,ios.chat.openai.com"),
+    ("js.intercomcdn.com", "DOMAIN,js.intercomcdn.com"),
     ("js.stripe.com", "DOMAIN,js.stripe.com"),
     ("o207216.ingest.sentry.io", "DOMAIN,o207216.ingest.sentry.io"),
     ("o33249.ingest.sentry.io", "DOMAIN,o33249.ingest.sentry.io"),
@@ -318,9 +327,9 @@ OPENAI_OFFICIAL_RULE_MAPPING = (
         "rum.browser-intake-datadoghq.com",
         "DOMAIN,rum.browser-intake-datadoghq.com",
     ),
-    ("setup.auth.openai.com", "DOMAIN-SUFFIX,openai.com"),
+    ("setup.auth.openai.com", "DOMAIN,setup.auth.openai.com"),
     ("setup.workos.com", "DOMAIN,setup.workos.com"),
-    ("tcr9i.chat.openai.com", "DOMAIN-SUFFIX,openai.com"),
+    ("tcr9i.chat.openai.com", "DOMAIN,tcr9i.chat.openai.com"),
     ("workos.imgix.net", "DOMAIN,workos.imgix.net"),
 )
 CHANGELOG_TITLE = "# nmi-oss 独立副本更新日志"
@@ -1772,8 +1781,8 @@ def validate_openai_set(paths: list[str], from_index: bool) -> None:
         require_top_level_markdown_line(documentation_text, required_line)
     for required_heading in (
         "## 官方原始 29 项",
-        "## 29 项到 20 条规则的映射",
-        "## 最终 20 条规则",
+        "## 官方 29 项到规则的逐项转换",
+        "## 最终 29 条规则",
     ):
         require_top_level_markdown_line(
             documentation_text,
@@ -1788,14 +1797,14 @@ def validate_openai_set(paths: list[str], from_index: bool) -> None:
         raise PublicCopyValidationError("OpenAI official snapshot mismatch")
     final_section = markdown_section_lines(
         documentation_text,
-        "## 最终 20 条规则",
+        "## 最终 29 条规则",
     )
     if tuple(fenced_text_payload(final_section)) != OPENAI_RULES:
         raise PublicCopyValidationError("OpenAI documented rule set mismatch")
 
     mapping_section = markdown_section_lines(
         documentation_text,
-        "## 29 项到 20 条规则的映射",
+        "## 官方 29 项到规则的逐项转换",
     )
     mapping_text = "\n".join(mapping_section) + "\n"
     mapping_top_level_lines = [

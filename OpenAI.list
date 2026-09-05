@@ -1,23 +1,32 @@
 # OpenAI / ChatGPT 官方网络允许清单（2026-09-03 核对）
 # 来源：https://help.openai.com/zh-hans-cn/articles/9247338-network-recommendations-for-chatgpt-errors-on-web-and-apps
-# 29 项官方域名经后缀去重后得到 20 条规则；映射与维护方法见 OPENAI-RULES.md。
+# 29 项官方域名逐项转换为 29 条规则，不做后缀去重；映射与维护方法见 OPENAI-RULES.md。
+DOMAIN-SUFFIX,auth.openai.com
 DOMAIN-SUFFIX,chatgpt.com
-DOMAIN-SUFFIX,openai.com
 DOMAIN-SUFFIX,ct.sendgrid.net
 DOMAIN-SUFFIX,intercom.io
 DOMAIN-SUFFIX,intercomcdn.com
 DOMAIN-SUFFIX,oaistatic.com
 DOMAIN-SUFFIX,oaiusercontent.com
+DOMAIN-SUFFIX,openai.com
 DOMAIN-SUFFIX,oaistatsig.com
+DOMAIN,android.chat.openai.com
+DOMAIN,auth0.openai.com
 DOMAIN,cdn.openaimerge.com
 DOMAIN,cdn.workos.com
 DOMAIN,challenges.cloudflare.com
+DOMAIN,chat.openai.com
+DOMAIN,desktop.chat.openai.com
 DOMAIN,forwarder.workos.com
 DOMAIN,humb.apple.com
 DOMAIN,images.workoscdn.com
+DOMAIN,ios.chat.openai.com
+DOMAIN,js.intercomcdn.com
 DOMAIN,js.stripe.com
 DOMAIN,o207216.ingest.sentry.io
 DOMAIN,o33249.ingest.sentry.io
 DOMAIN,rum.browser-intake-datadoghq.com
+DOMAIN,setup.auth.openai.com
 DOMAIN,setup.workos.com
+DOMAIN,tcr9i.chat.openai.com
 DOMAIN,workos.imgix.net
