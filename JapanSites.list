@@ -13,7 +13,7 @@ DOMAIN-SUFFIX,dlsitestudio.com
 
 # 内容：DMM
 # 来源：https://github.com/ACL4SSR/ACL4SSR/blob/master/Clash/Ruleset/Dmm.list
-# 数量：15条
+# 数量：16条
 DOMAIN-SUFFIX,akabeesoft2.com
 DOMAIN-SUFFIX,akabeesoft3.com
 DOMAIN-SUFFIX,akatsukiworks.com
@@ -24,6 +24,7 @@ DOMAIN-SUFFIX,dmm-extension.com
 DOMAIN-SUFFIX,dmm.co.jp
 DOMAIN-SUFFIX,dmm.com
 DOMAIN-SUFFIX,dmm.hk
+DOMAIN-SUFFIX,fanza.jp
 DOMAIN-SUFFIX,hibiki-site.com
 DOMAIN-SUFFIX,minori.ph
 DOMAIN-SUFFIX,tenco.cc
