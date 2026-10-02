@@ -335,3 +335,9 @@ DOMAIN-SUFFIX,djhdhs.us
 # 内容：Polymarket
 # 数量：1条
 DOMAIN-SUFFIX,polymarket.us
+
+# 内容：PayPal
+# 数量：3条
+DOMAIN-SUFFIX,paypal.com
+DOMAIN-SUFFIX,paypalobjects.com
+DOMAIN-SUFFIX,paypal.me
