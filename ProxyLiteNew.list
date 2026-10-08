@@ -341,3 +341,7 @@ DOMAIN-SUFFIX,polymarket.us
 DOMAIN-SUFFIX,paypal.com
 DOMAIN-SUFFIX,paypalobjects.com
 DOMAIN-SUFFIX,paypal.me
+
+# 内容：Amazon（含 AWS 官网、控制台及登录子域名）
+# 数量：1条
+DOMAIN-SUFFIX,amazon.com
