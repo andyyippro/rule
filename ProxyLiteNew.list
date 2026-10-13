@@ -353,3 +353,7 @@ DOMAIN-SUFFIX,picjs.xyz
 # 内容：blue-plus.net
 # 数量：1条
 DOMAIN-SUFFIX,blue-plus.net
+
+# 内容：Bitwarden
+# 数量：1条
+DOMAIN-SUFFIX,bitwarden.com
