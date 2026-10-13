@@ -511,6 +511,17 @@ proxy-groups:
       - 🇹🇼 台湾故转
       - 🌐 其他地区故转
 
+  # DNS 出口使用已有独立节点，不依赖机场订阅首次下载。
+  - name: 🌐 DNS故转
+    type: fallback
+    url: https://www.gstatic.com/generate_204
+    interval: 180
+    lazy: false
+    proxies:
+      - 🇺🇸 美国DMIT
+      - 🇯🇵 日本-vless
+      - 🇯🇵 日本-hysteria2
+
   - name: 所有手动
     type: select
     proxies:
@@ -791,3 +802,43 @@ rules:
   - GEOSITE,cn,直连
   - GEOIP,cn,直连,no-resolve
   - MATCH,🐟 漏网之鱼
+
+# 通用 DNS：海外解析经专用代理出口；直连和节点初始化使用国内加密 DNS。
+# OpenClash 需关闭自定义上游覆盖及追加 WAN DNS；监听端口由客户端管理。
+dns:
+  enable: true
+  ipv6: false
+  enhanced-mode: fake-ip
+  fake-ip-range: 198.18.0.1/16
+  respect-rules: false
+  default-nameserver:
+    - https://223.5.5.5/dns-query
+    - https://1.12.12.12/dns-query
+  proxy-server-nameserver:
+    - https://223.5.5.5/dns-query#DIRECT
+    - https://1.12.12.12/dns-query#DIRECT
+  direct-nameserver:
+    - https://223.5.5.5/dns-query#DIRECT
+    - https://1.12.12.12/dns-query#DIRECT
+  direct-nameserver-follow-policy: false
+  nameserver:
+    - https://8.8.8.8/dns-query#🌐 DNS故转
+    - https://1.0.0.1/dns-query#🌐 DNS故转
+  # Explicit proxy rule providers precede the domestic domain policy.
+  nameserver-policy:
+    'rule-set:OpenAI / Domain,VendorVideo / Domain,Japan / Domain,ProxyLiteNew / Domain':
+      - https://8.8.8.8/dns-query#🌐 DNS故转
+      - https://1.0.0.1/dns-query#🌐 DNS故转
+    'geosite:cn':
+      - https://223.5.5.5/dns-query#DIRECT
+      - https://1.12.12.12/dns-query#DIRECT
+  fake-ip-filter-mode: blacklist
+  fake-ip-filter:
+    - '*.lan'
+    - '*.local'
+    - '*.localdomain'
+    - '*.localhost'
+    - '*.home.arpa'
+    - '+.pool.ntp.org'
+    - 'time.*.com'
+    - 'ntp.*.com'
