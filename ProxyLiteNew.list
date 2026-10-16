@@ -361,3 +361,7 @@ DOMAIN-SUFFIX,bitwarden.com
 # 内容：img9g2026.com
 # 数量：1条
 DOMAIN-SUFFIX,img9g2026.com
+
+# 内容：acgbox.link
+# 数量：1条
+DOMAIN-SUFFIX,acgbox.link
