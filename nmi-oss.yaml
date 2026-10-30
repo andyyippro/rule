@@ -10,7 +10,7 @@
 # 2. 版本号从 v1.0.0 开始递增
 # 当前版本：v1.0.1
 # 更新时间：2026-09-03 21:07:02
-# NMI_OSS_NODES_SHA256: 780d3d40e35bdeca7b9491064dcf9369991ca7c19b9b4a41d712a8a89926b42a
+# NMI_OSS_NODES_SHA256: 267a26ee3d4f1c1dd14bcf41f425d056390e00be0773a3ee1d88fe39ed2f1ad0
 
 #__NODES_OSS__
 proxy-groups:
@@ -20,6 +20,8 @@ proxy-groups:
       - 🇺🇸 美国DMIT
       - 🇯🇵 日本-vless
       - 🇯🇵 日本-hysteria2
+      - 🇯🇵 日本-CDN-WS
+      - 🇯🇵 日本-Tunnel-WS
       - 🇯🇵 日本-静态IP
       - 🇭🇰 香港故转
       - 直连
@@ -33,6 +35,8 @@ proxy-groups:
       - 🇺🇸 美国DMIT
       - 🇯🇵 日本-vless
       - 🇯🇵 日本-hysteria2
+      - 🇯🇵 日本-CDN-WS
+      - 🇯🇵 日本-Tunnel-WS
       - 🇯🇵 日本-静态IP
       - 🇭🇰 香港故转
       - 直连
@@ -46,6 +50,8 @@ proxy-groups:
       - 🇺🇸 美国DMIT
       - 🇯🇵 日本-vless
       - 🇯🇵 日本-hysteria2
+      - 🇯🇵 日本-CDN-WS
+      - 🇯🇵 日本-Tunnel-WS
       - 🇯🇵 日本-静态IP
       - 🇸🇬 新加坡负载均衡
       - 🇸🇬 新加坡手动
@@ -71,6 +77,8 @@ proxy-groups:
       - 🇺🇸 美国DMIT
       - 🇯🇵 日本-vless
       - 🇯🇵 日本-hysteria2
+      - 🇯🇵 日本-CDN-WS
+      - 🇯🇵 日本-Tunnel-WS
       - 🇯🇵 日本-静态IP
       - 🇭🇰 香港故转
       - 直连
@@ -84,6 +92,8 @@ proxy-groups:
       - 🇺🇸 美国DMIT
       - 🇯🇵 日本-vless
       - 🇯🇵 日本-hysteria2
+      - 🇯🇵 日本-CDN-WS
+      - 🇯🇵 日本-Tunnel-WS
       - 🇯🇵 日本-静态IP
       - 🇭🇰 香港故转
       - 直连
@@ -97,6 +107,8 @@ proxy-groups:
       - 🇺🇸 美国DMIT
       - 🇯🇵 日本-vless
       - 🇯🇵 日本-hysteria2
+      - 🇯🇵 日本-CDN-WS
+      - 🇯🇵 日本-Tunnel-WS
       - 🇯🇵 日本-静态IP
       - 🇭🇰 香港故转
       - 直连
@@ -110,6 +122,8 @@ proxy-groups:
       - 🇺🇸 美国DMIT
       - 🇯🇵 日本-vless
       - 🇯🇵 日本-hysteria2
+      - 🇯🇵 日本-CDN-WS
+      - 🇯🇵 日本-Tunnel-WS
       - 🇯🇵 日本-静态IP
       - 🇭🇰 香港故转
       - 所有自动
@@ -131,6 +145,8 @@ proxy-groups:
       - 🇺🇸 美国DMIT
       - 🇯🇵 日本-vless
       - 🇯🇵 日本-hysteria2
+      - 🇯🇵 日本-CDN-WS
+      - 🇯🇵 日本-Tunnel-WS
       - 🇯🇵 日本-静态IP
       - 🇭🇰 香港故转
       - 所有自动
@@ -152,6 +168,8 @@ proxy-groups:
       - 🇺🇸 美国DMIT
       - 🇯🇵 日本-vless
       - 🇯🇵 日本-hysteria2
+      - 🇯🇵 日本-CDN-WS
+      - 🇯🇵 日本-Tunnel-WS
       - 🇯🇵 日本-静态IP
       - 🇭🇰 香港故转
       - 所有自动
@@ -175,6 +193,8 @@ proxy-groups:
       - 🇯🇵 日本-静态IP
       - 🇯🇵 日本-vless
       - 🇯🇵 日本-hysteria2
+      - 🇯🇵 日本-CDN-WS
+      - 🇯🇵 日本-Tunnel-WS
       - 🇭🇰 香港故转
     use:
       - airport
@@ -186,6 +206,8 @@ proxy-groups:
       - 🇺🇸 美国DMIT
       - 🇯🇵 日本-vless
       - 🇯🇵 日本-hysteria2
+      - 🇯🇵 日本-CDN-WS
+      - 🇯🇵 日本-Tunnel-WS
       - 🇯🇵 日本-静态IP
       - 🇭🇰 香港故转
       - 所有自动
@@ -207,6 +229,8 @@ proxy-groups:
       - 🇺🇸 美国DMIT
       - 🇯🇵 日本-vless
       - 🇯🇵 日本-hysteria2
+      - 🇯🇵 日本-CDN-WS
+      - 🇯🇵 日本-Tunnel-WS
       - 🇯🇵 日本-静态IP
       - 🇭🇰 香港故转
       - 所有自动
@@ -229,6 +253,8 @@ proxy-groups:
       - 🇺🇸 美国DMIT
       - 🇯🇵 日本-vless
       - 🇯🇵 日本-hysteria2
+      - 🇯🇵 日本-CDN-WS
+      - 🇯🇵 日本-Tunnel-WS
       - 🇯🇵 日本-静态IP
       - 所有自动
       - 所有故转
@@ -249,6 +275,8 @@ proxy-groups:
       - 🇺🇸 美国DMIT
       - 🇯🇵 日本-vless
       - 🇯🇵 日本-hysteria2
+      - 🇯🇵 日本-CDN-WS
+      - 🇯🇵 日本-Tunnel-WS
       - 🇯🇵 日本-静态IP
       - 🇹🇼 台湾故转
       - 所有自动
@@ -270,6 +298,8 @@ proxy-groups:
       - 🇺🇸 美国DMIT
       - 🇯🇵 日本-vless
       - 🇯🇵 日本-hysteria2
+      - 🇯🇵 日本-CDN-WS
+      - 🇯🇵 日本-Tunnel-WS
       - 🇯🇵 日本-静态IP
       - 所有自动
       - 所有故转
@@ -290,6 +320,8 @@ proxy-groups:
       - 🇺🇸 美国DMIT
       - 🇯🇵 日本-vless
       - 🇯🇵 日本-hysteria2
+      - 🇯🇵 日本-CDN-WS
+      - 🇯🇵 日本-Tunnel-WS
       - 🇯🇵 日本-静态IP
       - 🇭🇰 香港故转
       - 所有自动
@@ -311,6 +343,8 @@ proxy-groups:
       - 🇺🇸 美国DMIT
       - 🇯🇵 日本-vless
       - 🇯🇵 日本-hysteria2
+      - 🇯🇵 日本-CDN-WS
+      - 🇯🇵 日本-Tunnel-WS
       - 🇯🇵 日本-静态IP
       - 🇭🇰 香港故转
       - 所有自动
@@ -350,6 +384,8 @@ proxy-groups:
       - 🇺🇸 美国DMIT
       - 🇯🇵 日本-vless
       - 🇯🇵 日本-hysteria2
+      - 🇯🇵 日本-CDN-WS
+      - 🇯🇵 日本-Tunnel-WS
       - 🇯🇵 日本-静态IP
     use:
       - airport
@@ -381,6 +417,8 @@ proxy-groups:
       - 🇺🇸 美国DMIT
       - 🇯🇵 日本-vless
       - 🇯🇵 日本-hysteria2
+      - 🇯🇵 日本-CDN-WS
+      - 🇯🇵 日本-Tunnel-WS
       - 🇯🇵 日本-静态IP
     use:
       - airport
@@ -412,6 +450,8 @@ proxy-groups:
       - 🇺🇸 美国DMIT
       - 🇯🇵 日本-vless
       - 🇯🇵 日本-hysteria2
+      - 🇯🇵 日本-CDN-WS
+      - 🇯🇵 日本-Tunnel-WS
       - 🇯🇵 日本-静态IP
     use:
       - airport
@@ -444,6 +484,8 @@ proxy-groups:
       - 🇺🇸 美国DMIT
       - 🇯🇵 日本-vless
       - 🇯🇵 日本-hysteria2
+      - 🇯🇵 日本-CDN-WS
+      - 🇯🇵 日本-Tunnel-WS
       - 🇯🇵 日本-静态IP
     use:
       - airport
@@ -485,6 +527,8 @@ proxy-groups:
       - 🇺🇸 美国DMIT
       - 🇯🇵 日本-vless
       - 🇯🇵 日本-hysteria2
+      - 🇯🇵 日本-CDN-WS
+      - 🇯🇵 日本-Tunnel-WS
       - 🇯🇵 日本-静态IP
     use:
       - airport
@@ -528,6 +572,8 @@ proxy-groups:
       - 🇺🇸 美国DMIT
       - 🇯🇵 日本-vless
       - 🇯🇵 日本-hysteria2
+      - 🇯🇵 日本-CDN-WS
+      - 🇯🇵 日本-Tunnel-WS
       - 🇯🇵 日本-静态IP
     use:
       - airport
@@ -584,6 +630,8 @@ proxy-groups:
       - 🇯🇵 日本-静态IP
       - 🇯🇵 日本-vless
       - 🇯🇵 日本-hysteria2
+      - 🇯🇵 日本-CDN-WS
+      - 🇯🇵 日本-Tunnel-WS
       - 🇺🇸 美国DMIT
     use:
       - airport
@@ -615,6 +663,8 @@ proxy-groups:
     proxies:
       - 🇯🇵 日本-vless
       - 🇯🇵 日本-hysteria2
+      - 🇯🇵 日本-CDN-WS
+      - 🇯🇵 日本-Tunnel-WS
       - 🇯🇵 日本-静态IP
       - 🇺🇸 美国DMIT
     use:
@@ -639,6 +689,8 @@ proxy-groups:
       - 🇺🇸 美国DMIT
       - 🇯🇵 日本-vless
       - 🇯🇵 日本-hysteria2
+      - 🇯🇵 日本-CDN-WS
+      - 🇯🇵 日本-Tunnel-WS
       - 🇯🇵 日本-静态IP
       - 🎥 Emby-HKT专线
 
@@ -668,6 +720,8 @@ proxy-groups:
       - 🇯🇵 日本-静态IP
       - 🇯🇵 日本-vless
       - 🇯🇵 日本-hysteria2
+      - 🇯🇵 日本-CDN-WS
+      - 🇯🇵 日本-Tunnel-WS
       - 🇺🇸 美国DMIT
       - 所有自动
       - 所有故转
@@ -689,6 +743,8 @@ proxy-groups:
       - 🇯🇵 日本-静态IP
       - 🇯🇵 日本-vless
       - 🇯🇵 日本-hysteria2
+      - 🇯🇵 日本-CDN-WS
+      - 🇯🇵 日本-Tunnel-WS
       - 🤖 ChatGPT
       - 🧠 Claude
       - 📹 YouTube
