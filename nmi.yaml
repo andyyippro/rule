@@ -648,11 +648,11 @@ proxy-groups:
   - name: 🎮 片商手动
     type: select
     proxies:
+      - 🇯🇵 日本-静态IP
       - 🇯🇵 日本-vless
       - 🇯🇵 日本-hysteria2
       - 🇯🇵 日本-CDN-WS
       - 🇯🇵 日本-Tunnel-WS
-      - 🇯🇵 日本-静态IP
       - 🇺🇸 美国DMIT
     use:
       - airport
