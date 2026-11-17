@@ -10,7 +10,7 @@
 # 2. 版本号从 v1.0.0 开始递增
 # 当前版本：v1.0.1
 # 更新时间：2026-09-03 21:07:02
-# NMI_OSS_NODES_SHA256: 267a26ee3d4f1c1dd14bcf41f425d056390e00be0773a3ee1d88fe39ed2f1ad0
+# NMI_OSS_NODES_SHA256: 35c2a416abda2d91a91d571f8bd01e3492e4a1eb40e525dbdebb745b7b996dd3
 
 #__NODES_OSS__
 proxy-groups:
