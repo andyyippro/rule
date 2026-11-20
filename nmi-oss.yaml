@@ -812,6 +812,7 @@ rule-providers:
 
 rules:
   - RULE-SET,OpenAI / Domain,🤖 ChatGPT
+  - 'AND,((IP-CIDR,156.246.94.212/32),(DST-PORT,41046),(NETWORK,tcp)),🇺🇸 美国DMIT'
   - RULE-SET,VendorVideo / Domain,🎬 片商视频故转
   - RULE-SET,Japan / Domain,🎮 片商故转
   - RULE-SET,ProxyLiteNew / Domain,所有手动
