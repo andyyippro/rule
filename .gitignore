@@ -1,6 +1,7 @@
 # 含密钥的真实配置 —— 仅本地使用，绝不提交到公开仓库
 nmi.full.yaml
 nmi-oss.full.yaml
+passphrase.env
 
 # publish.ps1 的节点哈希缓存（判断节点是否变化）
 .nodes.hash
